@@ -1,1 +1,27 @@
-
+.card {
+  display: flex;
+  gap: 100px;
+  border: 1px black solid;
+  border-radius: 20px;
+  padding: 3px 20px;
+}
+.text {
+  margin: 0px;
+}
+.pendiente {
+  margin: -3px -20px;
+  background-color: orange;
+  padding: 3px 80px;
+  border-radius: 20px 0px 0px 20px;
+  cursor: pointer;
+}
+.editImg {
+  width: 20px;
+  cursor: pointer;
+}
+.billingImg {
+  position: absolute;
+  width: 16px;
+  height: 20px;
+  cursor: pointer;
+}
