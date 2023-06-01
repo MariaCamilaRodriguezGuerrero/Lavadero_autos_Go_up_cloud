@@ -6,7 +6,7 @@ const HomePage = () => {
     <div className={style.mainDiv}>
       <h1 className={style.title}>Panel de Inicio</h1>
       <div className={style.menuDiv}>
-        <Link to="/CreateVehicle">
+        <Link to="/createVehicle">
           <button className={style.btn}>Ingresar Vehiculo</button>
         </Link>
         <Link to="/services">

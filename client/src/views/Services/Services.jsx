@@ -10,15 +10,24 @@ const Services = () => {
         <img
           className={style.backBtn}
           src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
-        />
+          alt=""/>
       </Link>
       <h1 className={style.title}>Servicios en Curso</h1>
       <div className={style.cards}>
-        {vehiculos.map(({ modelo, patenteParam, tipoServicios, index }) => (
+        {vehiculos.map(({ cliente,
+          tipoVehiculo,
+          patenteParam,
+          modelo,
+          nombreTrabajador,
+          tipoServicios,
+          index }) => (
           <Card
             key={index}
+            tipoVehiculo={tipoVehiculo}
             modelo={modelo}
             patenteParam={patenteParam}
+            cliente={cliente}
+            nombreTrabajador={nombreTrabajador}
             tipoServicios={tipoServicios}
           />
         ))}

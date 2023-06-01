@@ -9,11 +9,9 @@ const CreateVehicle = () => {
         <img
           className={style.backBtn}
           src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
-        />
+          alt=""/>
       </Link>
-      <div className={style.formDiv}>
-        <FormPatente />
-      </div>
+      <FormPatente />
     </div>
   );
 };
