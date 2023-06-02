@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import Card from "../../components/Card/Card";
-import vehiculos from "../../EjemplosDATA/Vehiculos";
 import style from "./Services.module.css";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import Pagination from "../../components/Pagination/Pagination";
+
 
 const Services = () => {
+
   return (
     <div className={style.mainDiv}>
       <Link to={"/home"}>
@@ -14,23 +16,21 @@ const Services = () => {
       </Link>
       <h1 className={style.title}>Servicios en Curso</h1>
       <div className={style.cards}>
-        {vehiculos.map(({ cliente,
-          tipoVehiculo,
-          patenteParam,
-          modelo,
-          nombreTrabajador,
-          tipoServicios,
-          index }) => (
-          <Card
-            key={index}
-            tipoVehiculo={tipoVehiculo}
-            modelo={modelo}
-            patenteParam={patenteParam}
-            cliente={cliente}
-            nombreTrabajador={nombreTrabajador}
-            tipoServicios={tipoServicios}
-          />
-        ))}
+      <SearchBar/>
+        <div className={style.card}>
+          <p className={style.estado}>ESTADO</p>
+            <p className={style.text}>
+              <span className={style.spanData2}>Tipo Vehiculo</span>
+              <span className={style.spanData}>Modelo</span>
+              <span className={style.spanData}>Patente</span>
+              <span className={style.spanData3}>Cliente</span>
+              <span className={style.spanData3}>Trabajador</span>
+              <span className={style.spanData3}>Tipo Servicio</span>
+              <span className={style.spanData}>Valor $</span>
+              <span className={style.spanDataE}>Editar</span>
+            </p>
+        </div>
+      <Pagination/>
       </div>
     </div>
   );

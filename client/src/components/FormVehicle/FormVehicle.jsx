@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import vehiculos from '../../EjemplosDATA/Vehiculos';
+import { useSelector } from "react-redux";
 import style from "./FormVehicle.module.css"
+import Select from 'react-select'
 
 const FormVehicle = () => {
   const [cliente, setCliente] = useState('');
@@ -14,19 +15,35 @@ const FormVehicle = () => {
   const [tipoServicios, setTipoServicios] = useState('');
   const { patenteParam } = useParams();
   const navigate = useNavigate();
-  
+
+  const{ ongoingServices} = useSelector((state) => state);
+
+  const ejemplosServicios = [
+    { value: "lavado simple", label: "Lavado simple" },
+    { value: "lavado con espuma", label: "Lavado con espuma" },
+    { value: "lavado detallado", label: "Lavado Detallado" },
+    { value: "lavado con encerado", label: "Lavado con Encerado" },
+  ];
+
+  const ejemplosTrabajador = [
+    { value: "yhilmar", label: "Yhilmar" },
+    { value: "lautaro", label: "Lautaro" },
+    { value: "duvan", label: "Duvan" },
+    { value: "maría", label: "María" },
+  ];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí puedes hacer algo con los datos del formulario, como enviarlos a un servidor o procesarlos localmente
-    vehiculos.push({
+    ongoingServices.push({
         cliente,
         tipoVehiculo,
         patenteParam,
         whatsapp,
         modelo,
-        nombreTrabajador,
+        nombreTrabajador: nombreTrabajador.map((e) => e.value),
         marca,
-        tipoServicios
+        tipoServicios: tipoServicios.map((e) => e.value),
       })
     navigate(`/services`);
   };
@@ -39,7 +56,7 @@ const FormVehicle = () => {
             alt=""/>
         </Link> 
         <form onSubmit={handleSubmit}>
-        <h1>Crear Servicio</h1>
+        <h1 className={style.h1title}>Crear Servicio</h1>
         <div className={style.divs}>
         <div className={style.div}>
             <div className={style.inputs}>
@@ -49,12 +66,12 @@ const FormVehicle = () => {
             <div className={style.inputs}>
                 <label>
                     <div className={style.lblNombre}>Tipo de vehiculo: </div>
-                    <select value={tipoVehiculo} className={style.customSelect} onChange={(e) => setTipoVehiculo(e.target.value)}>
+                    <select value={tipoVehiculo} className={style.customSelect}  onChange={(e) => setTipoVehiculo(e.target.value)}>
                         <option value="">Selecciona un tipo de vehiculo</option>
-                        <option value="sedan">Sedán</option>
-                        <option value="camioneta">Camioneta</option>
-                        <option value="moto">Moto</option>
-                        <option value="camion">Camion</option>
+                        <option value="Sedán">Sedán</option>
+                        <option value="Camioneta">Camioneta</option>
+                        <option value="Moto">Moto</option>
+                        <option value="Camion">Camion</option>
                     </select>
                 </label>
             </div>
@@ -66,12 +83,12 @@ const FormVehicle = () => {
                 <div className={style.lblNombre}>WhatsApp: </div>   
                 <input type="text" value={whatsapp} className={style.textNomb} onChange={(e) => setWhatsapp(e.target.value)} />
             </div>
-        </div>
-        <div className={style.div}>
         <div className={style.inputs}>
             <div className={style.lblNombre}>Modelo: </div> 
             <input type="text" value={modelo} className={style.textNomb} onChange={(e) => setModelo(e.target.value)} />
         </div>
+        </div>
+        <div className={style.div}>
 
         <div className={style.inputs}>
             <div className={style.lblNombre}>Marca: </div>
@@ -80,20 +97,32 @@ const FormVehicle = () => {
 
 
         <div className={style.inputs}>
-            <div className={style.lblNombre}>Nombre trabajador: </div>
-            <input type="text" value={nombreTrabajador} className={style.textNomb} onChange={(e) => setNombreTrabajador(e.target.value)} />
+                <label>
+                    <div className={style.lblNombre}>Nombre trabajador: </div>
+        <Select
+          options={ejemplosTrabajador}
+          isMulti
+          classNamePrefix="select"
+          value={nombreTrabajador}
+          className={style.customSelect2}
+          placeholder="Seleccione un trabajador"
+          onChange={(e) => setNombreTrabajador(e)}
+        />
+                </label>
         </div>
 
         <div className={style.inputs}>
             <label>
                 <div className={style.lblNombre}>Tipo de servicios: </div>
-                <select value={tipoServicios} className={style.customSelect} onChange={(e) => setTipoServicios(e.target.value)}>
-                    <option value="">Selecciona un tipo de servicio</option>
-                    <option value="Lavado simple">Lavado simple</option>
-                    <option value="Lavado con espuma">Lavado con espuma</option>
-                    <option value="Lavado Detallado">Lavado Detallado</option>
-                    <option value="Lavado con encerado">Lavado con encerado</option>
-                </select>
+                <Select
+          options={ejemplosServicios}
+          isMulti
+          classNamePrefix="select"
+          className={style.customSelect2}
+          value={tipoServicios}
+          placeholder="Seleccione un tipo de servicio"
+          onChange={(e) => setTipoServicios(e)}
+        />
             </label>
         </div>
         </div>

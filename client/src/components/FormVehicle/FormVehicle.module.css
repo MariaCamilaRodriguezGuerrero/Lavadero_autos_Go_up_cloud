@@ -9,7 +9,8 @@
     display: flex;
   }
   .div{
-    margin: 60px;
+    margin-right: 60px;
+    margin-left: 60px;
   }
 
   .h2Patente{
@@ -72,11 +73,12 @@
     width: 270px;
     margin-bottom: 100px;
   }
-  
-  .customSelect:focus {
-    outline: none;
-    border-color: #0066cc;
+
+  .customSelect2 {
+    width: 270px;
+    margin-bottom: 160px;
   }
+
   
   @media only screen and (max-width: 800px){
     .divs{
@@ -87,5 +89,8 @@
     }
     .customSelect {
       margin-bottom: 160px;
+    }
+    .h1title{
+      margin-top: 100px;
     }
   }
