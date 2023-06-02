@@ -16,7 +16,7 @@ const FormVehicle = () => {
   const { patenteParam } = useParams();
   const navigate = useNavigate();
 
-  const{ ongoingServices} = useSelector((state) => state);
+  const { ongoingServices } = useSelector((state) => state);
 
   const ejemplosServicios = [
     { value: "lavado simple", label: "Lavado simple" },
@@ -34,8 +34,53 @@ const FormVehicle = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes hacer algo con los datos del formulario, como enviarlos a un servidor o procesarlos localmente
-    ongoingServices.push({
+    let isValid = true;
+
+    // Validar campos requeridos
+    if (cliente.trim() === '') {
+      isValid = false;
+      document.getElementById('clienteError').textContent = 'Ingrese el nombre del cliente';
+    } else {
+      document.getElementById('clienteError').textContent = '';
+    }
+
+    if (tipoVehiculo === '') {
+      isValid = false;
+      document.getElementById('tipoVehiculoError').textContent = 'Seleccione el tipo de vehículo';
+    } else {
+      document.getElementById('tipoVehiculoError').textContent = '';
+    }
+
+    if (whatsapp.trim() === '') {
+      isValid = false;
+      document.getElementById('whatsappError').textContent = 'Ingrese el número de WhatsApp';
+    } else {
+      document.getElementById('whatsappError').textContent = '';
+    }
+
+    if (modelo.trim() === '') {
+      isValid = false;
+      document.getElementById('modeloError').textContent = 'Ingrese el modelo del vehículo';
+    } else {
+      document.getElementById('modeloError').textContent = '';
+    }
+
+    if (nombreTrabajador.length === 0) {
+      isValid = false;
+      document.getElementById('nombreTrabajadorError').textContent = 'Seleccione al menos un trabajador';
+    } else {
+      document.getElementById('nombreTrabajadorError').textContent = '';
+    }
+
+    if (tipoServicios.length === 0) {
+      isValid = false;
+      document.getElementById('tipoServiciosError').textContent = 'Seleccione al menos un tipo de servicio';
+    } else {
+      document.getElementById('tipoServiciosError').textContent = '';
+    }
+
+    if (isValid) {
+      ongoingServices.push({
         cliente,
         tipoVehiculo,
         patenteParam,
@@ -44,92 +89,105 @@ const FormVehicle = () => {
         nombreTrabajador: nombreTrabajador.map((e) => e.value),
         marca,
         tipoServicios: tipoServicios.map((e) => e.value),
-      })
-    navigate(`/services`);
+      });
+
+      navigate(`/services`);
+    }
   };
 
-  return ( <>
-        <Link to={"/createVehicle"}>
-            <img
-            className={style.backBtn}
-            src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
-            alt=""/>
-        </Link> 
-        <form onSubmit={handleSubmit}>
+  const handleWhatsappChange = (e) => {
+    const inputValue = e.target.value.replace(/\D/g, ''); // Filtrar solo caracteres numéricos
+    setWhatsapp(inputValue);
+  };
+
+  return (
+    <>
+      <Link to={"/createVehicle"}>
+        <img
+          className={style.backBtn}
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
+          alt=""
+        />
+      </Link>
+      <form onSubmit={handleSubmit}>
         <h1 className={style.h1title}>Crear Servicio</h1>
         <div className={style.divs}>
-        <div className={style.div}>
+          <div className={style.div}>
             <div className={style.inputs}>
-                <div className={style.lblNombre}>Cliente: </div>
-                <input type="text" value={cliente} className={style.textNomb} onChange={(e) => setCliente(e.target.value)} />
+              <div className={style.lblNombre}>Cliente: </div>
+              <input type="text" value={cliente} className={style.textNomb} onChange={(e) => setCliente(e.target.value)} />
+              <div id="clienteError" className={style.error}></div>
             </div>
             <div className={style.inputs}>
-                <label>
-                    <div className={style.lblNombre}>Tipo de vehiculo: </div>
-                    <select value={tipoVehiculo} className={style.customSelect}  onChange={(e) => setTipoVehiculo(e.target.value)}>
-                        <option value="">Selecciona un tipo de vehiculo</option>
-                        <option value="Sedán">Sedán</option>
-                        <option value="Camioneta">Camioneta</option>
-                        <option value="Moto">Moto</option>
-                        <option value="Camion">Camion</option>
-                    </select>
-                </label>
+              <label>
+                <div className={style.lblNombre}>Tipo de vehiculo: </div>
+                <select value={tipoVehiculo} className={style.customSelect} onChange={(e) => setTipoVehiculo(e.target.value)}>
+                  <option value="">Selecciona un tipo de vehiculo</option>
+                  <option value="Sedán">Sedán</option>
+                  <option value="Camioneta">Camioneta</option>
+                  <option value="Moto">Moto</option>
+                  <option value="Camion">Camion</option>
+                </select>
+              </label>
+              <div id="tipoVehiculoError" className={style.error}></div>
             </div>
 
             <div className={style.lblNombre}>Patente: </div>
             <h2 className={style.h2Patente}> {patenteParam}</h2>
 
             <div className={style.inputs}>
-                <div className={style.lblNombre}>WhatsApp: </div>   
-                <input type="text" value={whatsapp} className={style.textNomb} onChange={(e) => setWhatsapp(e.target.value)} />
+              <div className={style.lblNombre}>WhatsApp: </div>
+              <input type="text" value={whatsapp} className={style.textNomb} onChange={handleWhatsappChange} />
+              <div id="whatsappError" className={style.error}></div>
             </div>
-        <div className={style.inputs}>
-            <div className={style.lblNombre}>Modelo: </div> 
-            <input type="text" value={modelo} className={style.textNomb} onChange={(e) => setModelo(e.target.value)} />
-        </div>
-        </div>
-        <div className={style.div}>
+            <div className={style.inputs}>
+              <div className={style.lblNombre}>Modelo: </div>
+              <input type="text" value={modelo} className={style.textNomb} onChange={(e) => setModelo(e.target.value)} />
+              <div id="modeloError" className={style.error}></div>
+            </div>
+          </div>
+          <div className={style.div}>
+            <div className={style.inputs}>
+              <div className={style.lblNombre}>Marca: </div>
+              <input type="text" value={marca} className={style.textNomb} onChange={(e) => setMarca(e.target.value)} />
+            </div>
 
-        <div className={style.inputs}>
-            <div className={style.lblNombre}>Marca: </div>
-            <input type="text" value={marca} className={style.textNomb} onChange={(e) => setMarca(e.target.value)} />
-        </div>
+            <div className={style.inputs}>
+              <label>
+                <div className={style.lblNombre}>Nombre trabajador: </div>
+                <Select
+                  options={ejemplosTrabajador}
+                  isMulti
+                  classNamePrefix="select"
+                  value={nombreTrabajador}
+                  className={style.customSelect2}
+                  placeholder="Seleccione un trabajador"
+                  onChange={(e) => setNombreTrabajador(e)}
+                />
+              </label>
+              <div id="nombreTrabajadorError" className={style.error}></div>
+            </div>
 
-
-        <div className={style.inputs}>
-                <label>
-                    <div className={style.lblNombre}>Nombre trabajador: </div>
-        <Select
-          options={ejemplosTrabajador}
-          isMulti
-          classNamePrefix="select"
-          value={nombreTrabajador}
-          className={style.customSelect2}
-          placeholder="Seleccione un trabajador"
-          onChange={(e) => setNombreTrabajador(e)}
-        />
-                </label>
-        </div>
-
-        <div className={style.inputs}>
-            <label>
+            <div className={style.inputs}>
+              <label>
                 <div className={style.lblNombre}>Tipo de servicios: </div>
                 <Select
-          options={ejemplosServicios}
-          isMulti
-          classNamePrefix="select"
-          className={style.customSelect2}
-          value={tipoServicios}
-          placeholder="Seleccione un tipo de servicio"
-          onChange={(e) => setTipoServicios(e)}
-        />
-            </label>
-        </div>
-        </div>
+                  options={ejemplosServicios}
+                  isMulti
+                  classNamePrefix="select"
+                  className={style.customSelect2}
+                  value={tipoServicios}
+                  placeholder="Seleccione un tipo de servicio"
+                  onChange={(e) => setTipoServicios(e)}
+                />
+              </label>
+              <div id="tipoServiciosError" className={style.error}></div>
+            </div>
+          </div>
         </div>
 
         <button type="submit" className={style.submit}>Enviar</button>
-        </form>
+      </form>
     </>
   );
 };

@@ -24,6 +24,7 @@ const Services = () => {
               <span className={style.spanData}>Modelo</span>
               <span className={style.spanData}>Patente</span>
               <span className={style.spanData3}>Cliente</span>
+              <span className={style.spanData3}>WhatsApp</span>
               <span className={style.spanData3}>Trabajador</span>
               <span className={style.spanData3}>Tipo Servicio</span>
               <span className={style.spanData}>Valor $</span>

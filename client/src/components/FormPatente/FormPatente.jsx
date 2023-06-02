@@ -5,11 +5,16 @@ import style from "./FormPatente.module.css";
 const FormPatente = () => {
   const navigate = useNavigate();
   const [patente, setPatente] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // chequeo si hay patente antes de irme al siguente form
-    if (patente) navigate(`/formVehicle/${patente}`);
+    
+    if (patente) {
+      navigate(`/formVehicle/${patente}`);
+    } else {
+      setError("Por favor, ingresa la patente del vehículo");
+    }
   };
 
   return (
@@ -22,6 +27,7 @@ const FormPatente = () => {
           value={patente}
           onChange={(e) => setPatente(e.target.value)}
         />
+        {error && <div className={style.error}>{error}</div>}
         <button type="submit" className={style.submit}>
           Enviar
         </button>

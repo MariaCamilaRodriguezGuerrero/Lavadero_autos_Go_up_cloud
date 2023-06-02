@@ -49,3 +49,7 @@
 .submit:active {
   background-color: #30b4c9;
 }
+
+.error{
+  color: rgb(255, 0, 0);
+}
