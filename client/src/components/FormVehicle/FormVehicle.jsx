@@ -58,13 +58,6 @@ const FormVehicle = () => {
       document.getElementById('whatsappError').textContent = '';
     }
 
-    if (modelo.trim() === '') {
-      isValid = false;
-      document.getElementById('modeloError').textContent = 'Ingrese el modelo del vehículo';
-    } else {
-      document.getElementById('modeloError').textContent = '';
-    }
-
     if (nombreTrabajador.length === 0) {
       isValid = false;
       document.getElementById('nombreTrabajadorError').textContent = 'Seleccione al menos un trabajador';
@@ -111,16 +104,18 @@ const FormVehicle = () => {
       </Link>
       <form onSubmit={handleSubmit}>
         <h1 className={style.h1title}>Crear Servicio</h1>
+        <p className={style.h2subtitle}>Los campos con * son obligatorios</p>
         <div className={style.divs}>
           <div className={style.div}>
             <div className={style.inputs}>
-              <div className={style.lblNombre}>Cliente: </div>
-              <input type="text" value={cliente} className={style.textNomb} onChange={(e) => setCliente(e.target.value)} />
+              <div className={style.lblNombre}>Cliente* </div>
               <div id="clienteError" className={style.error}></div>
+              <input type="text" value={cliente} className={style.textNomb} onChange={(e) => setCliente(e.target.value)} />
             </div>
             <div className={style.inputs}>
               <label>
-                <div className={style.lblNombre}>Tipo de vehiculo: </div>
+                <div className={style.lblNombre}>Tipo de vehiculo* </div>
+                <div id="tipoVehiculoError" className={style.error}></div>
                 <select value={tipoVehiculo} className={style.customSelect} onChange={(e) => setTipoVehiculo(e.target.value)}>
                   <option value="">Selecciona un tipo de vehiculo</option>
                   <option value="Sedán">Sedán</option>
@@ -129,32 +124,31 @@ const FormVehicle = () => {
                   <option value="Camion">Camion</option>
                 </select>
               </label>
-              <div id="tipoVehiculoError" className={style.error}></div>
             </div>
 
-            <div className={style.lblNombre}>Patente: </div>
+            <div className={style.lblNombre}>Patente* </div>
             <h2 className={style.h2Patente}> {patenteParam}</h2>
 
             <div className={style.inputs}>
-              <div className={style.lblNombre}>WhatsApp: </div>
-              <input type="text" value={whatsapp} className={style.textNomb} onChange={handleWhatsappChange} />
+              <div className={style.lblNombre}>WhatsApp* </div>
               <div id="whatsappError" className={style.error}></div>
+              <input type="text" value={whatsapp} className={style.textNomb} onChange={handleWhatsappChange} />
             </div>
             <div className={style.inputs}>
-              <div className={style.lblNombre}>Modelo: </div>
+              <div className={style.lblNombre}>Modelo </div>
               <input type="text" value={modelo} className={style.textNomb} onChange={(e) => setModelo(e.target.value)} />
-              <div id="modeloError" className={style.error}></div>
             </div>
           </div>
           <div className={style.div}>
             <div className={style.inputs}>
-              <div className={style.lblNombre}>Marca: </div>
+              <div className={style.lblNombre}>Marca </div>
               <input type="text" value={marca} className={style.textNomb} onChange={(e) => setMarca(e.target.value)} />
             </div>
 
             <div className={style.inputs}>
               <label>
-                <div className={style.lblNombre}>Nombre trabajador: </div>
+                <div className={style.lblNombre}>Nombre trabajador* </div>
+                <div id="nombreTrabajadorError" className={style.error}></div>
                 <Select
                   options={ejemplosTrabajador}
                   isMulti
@@ -165,12 +159,12 @@ const FormVehicle = () => {
                   onChange={(e) => setNombreTrabajador(e)}
                 />
               </label>
-              <div id="nombreTrabajadorError" className={style.error}></div>
             </div>
 
             <div className={style.inputs}>
               <label>
-                <div className={style.lblNombre}>Tipo de servicios: </div>
+                <div className={style.lblNombre}>Tipo de servicios* </div>
+                <div id="tipoServiciosError" className={style.error}></div>
                 <Select
                   options={ejemplosServicios}
                   isMulti
@@ -181,7 +175,6 @@ const FormVehicle = () => {
                   onChange={(e) => setTipoServicios(e)}
                 />
               </label>
-              <div id="tipoServiciosError" className={style.error}></div>
             </div>
           </div>
         </div>
