@@ -1,4 +1,3 @@
-import Card from "../../components/Card/Card";
 import styles from "./Pagination.module.css";
 import ReactPaginate from "react-paginate";
 import { useState, useEffect } from "react";
@@ -11,33 +10,33 @@ export default function Pagination() {
   const ongoingServicesPerPage = 10;
   const pageCount = Math.ceil(ongoingServices.length / ongoingServicesPerPage);
   const pageNumber = useSelector((state) => state.pageNumber);
-  const pagesVisited = pageNumber * ongoingServicesPerPage;
+  // const pagesVisited = pageNumber * ongoingServicesPerPage;
   const [pageNumberToShow, setPageNumberToShow] = useState(0);
-  const displayOngoingServices =
-    typeof ongoingServices !== "string" &&
-    ongoingServices
-      .slice(pagesVisited, pagesVisited + ongoingServicesPerPage)
-      .map(({ cliente,
-        tipoVehiculo,
-        patenteParam,
-        whatsapp,
-        modelo,
-        nombreTrabajador,
-        tipoServicios
-        }, index) => {
-        return (
-          <Card
-            key={index}
-            cliente={cliente}
-            whatsapp={whatsapp}
-            tipoVehiculo={tipoVehiculo}
-            patenteParam={patenteParam}
-            modelo={modelo}
-            nombreTrabajador={nombreTrabajador}
-            tipoServicios={tipoServicios}
-          />
-        );
-      });
+  // const displayOngoingServices =
+  //   typeof ongoingServices !== "string" &&
+  //   ongoingServices
+  //     .slice(pagesVisited, pagesVisited + ongoingServicesPerPage)
+  //     .map(({ cliente,
+  //       tipoVehiculo,
+  //       patenteParam,
+  //       whatsapp,
+  //       modelo,
+  //       nombreTrabajador,
+  //       tipoServicios
+  //       }, index) => {
+  //       return (
+  //         <Card
+  //           key={index}
+  //           cliente={cliente}
+  //           whatsapp={whatsapp}
+  //           tipoVehiculo={tipoVehiculo}
+  //           patenteParam={patenteParam}
+  //           modelo={modelo}
+  //           nombreTrabajador={nombreTrabajador}
+  //           tipoServicios={tipoServicios}
+  //         />
+  //       );
+  //     });
 
   useEffect(() => {
     setPageNumberToShow(pageNumber);
@@ -51,13 +50,13 @@ export default function Pagination() {
     visibility = styles.containerPaginate;
   }
 
-  if (
-    typeof displayOngoingServices === "object" &&
-    displayOngoingServices.length === 0 &&
-    ongoingServices[0]
-  ) {
-    dispatch(changePageNumber(0));
-  }
+  // if (
+  //   typeof displayOngoingServices === "object" &&
+  //   displayOngoingServices.length === 0 &&
+  //   ongoingServices[0]
+  // ) {
+  //   dispatch(changePageNumber(0));
+  // }
 
   const changePage = ({ selected }) => {
     dispatch(changePageNumber(selected));
@@ -75,7 +74,7 @@ export default function Pagination() {
         {!ongoingServices[0] && errorToShow === "" ? (
           <p className={styles.message}>No matches found</p>
         ) : null} */}
-        {displayOngoingServices}
+        {/* {displayOngoingServices} */}
       </div>
       <div className={visibility}>
         <ReactPaginate

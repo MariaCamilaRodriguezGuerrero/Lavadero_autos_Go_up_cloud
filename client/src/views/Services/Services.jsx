@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import style from "./Services.module.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
+import Cards from "../../components/CardServices/Cards/Cards";
 
 
 const Services = () => {
@@ -31,6 +32,7 @@ const Services = () => {
               <span className={style.spanDataE}>Editar</span>
             </p>
         </div>
+      <Cards/>
       <Pagination/>
       </div>
     </div>

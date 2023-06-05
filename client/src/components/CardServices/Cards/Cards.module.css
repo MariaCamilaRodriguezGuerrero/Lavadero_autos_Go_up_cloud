@@ -1,0 +1,13 @@
+  .container {
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  .cards {
+    display: flex;
+    width: 100%;
+    min-height: 550px;
+    margin: 20px 0;
+    flex-direction: column;
+    gap: 20px;
+  }
