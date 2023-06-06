@@ -12,17 +12,17 @@ const FormVehicle = () => {
   const [modelo, setModelo] = useState('');
   const [nombreTrabajador, setNombreTrabajador] = useState('');
   const [marca, setMarca] = useState('');
-  const [tipoServicios, setTipoServicios] = useState('');
+  const [tipoServicios, setTipoServicios] = useState();
   const { patenteParam } = useParams();
   const navigate = useNavigate();
 
   const { ongoingServices } = useSelector((state) => state);
 
   const ejemplosServicios = [
-    { value: "lavado simple", label: "Lavado simple" },
-    { value: "lavado con espuma", label: "Lavado con espuma" },
-    { value: "lavado detallado", label: "Lavado Detallado" },
-    { value: "lavado con encerado", label: "Lavado con Encerado" },
+    { value: "2000", label: "Lavado simple", name: "Lavado simple" },
+    { value: "1500", label: "Lavado con espuma", name: "Lavado con espuma" },
+    { value: "800", label: "Lavado Detallado", name: "Lavado Detallado" },
+    { value: "1800", label: "Lavado con Encerado", name: "Lavado con Encerado" },
   ];
 
   const ejemplosTrabajador = [
@@ -73,7 +73,7 @@ const FormVehicle = () => {
     }
 
     if (isValid) {
-      ongoingServices.push({
+      ongoingServices.unshift({
         cliente,
         tipoVehiculo,
         patenteParam,
@@ -81,7 +81,7 @@ const FormVehicle = () => {
         modelo,
         nombreTrabajador: nombreTrabajador.map((e) => e.value),
         marca,
-        tipoServicios: tipoServicios.map((e) => e.value),
+        tipoServicios: tipoServicios.map((e) => e),
       });
 
       navigate(`/services`);

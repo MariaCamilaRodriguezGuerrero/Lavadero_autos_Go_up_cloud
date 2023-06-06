@@ -17,7 +17,7 @@ const inicialState = {
     modelo: "Spyder 911",
     nombreTrabajador: ["Gastón García", "Duvan", "Lautaro Walter"],
     marca: "Porshe",
-    tipoServicios: ["Lavado Carrocería", "Lavado Simple"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -27,7 +27,17 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
+  },
+  {
+    cliente: "Mario Martinez",
+    tipoVehiculo: "Sedán",
+    patenteParam: "JLP033",
+    whatsapp: "15162324",
+    modelo: "Ecosport",
+    nombreTrabajador: ["Gastón García"],
+    marca: "Ford",
+    tipoServicios: [{ name: "Lavado Carrocería", value: "10000"}, { name: "Lavado Simple", value: "2500"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -37,7 +47,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -47,7 +57,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -57,7 +67,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -67,7 +77,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -77,7 +87,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -87,7 +97,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -97,17 +107,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
-  },
-  {
-    cliente: "Julián Casablancas",
-    tipoVehiculo: "Sedán",
-    patenteParam: "JLP033",
-    whatsapp: "15162324",
-    modelo: "Ecosport",
-    nombreTrabajador: ["Gastón García"],
-    marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Lautaro Walter",
@@ -117,7 +117,7 @@ const inicialState = {
     modelo: "Spyder 911",
     nombreTrabajador: ["Gastón García", "Duvan", "Lautaro Walter"],
     marca: "Porshe",
-    tipoServicios: ["Lavado Carrocería", "Lavado Simple"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -127,7 +127,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -137,7 +137,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -147,7 +147,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -157,7 +157,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -167,7 +167,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -177,7 +177,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -187,7 +187,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -197,7 +197,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -207,7 +207,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -217,7 +217,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -227,7 +227,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   {
     cliente: "Julián Casablancas",
@@ -237,7 +237,7 @@ const inicialState = {
     modelo: "Ecosport",
     nombreTrabajador: ["Gastón García"],
     marca: "Ford",
-    tipoServicios: ["Lavado Carrocería"],
+    tipoServicios: [{ name: "Lavado Carrocería", value: "2000"}, { name: "Lavado Simple", value: "1550"}],
   },
   ],
   numPage: 1,

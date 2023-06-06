@@ -62,7 +62,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 5%;
+  width: 7%;
   border-right: 2px black solid;
   padding: 0 35px;
   font-size: 20px;
@@ -86,19 +86,30 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 9%;
+  width: 18%;
   border-right: 2px black solid;
   padding: 0 35px;
   font-size: 20px;
   font-weight: bold;
 }
 
-.spanDataE{
+.spanDataP{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 3%;
+  border-right: 2px rgb(0, 0, 0) solid;
+  padding: 0 35px;
+  font-size: 20px;
+  font-weight: bold
+}
+.spanDataE{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 1%;
   padding: 0 35px;
   font-size: 20px;
   font-weight: bold;
@@ -108,7 +119,7 @@
   display: flex;
   border-right: 2px black solid;
   height: 100%;
-  width: 14%;
+  width: 10.5%;
   border-radius: 20px 0px 0px 20px;
   align-items: center;
   justify-content: center;

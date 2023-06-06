@@ -50,7 +50,7 @@ export default function Cards() {
   }
 
   return (
-    <div id="pagination" className={styles.container}>
+    <div className={styles.container}>
       {/* {errorToShow ? (
         <p className={styles.error}>Error: {errorToShow}</p>
       ) : null} */}
