@@ -10,36 +10,34 @@ export default function Cards() {
   const ongoingServicesPerPage = 10;
   const pageNumber = useSelector((state) => state.pageNumber);
   const pagesVisited = pageNumber * ongoingServicesPerPage;
-//   const [pageNumberToShow, setPageNumberToShow] = useState(0);
+  //   const [pageNumberToShow, setPageNumberToShow] = useState(0);
   const displayOngoingServices =
     typeof ongoingServices !== "string" &&
     ongoingServices
       .slice(pagesVisited, pagesVisited + ongoingServicesPerPage)
-      .map(({ cliente,
-        tipoVehiculo,
-        patenteParam,
-        whatsapp,
-        modelo,
-        nombreTrabajador,
-        tipoServicios
-        }, index) => {
-        return (
-          <Card
-            key={index}
-            cliente={cliente}
-            whatsapp={whatsapp}
-            tipoVehiculo={tipoVehiculo}
-            patenteParam={patenteParam}
-            modelo={modelo}
-            nombreTrabajador={nombreTrabajador}
-            tipoServicios={tipoServicios}
-          />
-        );
-      });
+      .map(
+        (
+          { client, vehicleType, patent, whatsapp, model, workers, services },
+          index
+        ) => {
+          return (
+            <Card
+              key={index}
+              client={client}
+              whatsapp={whatsapp}
+              vehicleType={vehicleType}
+              patent={patent}
+              model={model}
+              workers={workers}
+              services={services}
+            />
+          );
+        }
+      );
 
-//   useEffect(() => {
-//     setPageNumberToShow(pageNumber);
-//   }, [pageNumber]);
+  //   useEffect(() => {
+  //     setPageNumberToShow(pageNumber);
+  //   }, [pageNumber]);
 
   if (
     typeof displayOngoingServices === "object" &&

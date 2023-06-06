@@ -2,8 +2,8 @@ import style from "./Billing.module.css";
 import { Link, useLocation } from "react-router-dom";
 
 const Billing = () => {
-
   const location = useLocation();
+  const { services } = location.state;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,20 +13,21 @@ const Billing = () => {
   return (
     <div className={style.backgroundDiv}>
       <div className={style.mainDiv}>
-      <div className={style.titleDiv}>
-        <div className={style.columnBtn}>
-      <Link to={"/services"}>
-        <img
-          className={style.backBtn}
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
-          alt=""/>
-      </Link>
+        <div className={style.titleDiv}>
+          <div className={style.columnBtn}>
+            <Link to={"/services"}>
+              <img
+                className={style.backBtn}
+                src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
+                alt=""
+              />
+            </Link>
           </div>
           <div className={style.column}>
-        <h1 className={style.title}>FACTURA</h1>
+            <h1 className={style.title}>FACTURA</h1>
+          </div>
+          <div className={style.column}></div>
         </div>
-        <div className={style.column}></div>
-      </div>
         <form onSubmit={handleSubmit} className={style.form}>
           <label>Medio de Pago</label>
           <select>
@@ -41,14 +42,28 @@ const Billing = () => {
           <input type="number"></input>
           <label>Propina</label>
           <input type="number"></input>
-          {location.state.data && location.state.data.tipoServicios.map(e => <span>{e.name} - ${e.value}</span>)}
+          {services &&
+            services.map((e) => (
+              <span>
+                {e.name} - ${e.value}
+              </span>
+            ))}
 
-          <span>{location.state.data && "Total: $" + location.state.data.tipoServicios.map(e => Number(e.value)).reduce(
-          (accumulator, currentValue) => accumulator + currentValue, 0
-          )}</span>
-          <button type="submit" className={style.submit}>Enviar</button>
+          <span>
+            {services &&
+              "Total: $" +
+                services
+                  .map((e) => Number(e.value))
+                  .reduce(
+                    (accumulator, currentValue) => accumulator + currentValue,
+                    0
+                  )}
+          </span>
+          <button type="submit" className={style.submit}>
+            Enviar
+          </button>
         </form>
-        </div>
+      </div>
     </div>
   );
 };

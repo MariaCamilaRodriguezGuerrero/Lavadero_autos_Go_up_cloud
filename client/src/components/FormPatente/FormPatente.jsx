@@ -4,14 +4,18 @@ import style from "./FormPatente.module.css";
 
 const FormPatente = () => {
   const navigate = useNavigate();
-  const [patente, setPatente] = useState("");
+  const [patent, setPatent] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if (patente) {
-      navigate(`/formVehicle/${patente}`);
+
+    if (patent) {
+      navigate(`/formVehicle`, {
+        state: {
+          patent,
+        },
+      });
     } else {
       setError("Por favor, ingresa la patente del vehículo");
     }
@@ -24,8 +28,8 @@ const FormPatente = () => {
         <input
           className={style.input}
           type="text"
-          value={patente}
-          onChange={(e) => setPatente(e.target.value)}
+          value={patent}
+          onChange={(e) => setPatent(e.target.value)}
         />
         {error && <div className={style.error}>{error}</div>}
         <button type="submit" className={style.submit}>

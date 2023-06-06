@@ -1,14 +1,14 @@
 import style from "./Card.module.css";
 import { Link, useLocation } from "react-router-dom";
 
-const Card = ({
-  client,
-  vehicleType,
-  patent,
+const CardSquare = ({
+  cliente,
+  tipoVehiculo,
   whatsapp,
-  model,
-  workers,
-  services,
+  patenteParam,
+  modelo,
+  nombreTrabajador,
+  tipoServicios,
 }) => {
   const location = useLocation();
 
@@ -16,7 +16,7 @@ const Card = ({
     <div className={style.card}>
       <Link
         to="/services/billing"
-        state={{ background: location, services }}
+        state={{ background: location, data: { tipoServicios } }}
         className={style.pendiente}
       >
         <img
@@ -28,24 +28,24 @@ const Card = ({
       </Link>
       <p className={style.text}>
         <span className={style.spanData2}>5/6/2023</span>
-        <span className={style.spanData2}>{vehicleType}</span>
-        <span className={style.spanData}>{model}</span>
-        <span className={style.spanDataP}>{patent}</span>
-        <span className={style.spanData3}>{client}</span>
+        <span className={style.spanData2}>{tipoVehiculo}</span>
+        <span className={style.spanData}>{modelo}</span>
+        <span className={style.spanDataP}>{patenteParam}</span>
+        <span className={style.spanData3}>{cliente}</span>
         <span className={style.spanData3}>+56 {whatsapp}</span>
         <div className={style.spanData3}>
-          {workers.map((e) => (
+          {nombreTrabajador.map((e) => (
             <span>{e}</span>
           ))}
         </div>
         <div className={style.spanData3}>
-          {services.map((e) => (
+          {tipoServicios.map((e) => (
             <span>{e.name}</span>
           ))}
         </div>
         <span className={style.spanData}>
           $
-          {services
+          {tipoServicios
             .map((e) => Number(e.value))
             .reduce(
               (accumulator, currentValue) => accumulator + currentValue,
@@ -58,13 +58,13 @@ const Card = ({
           state={{
             background: location,
             data: {
-              client,
-              vehicleType,
-              patent,
+              cliente,
+              tipoVehiculo,
               whatsapp,
-              model,
-              workers,
-              services,
+              patenteParam,
+              modelo,
+              nombreTrabajador,
+              tipoServicios,
             },
           }}
           className={style.spanDataE}
@@ -82,4 +82,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default CardSquare;

@@ -12,6 +12,9 @@ const HomePage = () => {
         <Link to="/services">
           <button className={style.btn}>Servicios En Curso</button>
         </Link>
+        <Link to="/dashboard">
+          <button className={style.btn}>Resumen del Día</button>
+        </Link>
       </div>
     </div>
   );
