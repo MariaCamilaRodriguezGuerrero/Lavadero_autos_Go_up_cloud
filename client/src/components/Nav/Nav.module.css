@@ -1,0 +1,34 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px;
+    z-index: 1000;
+    width: 98vw;
+}
+
+.item {
+    display: flex;
+    z-index: 1000;
+}
+
+.item .itemsDiv {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "vox", sans-serif;
+    margin: 20px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.item .itemsDiv:hover,
+.item .itemsDivActive {
+    padding: 5px 10px;
+    background: #30b4c9;
+    color: #fff;
+    border-radius: 15px;
+    transition: all 0.5s ease;
+}

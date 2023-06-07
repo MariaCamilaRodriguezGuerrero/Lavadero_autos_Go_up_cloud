@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import style from "./FormVehicle.module.css";
+import Nav from "../Nav/Nav";
 
 const FormVehicle = () => {
   const [client, setClient] = useState("");
@@ -60,6 +61,7 @@ const FormVehicle = () => {
 
   return (
     <div>
+      <Nav/>
       <Link to={"/createVehicle"}>
         <img
           className={style.backBtn}

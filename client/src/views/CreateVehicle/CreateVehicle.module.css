@@ -1,9 +1,0 @@
-.backBtn {
-  position: absolute;
-  display: flex;
-  top: 40px;
-  left: 40px;
-  width: 40px;
-  cursor: pointer;
-  z-index: 1000;
-}

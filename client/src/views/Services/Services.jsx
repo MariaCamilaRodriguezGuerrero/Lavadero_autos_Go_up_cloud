@@ -1,20 +1,16 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import style from "./Services.module.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
 import Cards from "../../components/CardServices/Cards/Cards";
+import Nav from "../../components/Nav/Nav";
 
 
 const Services = () => {
 
   return (
     <div className={style.mainDiv}>
-      <Link to={"/home"}>
-        <img
-          className={style.backBtn}
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
-          alt=""/>
-      </Link>
+    <Nav/>
       <h1 className={style.title}>Servicios en Curso</h1>
       <div className={style.cards}>
       <SearchBar/>

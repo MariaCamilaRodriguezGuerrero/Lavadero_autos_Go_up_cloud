@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import style from "./FormService.module.css";
 import Select from "react-select";
+import Nav from "../Nav/Nav";
 
 const FormService = () => {
   const [workers, setWorkers] = useState([]);
@@ -74,6 +75,7 @@ const FormService = () => {
 
   return (
     <div>
+      <Nav/>
       <Link to={"/formVehicle"} state={patent}>
         <img
           className={style.backBtn}
@@ -83,20 +85,24 @@ const FormService = () => {
       </Link>
       <form onSubmit={handleSubmit}>
         <h1 className={style.h1title}>Crear Servicio</h1>
-        <Select
-          classNamePrefix="select"
-          placeholder="Seleccione un tipo de servicio"
-          options={ejemplosServicios}
-          value={services[0]}
-          onChange={(e) => setServices([...services, (services[0] = e)])}
-        ></Select>
-        <Select
-          classNamePrefix="select"
-          placeholder="Seleccione Trabajadores"
-          options={ejemplosTrabajador}
-          value={workers}
-          onChange={(e) => setWorkers((workers[0] = e))}
-        ></Select>
+        <div  className={style.divs}>
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            options={ejemplosServicios}
+            className={style.customSelect2}
+            value={services[0]}
+            onChange={(e) => setServices([...services, (services[0] = e)])}
+          ></Select>
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            options={ejemplosTrabajador}
+            className={style.customSelect2}
+            value={workers}
+            onChange={(e) => setWorkers((workers[0] = e))}
+          ></Select>
+        </div>
         <button type="submit" className={style.submit}>
           Enviar
         </button>
