@@ -4,6 +4,9 @@
   align-items: center;
   padding: 40px;
 }
+.title {
+  margin-top: 100px;
+}
 .titleLists {
   font-size: 20px;
 }
@@ -19,7 +22,7 @@
 .chart {
   width: 700px;
   height: fit-content;
-  margin: 100px 50px;
+  margin: 50px;
 }
 .linkDiv {
   display: flex;

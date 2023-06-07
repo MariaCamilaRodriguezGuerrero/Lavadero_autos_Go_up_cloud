@@ -3,7 +3,7 @@ import style from "./BillingList.module.css";
 const BillingList = () => {
   return (
     <div className={style.backgroundContainer}>
-      <h2 className={style.title}>Facturación</h2>
+      <h1 className={style.title}>Facturación</h1>
     </div>
   );
 };

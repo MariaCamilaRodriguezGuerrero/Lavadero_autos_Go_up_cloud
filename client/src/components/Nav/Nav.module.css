@@ -52,12 +52,13 @@
   cursor: pointer;
   transition: all 0.5s ease;
   padding: 5px 10px;
-  background: #30b4c9;
+  background: transparent;
+  border: #30b4c9 2px solid;
   border-radius: 15px;
-  color: #fff;
+  color: black;
 }
 .itemLogout:hover {
-  color: black;
-  border-radius: 5px;
+  color: white;
+  background: #30b4c9;
   transition: all 0.5s ease;
 }

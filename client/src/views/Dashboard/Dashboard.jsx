@@ -42,6 +42,7 @@ const Dashboard = () => {
   return (
     <div className={style.backgroundContainer}>
       <div className={style.mainContainer}>
+        <h1 className={style.title}>Resumen</h1>
         <div className={style.chart}>
           <LineChart chartData={userData} />
         </div>
