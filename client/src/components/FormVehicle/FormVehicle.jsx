@@ -1,6 +1,7 @@
+import style from "./FormVehicle.module.css";
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import style from "./FormVehicle.module.css";
+import Select from "react-select";
 
 const FormVehicle = () => {
   const [client, setClient] = useState("");
@@ -10,47 +11,57 @@ const FormVehicle = () => {
   const [brand, setBrand] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  if (!location.state) return <h2>Sin Datos</h2>;
+  if (!location.state) return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
   const { patent } = location.state;
+
+  const ejemploTipoVehiculo = [
+    { value: "sedán", label: "Sedán" },
+    { value: "camioneta", label: "Camioneta" },
+    { value: "moto", label: "Moto" },
+    { value: "camion", label: "Camion" },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let isValid = true;
+    let valid = true;
 
     // Validar campos requeridos
     if (client.trim() === "") {
-      isValid = false;
-      document.getElementById("clienteError").textContent =
-        "Ingrese el nombre del cliente";
+      valid = false;
+      document.getElementById("clienteError").style.display = "block";
     } else {
-      document.getElementById("clienteError").textContent = "";
-    }
-
-    if (vehicleType === "") {
-      isValid = false;
-      document.getElementById("tipoVehiculoError").textContent =
-        "Seleccione el tipo de vehículo";
-    } else {
-      document.getElementById("tipoVehiculoError").textContent = "";
+      document.getElementById("clienteError").style.display = "none";
     }
 
     if (whatsapp.trim() === "") {
-      isValid = false;
-      document.getElementById("whatsappError").textContent =
-        "Ingrese el número de WhatsApp";
+      valid = false;
+      document.getElementById("whatsappError").style.display = "block";
     } else {
-      document.getElementById("whatsappError").textContent = "";
+      document.getElementById("whatsappError").style.display = "none";
     }
-    navigate(`/formService`, {
-      state: {
-        client,
-        vehicleType,
-        patent,
-        whatsapp,
-        model,
-        brand,
-      },
+
+    if (vehicleType === "") {
+      valid = false;
+      document.getElementById("tipoVehiculoError").style.display = "block";
+    } else {
+      document.getElementById("tipoVehiculoError").style.display = "none";
+    }
+    //envío Post o Put al Back
+    console.log({
+      id: patent,
+      vehicleType: vehicleType.value,
+      client,
+      whatsapp,
+      brand,
+      model,
     });
+    if (valid) {
+      navigate(`/formService`, {
+        state: {
+          patent,
+        },
+      });
+    }
   };
 
   const handleWhatsappChange = (e) => {
@@ -58,6 +69,19 @@ const FormVehicle = () => {
     setWhatsapp(inputValue);
   };
 
+  const selectStyles = {
+    indicatorSeparator: (styles) => ({ ...styles, display: "none" }),
+    valueContainer: (styles) => ({ ...styles, paddingLeft: "36px" }),
+  };
+  const selectTheme = (theme) => ({
+    ...theme,
+    borderRadius: "20px",
+    colors: {
+      ...theme.colors,
+      primary25: "#3cd8f0",
+      primary: "black",
+    },
+  });
   return (
     <div>
       <Link to={"/createVehicle"}>
@@ -67,72 +91,63 @@ const FormVehicle = () => {
           alt=""
         />
       </Link>
+      <h1 className={style.title}>Datos del Vehículo</h1>
+      <p className={style.subtitle}>Los campos con * son obligatorios</p>
       <form onSubmit={handleSubmit}>
-        <h1 className={style.h1title}>Datos del Vehículo</h1>
-        <p className={style.h2subtitle}>Los campos con * son obligatorios</p>
-        <div className={style.divs}>
-          <div className={style.div}>
-            <div className={style.inputs}>
-              <div className={style.lblNombre}>Cliente* </div>
-              <div id="clienteError" className={style.error}></div>
-              <input
-                type="text"
-                value={client}
-                className={style.textNomb}
-                onChange={(e) => setClient(e.target.value)}
-              />
-            </div>
-            <div className={style.inputs}>
-              <label>
-                <div className={style.lblNombre}>Tipo de vehiculo* </div>
-                <div id="tipoVehiculoError" className={style.error}></div>
-                <select
-                  value={vehicleType}
-                  className={style.customSelect}
-                  onChange={(e) => setVehicleType(e.target.value)}
-                >
-                  <option value="">Selecciona un tipo de vehiculo</option>
-                  <option value="Sedán">Sedán</option>
-                  <option value="Camioneta">Camioneta</option>
-                  <option value="Moto">Moto</option>
-                  <option value="Camion">Camion</option>
-                </select>
-              </label>
-            </div>
+        <div className={style.form}>
+          <div className={style.column}>
+            <label className={style.label}>Cliente* </label>
+            <input
+              type="text"
+              value={client}
+              className={style.input}
+              onChange={(e) => setClient(e.target.value)}
+            />
+            <p id="clienteError" className={style.error}>
+              Ingrese el nombre del cliente
+            </p>
+            <label className={style.label}>WhatsApp*</label>
+            <input
+              type="text"
+              value={whatsapp}
+              className={style.input}
+              onChange={handleWhatsappChange}
+            />
+            <p id="whatsappError" className={style.error}>
+              Ingrese el número de WhatsApp
+            </p>
 
-            <div className={style.lblNombre}>Patente* </div>
-            <h2 className={style.h2Patente}> {patent}</h2>
-
-            <div className={style.inputs}>
-              <div className={style.lblNombre}>WhatsApp* </div>
-              <div id="whatsappError" className={style.error}></div>
-              <input
-                type="text"
-                value={whatsapp}
-                className={style.textNomb}
-                onChange={handleWhatsappChange}
-              />
-            </div>
-            <div className={style.inputs}>
-              <div className={style.lblNombre}>Modelo </div>
-              <input
-                type="text"
-                value={model}
-                className={style.textNomb}
-                onChange={(e) => setModel(e.target.value)}
-              />
-            </div>
+            <label className={style.label}>Tipo de vehiculo*</label>
+            <Select
+              options={ejemploTipoVehiculo}
+              placeholder="Seleccione un tipo"
+              className={style.select}
+              styles={selectStyles}
+              value={vehicleType}
+              onChange={(e) => setVehicleType(e)}
+              theme={selectTheme}
+            />
+            <p id="tipoVehiculoError" className={style.error}>
+              Seleccione el tipo de vehículo
+            </p>
           </div>
-          <div className={style.div}>
-            <div className={style.inputs}>
-              <div className={style.lblNombre}>Marca </div>
-              <input
-                type="text"
-                value={brand}
-                className={style.textNomb}
-                onChange={(e) => setBrand(e.target.value)}
-              />
-            </div>
+          <div className={style.column}>
+            <label className={style.label}>Modelo </label>
+            <input
+              type="text"
+              value={model}
+              className={style.input}
+              onChange={(e) => setModel(e.target.value)}
+            />
+            <label className={style.label}>Marca </label>
+            <input
+              type="text"
+              value={brand}
+              className={style.input}
+              onChange={(e) => setBrand(e.target.value)}
+            />
+            <label className={style.label}>Patente</label>
+            <p className={style.patent}>{patent}</p>
           </div>
         </div>
         <button type="submit" className={style.submit}>

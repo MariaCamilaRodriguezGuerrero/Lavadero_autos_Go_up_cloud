@@ -13,7 +13,7 @@ const FormPatente = () => {
     if (patent) {
       navigate(`/formVehicle`, {
         state: {
-          patent,
+          patent: patent.toUpperCase(),
         },
       });
     } else {

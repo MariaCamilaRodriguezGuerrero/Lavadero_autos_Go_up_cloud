@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import style from "./FormService.module.css";
@@ -7,25 +7,43 @@ import Select from "react-select";
 const FormService = () => {
   const [workers, setWorkers] = useState([]);
   const [services, setServices] = useState([]);
+  const [options, setOptions] = useState([
+    { value: "2000", label: "Lavado Simple", name: "lavado simple" },
+    { value: "1500", label: "Lavado con Espuma", name: "lavado con espuma" },
+    { value: "800", label: "Lavado Detallado", name: "lavado detallado" },
+    {
+      value: "1800",
+      label: "Lavado con Encerado",
+      name: "lavado con encerado",
+    },
+  ]);
   const location = useLocation();
   const navigate = useNavigate();
-  if (!location.state) return <h2>Sin Datos</h2>;
-  const { client, vehicleType, patent, whatsapp, model, brand } =
-    location.state;
+
+  useEffect(() => {
+    if (services.length) {
+      let optionsNew = ejemplosServicios.map((option) =>
+        console.log(services.filter((service) => option.name !== service.name))
+      );
+      setOptions(optionsNew);
+    }
+  }, [services]);
+
+  if (!location.state) return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
+  const { patent } = location.state;
 
   const { ongoingServices } = "";
 
   const ejemplosServicios = [
-    { value: "2000", label: "Lavado simple", name: "Lavado simple" },
-    { value: "1500", label: "Lavado con espuma", name: "Lavado con espuma" },
-    { value: "800", label: "Lavado Detallado", name: "Lavado Detallado" },
+    { value: "2000", label: "Lavado Simple", name: "lavado simple" },
+    { value: "1500", label: "Lavado con Espuma", name: "lavado con espuma" },
+    { value: "800", label: "Lavado Detallado", name: "lavado detallado" },
     {
       value: "1800",
       label: "Lavado con Encerado",
-      name: "Lavado con Encerado",
+      name: "lavado con encerado",
     },
   ];
-
   const ejemplosTrabajador = [
     { value: "yhilmar", label: "Yhilmar" },
     { value: "lautaro", label: "Lautaro" },
@@ -36,7 +54,6 @@ const FormService = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let isValid = true;
-    console.log(services);
     // Validar campos requeridos
     /*
     if (workers.length === 0) {
@@ -54,24 +71,61 @@ const FormService = () => {
     } else {
       document.getElementById("tipoServiciosError").textContent = "";
     }
+    */
 
     if (isValid) {
-      ongoingServices.unshift({
-        client,
-        vehicleType,
-        patent,
-        whatsapp,
-        model,
-        workers,
-        brand,
-        services,
+      var today = new Date();
+      var date =
+        today.getDate() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getFullYear();
+      var time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date + " " + time;
+
+      console.log({
+        idVehicle: patent,
+        services: services.map((service, index) => {
+          return {
+            id: service.name,
+            workers: workers[index].map((worker) => worker.value),
+            date: dateTime,
+          };
+        }),
       });
 
-      navigate(`/services`);
+      //navigate(`/services`);
     }
-    */
   };
 
+  const servicesChangeHandler = (value, action) => {
+    const num = action.name;
+    let servicesPrev = services;
+    servicesPrev[num] = value;
+    setServices(servicesPrev);
+  };
+  const workersChangeHandler = (value, action) => {
+    const num = action.name;
+    let workersNew = workers;
+    workersNew[num] = value;
+    setWorkers(workersNew);
+  };
+
+  const selectStyles = {
+    indicatorSeparator: (styles) => ({ ...styles, display: "none" }),
+    valueContainer: (styles) => ({ ...styles, paddingLeft: "36px" }),
+  };
+  const selectTheme = (theme) => ({
+    ...theme,
+    borderRadius: "20px",
+    colors: {
+      ...theme.colors,
+      primary25: "#3cd8f0",
+      primary: "black",
+    },
+  });
   return (
     <div>
       <Link to={"/formVehicle"} state={patent}>
@@ -82,24 +136,105 @@ const FormService = () => {
         />
       </Link>
       <form onSubmit={handleSubmit}>
-        <h1 className={style.h1title}>Crear Servicio</h1>
-        <div className={style.divs}>
+        <h1 className={style.title}>Crear Servicio</h1>
+        <div className={style.inputDiv}>
           <Select
             classNamePrefix="select"
             placeholder="Seleccione un tipo de servicio"
-            options={ejemplosServicios}
-            className={style.customSelect2}
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={options}
             value={services[0]}
-            onChange={(e) => setServices([...services, (services[0] = e)])}
+            onChange={servicesChangeHandler}
+            name="0"
           ></Select>
           <Select
             isMulti
             classNamePrefix="select"
             placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            value={workers[0]}
             options={ejemplosTrabajador}
-            className={style.customSelect2}
-            value={workers}
-            onChange={(e) => setWorkers((workers[0] = e))}
+            onChange={workersChangeHandler}
+            name="0"
+          ></Select>
+        </div>
+        <div className={style.inputDiv}>
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            theme={selectTheme}
+            styles={selectStyles}
+            options={options}
+            className={style.select}
+            value={services[1]}
+            onChange={servicesChangeHandler}
+            name="1"
+          ></Select>
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            styles={selectStyles}
+            options={ejemplosTrabajador}
+            className={style.select}
+            value={workers[1]}
+            onChange={workersChangeHandler}
+            name="1"
+          ></Select>
+        </div>
+        <div className={style.inputDiv}>
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            theme={selectTheme}
+            styles={selectStyles}
+            options={options}
+            className={style.select}
+            value={services[2]}
+            onChange={servicesChangeHandler}
+            name="2"
+          ></Select>
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            styles={selectStyles}
+            options={ejemplosTrabajador}
+            className={style.select}
+            value={workers[2]}
+            onChange={workersChangeHandler}
+            name="2"
+          ></Select>
+        </div>
+        <div className={style.inputDiv}>
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            theme={selectTheme}
+            styles={selectStyles}
+            options={options}
+            className={style.select}
+            value={services[3]}
+            onChange={servicesChangeHandler}
+            name="3"
+          ></Select>
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            styles={selectStyles}
+            options={ejemplosTrabajador}
+            className={style.select}
+            value={workers[3]}
+            onChange={workersChangeHandler}
+            name="3"
           ></Select>
         </div>
         <button type="submit" className={style.submit}>
