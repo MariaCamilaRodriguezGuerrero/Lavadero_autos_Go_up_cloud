@@ -3,7 +3,7 @@ import style from "./Workers.module.css";
 const Workers = () => {
   return (
     <div className={style.backgroundContainer}>
-      <h2>Trabajadores</h2>
+      <h2 className={style.title}>Trabajadores</h2>
     </div>
   );
 };

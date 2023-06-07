@@ -19,7 +19,7 @@
 .chart {
   width: 700px;
   height: fit-content;
-  margin: 50px;
+  margin: 100px 50px;
 }
 .linkDiv {
   display: flex;

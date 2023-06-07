@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./FormPatente.module.css";
-import Nav from "../Nav/Nav";
 
 const FormPatente = () => {
   const navigate = useNavigate();

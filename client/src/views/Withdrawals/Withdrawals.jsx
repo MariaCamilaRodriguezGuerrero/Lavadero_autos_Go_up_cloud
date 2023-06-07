@@ -3,7 +3,7 @@ import style from "./Withdrawals.module.css";
 const Withdrawals = () => {
   return (
     <div className={style.backgroundContainer}>
-      <h2>Retiros</h2>
+      <h2 className={style.title}>Retiros</h2>
     </div>
   );
 };

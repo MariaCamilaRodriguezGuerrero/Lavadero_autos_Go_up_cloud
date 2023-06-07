@@ -1,6 +1,6 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import CreateVehicle from "./views/CreateVehicle/CreateVehicle";
+import FormPatente from "./components/FormPatente/FormPatente";
 import Services from "./views/Services/Services";
 import FormVehicle from "./components/FormVehicle/FormVehicle";
 import Billing from "./components/CardServices/Billing/Billing";
@@ -11,15 +11,16 @@ import Workers from "./views/Workers/Workers";
 import BillingList from "./views/BillingList/BillingList";
 import Withdrawals from "./views/Withdrawals/Withdrawals";
 import FormService from "./components/FormService/FormService";
-
+import Nav from "./components/Nav/Nav";
 
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
   return (
     <div className="App">
+      {!(location.pathname === "/") && <Nav />}
       <Routes location={background || location}>
-        <Route path="/createVehicle" element={<CreateVehicle />} />
+        <Route path="/createVehicle" element={<FormPatente />} />
         <Route path="/formVehicle" element={<FormVehicle />} />
         <Route path="/formService" element={<FormService />} />
         <Route path="/dashboard" element={<Dashboard />} />

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import style from "./FormVehicle.module.css";
-import Nav from "../Nav/Nav";
 
 const FormVehicle = () => {
   const [client, setClient] = useState("");
@@ -61,7 +60,6 @@ const FormVehicle = () => {
 
   return (
     <div>
-      <Nav/>
       <Link to={"/createVehicle"}>
         <img
           className={style.backBtn}
@@ -70,7 +68,7 @@ const FormVehicle = () => {
         />
       </Link>
       <form onSubmit={handleSubmit}>
-        <h1 className={style.h1title}>Crear Servicio</h1>
+        <h1 className={style.h1title}>Datos del Vehículo</h1>
         <p className={style.h2subtitle}>Los campos con * son obligatorios</p>
         <div className={style.divs}>
           <div className={style.div}>

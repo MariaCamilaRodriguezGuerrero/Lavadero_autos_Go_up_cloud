@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import style from "./FormService.module.css";
 import Select from "react-select";
-import Nav from "../Nav/Nav";
 
 const FormService = () => {
   const [workers, setWorkers] = useState([]);
@@ -75,7 +74,6 @@ const FormService = () => {
 
   return (
     <div>
-      <Nav/>
       <Link to={"/formVehicle"} state={patent}>
         <img
           className={style.backBtn}
@@ -85,7 +83,7 @@ const FormService = () => {
       </Link>
       <form onSubmit={handleSubmit}>
         <h1 className={style.h1title}>Crear Servicio</h1>
-        <div  className={style.divs}>
+        <div className={style.divs}>
           <Select
             classNamePrefix="select"
             placeholder="Seleccione un tipo de servicio"
@@ -95,6 +93,7 @@ const FormService = () => {
             onChange={(e) => setServices([...services, (services[0] = e)])}
           ></Select>
           <Select
+            isMulti
             classNamePrefix="select"
             placeholder="Seleccione Trabajadores"
             options={ejemplosTrabajador}
