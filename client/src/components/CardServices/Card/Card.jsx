@@ -27,12 +27,11 @@ const Card = ({
         PENDIENTE
       </Link>
       <p className={style.text}>
-        <span className={style.spanData2}>5/6/2023</span>
-        <span className={style.spanData2}>{vehicleType}</span>
-        <span className={style.spanData}>{model}</span>
+        <span className={style.spanData2}>5-6-2023 10:00</span>
+        <span className={style.spanDataT}>{vehicleType}</span>
         <span className={style.spanDataP}>{patent}</span>
-        <span className={style.spanData3}>{client}</span>
-        <span className={style.spanData3}>+56 {whatsapp}</span>
+        <span className={style.spanData4}>{client}</span>
+        <span className={style.spanData4}>+56 {whatsapp}</span>
         <div className={style.spanData3}>
           {workers.map((e) => (
             <span>{e}</span>

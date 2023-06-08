@@ -11,11 +11,7 @@ const FormService = () => {
     { value: "2000", label: "Lavado Simple", name: "lavado simple" },
     { value: "1500", label: "Lavado con Espuma", name: "lavado con espuma" },
     { value: "800", label: "Lavado Detallado", name: "lavado detallado" },
-    {
-      value: "1800",
-      label: "Lavado con Encerado",
-      name: "lavado con encerado",
-    },
+    {value: "1800",label: "Lavado con Encerado",name: "lavado con encerado",},
   ]);
   const location = useLocation();
   const navigate = useNavigate();

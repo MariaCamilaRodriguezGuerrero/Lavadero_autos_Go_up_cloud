@@ -29,10 +29,9 @@ const CardSquare = ({
       <p className={style.text}>
         <span className={style.spanData2}>5/6/2023</span>
         <span className={style.spanData2}>{tipoVehiculo}</span>
-        <span className={style.spanData}>{modelo}</span>
         <span className={style.spanDataP}>{patenteParam}</span>
-        <span className={style.spanData3}>{cliente}</span>
-        <span className={style.spanData3}>+56 {whatsapp}</span>
+        <span className={style.spanData4}>{cliente}</span>
+        <span className={style.spanData4}>+56 {whatsapp}</span>
         <div className={style.spanData3}>
           {nombreTrabajador.map((e) => (
             <span>{e}</span>

@@ -33,7 +33,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 2%;
+  width: 6.4%;
   border-right: 2px rgb(0, 0, 0) solid;
   padding: 0 35px;
   font-size: 15px;
@@ -48,6 +48,29 @@
   height: 100%;
   width: 18%;
   border-right: 2px rgb(0, 0, 0) solid;
+  padding: 0 35px;
+  font-size: 15px;
+}
+
+.spanData4{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 10%;
+  border-right: 2px rgb(0, 0, 0) solid;
+  padding: 0 35px;
+  font-size: 15px;
+}
+
+.spanDataT {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 2%;
+  border-right: 2px black solid;
   padding: 0 35px;
   font-size: 15px;
 }
@@ -69,7 +92,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 1%;
+  width: .01%;
   padding: 0 35px;
   font-size: 20px;
   font-weight: bold;
