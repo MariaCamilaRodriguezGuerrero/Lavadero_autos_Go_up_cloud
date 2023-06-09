@@ -1,9 +1,11 @@
 import style from "./FormVehicle.module.css";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Select from "react-select";
+import { useSelector } from "react-redux";
 
 const FormVehicle = () => {
+  const { vehicleData } = useSelector((state) => state);
   const [client, setClient] = useState("");
   const [vehicleType, setVehicleType] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -11,9 +13,21 @@ const FormVehicle = () => {
   const [brand, setBrand] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  if (!location.state) return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
-  const { patent } = location.state;
 
+  useEffect(() => {
+    setClient(vehicleData.client);
+    setVehicleType({
+      value: vehicleData.vehicleType,
+      label: vehicleData.vehicleType,
+    });
+    setWhatsapp(vehicleData.whatsapp);
+    setBrand(vehicleData.brand);
+    setModel(vehicleData.model);
+  }, [vehicleData]);
+
+  if (!location.state.patent)
+    return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
+  const { patent } = location.state;
   const ejemploTipoVehiculo = [
     { value: "sedán", label: "Sedán" },
     { value: "camioneta", label: "Camioneta" },
@@ -59,6 +73,7 @@ const FormVehicle = () => {
       navigate(`/formService`, {
         state: {
           patent,
+          vehicleType,
         },
       });
     }

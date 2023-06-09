@@ -84,7 +84,7 @@
   font-weight: bold;
 }
 
-.spanData4{
+.spanData4 {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -113,7 +113,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: .01%;
+  width: 0.01%;
   padding: 0 35px;
   font-size: 20px;
   font-weight: bold;

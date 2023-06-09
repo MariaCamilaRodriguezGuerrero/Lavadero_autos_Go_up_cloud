@@ -16,7 +16,7 @@
   line-height: 25px;
 }
 
-.spanData{
+.spanData {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,10 +25,9 @@
   border-right: 2px rgb(0, 0, 0) solid;
   padding: 0 35px;
   font-size: 15px;
-
 }
 
-.spanData2{
+.spanData2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,10 +36,9 @@
   border-right: 2px rgb(0, 0, 0) solid;
   padding: 0 35px;
   font-size: 15px;
-
 }
 
-.spanData3{
+.spanData3 {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -52,7 +50,7 @@
   font-size: 15px;
 }
 
-.spanData4{
+.spanData4 {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -75,7 +73,7 @@
   font-size: 15px;
 }
 
-.spanDataP{
+.spanDataP {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,16 +85,15 @@
   text-transform: uppercase;
 }
 
-.spanDataE{
+.spanDataE {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: .01%;
+  width: 0.01%;
   padding: 0 35px;
   font-size: 20px;
   font-weight: bold;
-
 }
 
 .pendiente {
@@ -129,4 +126,37 @@
   height: 100%;
   font-size: 15px;
   cursor: pointer;
+}
+
+.servicesWorkerDiv {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 100%;
+  border-right: 2px rgb(0, 0, 0) solid;
+  margin-top: -2;
+}
+
+.servicesDiv {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid black;
+  margin-bottom: -2px;
+}
+.services {
+  width: 50%;
+}
+.workersDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  border-left: 2px solid black;
+  height: 100%;
+}
+.worker {
+  font-size: 15px;
 }

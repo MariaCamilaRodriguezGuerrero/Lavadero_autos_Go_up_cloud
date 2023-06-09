@@ -12,13 +12,16 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const username1 = "usuario1";
-    const password1 = "contraseña1";
+    const username1 = "";
+    const password1 = "";
 
-    const username2 = "usuario2";
-    const password2 = "contraseña2";
+    const username2 = "";
+    const password2 = "";
 
-    if ((username === username1 && password === password1) || (username === username2 && password === password2)) {
+    if (
+      (username === username1 && password === password1) ||
+      (username === username2 && password === password2)
+    ) {
       navigate("/services");
     } else {
       setError("Nombre de usuario o contraseña incorrectos");
@@ -30,10 +33,18 @@ const Login = () => {
       <h1 className={style.title}>Inicio de Sesión</h1>
       <form onSubmit={handleSubmit} className={style.form}>
         <label>Usuario</label>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         {error && <p className={style.error}>{error}</p>}
         <label>Contraseña</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         {error && <p className={style.error}>{error}</p>}
         <button type="submit" className={style.submit}>
           Enviar

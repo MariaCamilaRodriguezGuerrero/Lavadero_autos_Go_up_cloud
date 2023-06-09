@@ -8,6 +8,8 @@
   display: flex;
   flex-direction: column;
   width: fit-content;
+  justify-content: center;
+  align-items: center;
   padding: 40px;
 }
 .form input {

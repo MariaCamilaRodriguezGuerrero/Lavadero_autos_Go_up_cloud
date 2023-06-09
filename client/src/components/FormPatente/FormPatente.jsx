@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./FormPatente.module.css";
+import { useDispatch } from "react-redux";
+import { getVehicle, cleanVehicleData } from "../../redux/actions/actions";
 
 const FormPatente = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [patent, setPatent] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    dispatch(cleanVehicleData());
+  }, [dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    dispatch(getVehicle(patent.toUpperCase()));
     if (patent) {
       navigate(`/formVehicle`, {
         state: {

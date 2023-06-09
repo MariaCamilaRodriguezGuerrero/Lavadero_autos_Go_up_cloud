@@ -7,8 +7,8 @@ const Card = ({
   patent,
   whatsapp,
   model,
-  workers,
   services,
+  brand,
 }) => {
   const location = useLocation();
 
@@ -27,21 +27,26 @@ const Card = ({
         PENDIENTE
       </Link>
       <p className={style.text}>
-        <span className={style.spanData2}>5-6-2023 10:00</span>
-        <span className={style.spanDataT}>{vehicleType}</span>
         <span className={style.spanDataP}>{patent}</span>
         <span className={style.spanData4}>{client}</span>
         <span className={style.spanData4}>+56 {whatsapp}</span>
-        <div className={style.spanData3}>
-          {workers.map((e) => (
-            <span>{e}</span>
+
+        <span className={style.spanData2}>5-6-2023 10:00</span>
+
+        <div className={style.servicesWorkerDiv}>
+          {services.map((service) => (
+            <div className={style.servicesDiv}>
+              <span className={style.services}>· {service.name}</span>
+
+              <div className={style.workersDiv}>
+                {service.workers.map((worker) => (
+                  <span className={style.worker}>· {worker}</span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-        <div className={style.spanData3}>
-          {services.map((e) => (
-            <span>{e.name}</span>
-          ))}
-        </div>
+
         <span className={style.spanData}>
           $
           {services
@@ -62,7 +67,7 @@ const Card = ({
               patent,
               whatsapp,
               model,
-              workers,
+              brand,
               services,
             },
           }}

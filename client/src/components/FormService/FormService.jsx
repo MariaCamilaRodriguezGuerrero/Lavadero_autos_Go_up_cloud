@@ -1,51 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./FormService.module.css";
 import Select from "react-select";
+import { getServices, getWorkers } from "../../redux/actions/actions";
 
 const FormService = () => {
   const [workers, setWorkers] = useState([]);
   const [services, setServices] = useState([]);
-  const [options, setOptions] = useState([
-    { value: "2000", label: "Lavado Simple", name: "lavado simple" },
-    { value: "1500", label: "Lavado con Espuma", name: "lavado con espuma" },
-    { value: "800", label: "Lavado Detallado", name: "lavado detallado" },
-    {value: "1800",label: "Lavado con Encerado",name: "lavado con encerado",},
-  ]);
+  const [optionsServices, setOptionsServices] = useState([]);
+  const [optionsWorkers, setOptionsWorkers] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
+  const [selectedWorkers, setSelectedWorkers] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { servicesData, workersData } = useSelector((state) => state);
+  useEffect(() => {
+    dispatch(getServices());
+    dispatch(getWorkers());
+  }, [dispatch]);
 
   useEffect(() => {
-    if (services.length) {
-      let optionsNew = ejemplosServicios.map((option) =>
-        console.log(services.filter((service) => option.name !== service.name))
+    servicesData.length &&
+      setOptionsServices(
+        servicesData
+          .filter((service) => service.vehicleType === vehicleType.value)
+          .map((service) => {
+            return {
+              label: service.serviceName,
+              value: service.serviceName,
+            };
+          })
       );
-      setOptions(optionsNew);
-    }
-  }, [services]);
+  }, [servicesData]);
 
-  if (!location.state) return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
-  const { patent } = location.state;
+  useEffect(() => {
+    workersData.length &&
+      setOptionsWorkers(
+        workersData.map((worker) => {
+          return {
+            label: worker.name,
+            value: worker.name,
+          };
+        })
+      );
+  }, [workersData]);
 
-  const { ongoingServices } = "";
-
-  const ejemplosServicios = [
-    { value: "2000", label: "Lavado Simple", name: "lavado simple" },
-    { value: "1500", label: "Lavado con Espuma", name: "lavado con espuma" },
-    { value: "800", label: "Lavado Detallado", name: "lavado detallado" },
-    {
-      value: "1800",
-      label: "Lavado con Encerado",
-      name: "lavado con encerado",
-    },
-  ];
-  const ejemplosTrabajador = [
-    { value: "yhilmar", label: "Yhilmar" },
-    { value: "lautaro", label: "Lautaro" },
-    { value: "duvan", label: "Duvan" },
-    { value: "maría", label: "María" },
-  ];
+  if (!location.state.patent || !location.state.vehicleType)
+    return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
+  const { patent, vehicleType } = location.state;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,22 +76,28 @@ const FormService = () => {
 
     if (isValid) {
       var today = new Date();
-      var date =
-        today.getDate() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getFullYear();
-      var time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-      var dateTime = date + " " + time;
+      const year = today.getFullYear();
+      const month =
+        today.getMonth() + 1 < 10
+          ? `0${today.getMonth() + 1}`
+          : today.getMonth() + 1;
+      const day =
+        today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
+      let hours =
+        today.getHours() < 10 ? `0${today.getHours()}` : today.getHours();
+      let minutes =
+        today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
+      let seconds =
+        today.getSeconds() < 10 ? `0${today.getSeconds()}` : today.getSeconds();
+
+      var dateTime = `${year}${month}${day}${hours}${minutes}${seconds}`;
 
       console.log({
         idVehicle: patent,
-        services: services.map((service, index) => {
+        services: selectedServices.map((service, index) => {
           return {
-            id: service.name,
-            workers: workers[index].map((worker) => worker.value),
+            id: service.value,
+            workers: selectedWorkers[index].map((worker) => worker.value),
             date: dateTime,
           };
         }),
@@ -96,17 +107,38 @@ const FormService = () => {
     }
   };
 
+  const filterOptions = () => {
+    setOptionsServices(
+      servicesData
+        .filter((service) => service.vehicleType === vehicleType.value)
+        .map((service) => {
+          return {
+            label: service.serviceName,
+            value: service.serviceName,
+          };
+        })
+        .filter((service) => {
+          let filteredService = true;
+          for (let i = 0; i < selectedServices.length; i++) {
+            if (selectedServices[i].value === service.value)
+              filteredService = false;
+          }
+          return filteredService;
+        })
+    );
+  };
   const servicesChangeHandler = (value, action) => {
     const num = action.name;
-    let servicesPrev = services;
+    let servicesPrev = selectedServices;
     servicesPrev[num] = value;
-    setServices(servicesPrev);
+    setSelectedServices(servicesPrev);
+    filterOptions();
   };
   const workersChangeHandler = (value, action) => {
     const num = action.name;
-    let workersNew = workers;
+    let workersNew = selectedWorkers;
     workersNew[num] = value;
-    setWorkers(workersNew);
+    setSelectedWorkers(workersNew);
   };
 
   const selectStyles = {
@@ -140,8 +172,8 @@ const FormService = () => {
             theme={selectTheme}
             className={style.select}
             styles={selectStyles}
-            options={options}
-            value={services[0]}
+            options={optionsServices}
+            value={selectedServices[0]}
             onChange={servicesChangeHandler}
             name="0"
           ></Select>
@@ -152,8 +184,8 @@ const FormService = () => {
             theme={selectTheme}
             className={style.select}
             styles={selectStyles}
-            value={workers[0]}
-            options={ejemplosTrabajador}
+            options={optionsWorkers}
+            value={selectedWorkers[0]}
             onChange={workersChangeHandler}
             name="0"
           ></Select>
@@ -164,9 +196,9 @@ const FormService = () => {
             placeholder="Seleccione un tipo de servicio"
             theme={selectTheme}
             styles={selectStyles}
-            options={options}
+            options={optionsServices}
             className={style.select}
-            value={services[1]}
+            value={selectedServices[1]}
             onChange={servicesChangeHandler}
             name="1"
           ></Select>
@@ -176,9 +208,9 @@ const FormService = () => {
             placeholder="Seleccione Trabajadores"
             theme={selectTheme}
             styles={selectStyles}
-            options={ejemplosTrabajador}
+            options={optionsWorkers}
             className={style.select}
-            value={workers[1]}
+            value={selectedWorkers[1]}
             onChange={workersChangeHandler}
             name="1"
           ></Select>
@@ -189,9 +221,9 @@ const FormService = () => {
             placeholder="Seleccione un tipo de servicio"
             theme={selectTheme}
             styles={selectStyles}
-            options={options}
+            options={optionsServices}
             className={style.select}
-            value={services[2]}
+            value={selectedServices[2]}
             onChange={servicesChangeHandler}
             name="2"
           ></Select>
@@ -201,9 +233,9 @@ const FormService = () => {
             placeholder="Seleccione Trabajadores"
             theme={selectTheme}
             styles={selectStyles}
-            options={ejemplosTrabajador}
+            options={optionsWorkers}
             className={style.select}
-            value={workers[2]}
+            value={selectedWorkers[2]}
             onChange={workersChangeHandler}
             name="2"
           ></Select>
@@ -214,9 +246,9 @@ const FormService = () => {
             placeholder="Seleccione un tipo de servicio"
             theme={selectTheme}
             styles={selectStyles}
-            options={options}
+            options={optionsServices}
             className={style.select}
-            value={services[3]}
+            value={selectedServices[3]}
             onChange={servicesChangeHandler}
             name="3"
           ></Select>
@@ -226,9 +258,9 @@ const FormService = () => {
             placeholder="Seleccione Trabajadores"
             theme={selectTheme}
             styles={selectStyles}
-            options={ejemplosTrabajador}
+            options={optionsWorkers}
             className={style.select}
-            value={workers[3]}
+            value={selectedWorkers[3]}
             onChange={workersChangeHandler}
             name="3"
           ></Select>
