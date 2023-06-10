@@ -2,7 +2,8 @@ import style from "./FormVehicle.module.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Select from "react-select";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getVehicle } from "../../redux/actions/actions";
 
 const FormVehicle = () => {
   const { vehicleData } = useSelector((state) => state);
@@ -11,8 +12,19 @@ const FormVehicle = () => {
   const [whatsapp, setWhatsapp] = useState("");
   const [model, setModel] = useState("");
   const [brand, setBrand] = useState("");
+  const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const patent = location.state === null ? "" : location.state.patent;
+
+  useEffect(() => {
+    location.state === null && navigate("/createVehicle");
+  }, [location.state, navigate]);
+
+  useEffect(() => {
+    patent && dispatch(getVehicle(patent.toUpperCase()));
+  }, [dispatch, patent]);
 
   useEffect(() => {
     setClient(vehicleData.client);
@@ -25,14 +37,18 @@ const FormVehicle = () => {
     setModel(vehicleData.model);
   }, [vehicleData]);
 
-  if (!location.state.patent)
-    return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
-  const { patent } = location.state;
   const ejemploTipoVehiculo = [
-    { value: "sedán", label: "Sedán" },
-    { value: "camioneta", label: "Camioneta" },
-    { value: "moto", label: "Moto" },
-    { value: "camion", label: "Camion" },
+    { value: "SEDAN/CITY CAR", label: "SEDAN/CITY CAR" },
+    { value: "HATCHBACK", label: "HATCHBACK" },
+    {
+      value: "SUV/CAMIONETAS  (2 CORRIDAS)",
+      label: "SUV/CAMIONETAS  (2 CORRIDAS)",
+    },
+    {
+      value: "SUV/CAMIONETAS     (3 CORRIDAS)",
+      label: "SUV/CAMIONETAS     (3 CORRIDAS)",
+    },
+    { value: "FURGON Y CAMION 3/4", label: "FURGON Y CAMION 3/4" },
   ];
 
   const handleSubmit = (e) => {
@@ -61,6 +77,7 @@ const FormVehicle = () => {
       document.getElementById("tipoVehiculoError").style.display = "none";
     }
     //envío Post o Put al Back
+    /*
     console.log({
       id: patent,
       vehicleType: vehicleType.value,
@@ -69,6 +86,7 @@ const FormVehicle = () => {
       brand,
       model,
     });
+    */
     if (valid) {
       navigate(`/formService`, {
         state: {
@@ -111,7 +129,7 @@ const FormVehicle = () => {
       <form onSubmit={handleSubmit}>
         <div className={style.form}>
           <div className={style.column}>
-            <label className={style.label}>Cliente* </label>
+            <label className={style.label}>Cliente*</label>
             <input
               type="text"
               value={client}
@@ -147,14 +165,14 @@ const FormVehicle = () => {
             </p>
           </div>
           <div className={style.column}>
-            <label className={style.label}>Modelo </label>
+            <label className={style.label}>Modelo</label>
             <input
               type="text"
               value={model}
               className={style.input}
               onChange={(e) => setModel(e.target.value)}
             />
-            <label className={style.label}>Marca </label>
+            <label className={style.label}>Marca</label>
             <input
               type="text"
               value={brand}

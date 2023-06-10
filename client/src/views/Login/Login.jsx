@@ -12,11 +12,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const username1 = "";
-    const password1 = "";
+    const username1 = "admin";
+    const password1 = "admin";
 
-    const username2 = "";
-    const password2 = "";
+    const username2 = "superadmin";
+    const password2 = "superadmin";
 
     if (
       (username === username1 && password === password1) ||

@@ -4,6 +4,9 @@ import {
   CLEAN_VEHICLE,
   GET_SERVICES,
   GET_WORKERS,
+  POST_SERVICES,
+  POST_ORDER,
+  GET_ORDERS,
 } from "./types";
 
 import axios from "axios";
@@ -57,6 +60,33 @@ export const getWorkers = () => {
         `http://lavadero_autos_api.test/workers`
       );
       dispatch({ type: GET_WORKERS, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+export const postOrder = (services) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.post(
+        `http://lavadero_autos_api.test/orders`,
+        services
+      );
+      dispatch({ type: POST_ORDER, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `http://lavadero_autos_api.test/orders`
+      );
+      dispatch({ type: GET_ORDERS, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }

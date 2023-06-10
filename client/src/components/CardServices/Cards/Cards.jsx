@@ -6,18 +6,27 @@ import Card from "../Card/Card";
 
 export default function Cards() {
   const dispatch = useDispatch();
-  const ongoingServices = useSelector((state) => state.ongoingServices);
-  const ongoingServicesPerPage = 10;
+  const { orders } = useSelector((state) => state);
+  const ordersPerPage = 10;
   const pageNumber = useSelector((state) => state.pageNumber);
-  const pagesVisited = pageNumber * ongoingServicesPerPage;
+  const pagesVisited = pageNumber * ordersPerPage;
   //   const [pageNumberToShow, setPageNumberToShow] = useState(0);
-  const displayOngoingServices =
-    typeof ongoingServices !== "string" &&
-    ongoingServices
-      .slice(pagesVisited, pagesVisited + ongoingServicesPerPage)
+  const displayOrders =
+    typeof orders !== "string" &&
+    orders
+      .slice(pagesVisited, pagesVisited + ordersPerPage)
       .map(
         (
-          { client, vehicleType, patent, whatsapp, model, workers, services },
+          {
+            client,
+            vehicleType,
+            patent,
+            whatsapp,
+            model,
+            workers,
+            services,
+            brand,
+          },
           index
         ) => {
           return (
@@ -30,6 +39,7 @@ export default function Cards() {
               model={model}
               workers={workers}
               services={services}
+              brand={brand}
             />
           );
         }
@@ -40,9 +50,9 @@ export default function Cards() {
   //   }, [pageNumber]);
 
   if (
-    typeof displayOngoingServices === "object" &&
-    displayOngoingServices.length === 0 &&
-    ongoingServices[0]
+    typeof displayOrders === "object" &&
+    displayOrders.length === 0 &&
+    orders[0]
   ) {
     dispatch(changePageNumber(0));
   }
@@ -59,7 +69,7 @@ export default function Cards() {
         {!ongoingServices[0] && errorToShow === "" ? (
           <p className={styles.message}>No matches found</p>
         ) : null} */}
-        {displayOngoingServices}
+        {displayOrders}
       </div>
     </div>
   );

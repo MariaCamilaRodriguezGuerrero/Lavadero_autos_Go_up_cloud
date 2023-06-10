@@ -8,6 +8,12 @@
 .title {
   margin-top: 100px;
 }
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .inputDiv {
   display: flex;
   justify-content: center;
@@ -37,14 +43,27 @@
 }
 
 .submit:active {
-  background-color: #30b4c9;
+  background-color: #3cd8f0;
 }
 
 .error {
   color: red;
   margin-bottom: 10px;
 }
+.addBtn {
+  margin: 10px;
+  border-radius: 15px;
+  font-size: 30px;
+  padding: 5px 10px;
+  border: 2px solid transparent;
+  background-color: #3cd8f0;
+  cursor: pointer;
+}
 
+.addBtn:active {
+  background-color: transparent;
+  border-color: black;
+}
 @media only screen and (max-width: 800px) {
   .divs {
     flex-direction: column;

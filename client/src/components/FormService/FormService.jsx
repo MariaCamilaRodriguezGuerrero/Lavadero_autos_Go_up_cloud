@@ -1,22 +1,38 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./FormService.module.css";
 import Select from "react-select";
-import { getServices, getWorkers } from "../../redux/actions/actions";
+import validation from "./validation";
+import {
+  getServices,
+  getWorkers,
+  postOrder,
+} from "../../redux/actions/actions";
 
 const FormService = () => {
-  const [workers, setWorkers] = useState([]);
-  const [services, setServices] = useState([]);
   const [optionsServices, setOptionsServices] = useState([]);
   const [optionsWorkers, setOptionsWorkers] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedWorkers, setSelectedWorkers] = useState([]);
+  const [fields, setFields] = useState([]);
+  const [errors, setErrors] = useState({
+    service: "",
+    workers: "",
+  });
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const patent = location.state === null ? "" : location.state.patent;
+  const vehicleType = location.state === null ? "" : location.state.vehicleType;
+  const { servicesData, workersData, postOrderMessage } = useSelector(
+    (state) => state
+  );
 
-  const { servicesData, workersData } = useSelector((state) => state);
+  useEffect(() => {
+    location.state === null && navigate("/createVehicle");
+  }, [location.state, navigate]);
+
   useEffect(() => {
     dispatch(getServices());
     dispatch(getWorkers());
@@ -30,7 +46,7 @@ const FormService = () => {
           .map((service) => {
             return {
               label: service.serviceName,
-              value: service.serviceName,
+              value: service.id,
             };
           })
       );
@@ -42,39 +58,22 @@ const FormService = () => {
         workersData.map((worker) => {
           return {
             label: worker.name,
-            value: worker.name,
+            value: worker.rut_passport,
           };
         })
       );
   }, [workersData]);
 
-  if (!location.state.patent || !location.state.vehicleType)
-    return <h2 style={{ marginTop: "100px" }}>Sin Datos</h2>;
-  const { patent, vehicleType } = location.state;
+  useEffect(() => {
+    console.log(postOrderMessage);
+  }, [postOrderMessage]);
 
-  const handleSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    let isValid = true;
-    // Validar campos requeridos
-    /*
-    if (workers.length === 0) {
-      isValid = false;
-      document.getElementById("nombreTrabajadorError").textContent =
-        "Seleccione al menos un trabajador";
-    } else {
-      document.getElementById("nombreTrabajadorError").textContent = "";
-    }
 
-    if (services.length === 0) {
-      isValid = false;
-      document.getElementById("tipoServiciosError").textContent =
-        "Seleccione al menos un tipo de servicio";
-    } else {
-      document.getElementById("tipoServiciosError").textContent = "";
-    }
-    */
-
-    if (isValid) {
+    setErrors(validation(selectedServices, fields, selectedWorkers));
+    if (false) {
+      /*
       var today = new Date();
       const year = today.getFullYear();
       const month =
@@ -91,18 +90,19 @@ const FormService = () => {
         today.getSeconds() < 10 ? `0${today.getSeconds()}` : today.getSeconds();
 
       var dateTime = `${year}${month}${day}${hours}${minutes}${seconds}`;
-
-      console.log({
-        idVehicle: patent,
-        services: selectedServices.map((service, index) => {
-          return {
-            id: service.value,
-            workers: selectedWorkers[index].map((worker) => worker.value),
-            date: dateTime,
-          };
-        }),
-      });
-
+      dispatch(
+        postOrder({
+          idVehicle: patent,
+          services: selectedServices.map((service, index) => {
+            return {
+              idService: service.value,
+              date: dateTime,
+              workers: selectedWorkers[index].map((worker) => worker.value),
+            };
+          }),
+        })
+        );
+        */
       //navigate(`/services`);
     }
   };
@@ -114,7 +114,7 @@ const FormService = () => {
         .map((service) => {
           return {
             label: service.serviceName,
-            value: service.serviceName,
+            value: service.id,
           };
         })
         .filter((service) => {
@@ -154,6 +154,54 @@ const FormService = () => {
       primary: "black",
     },
   });
+
+  const addFields = () => {
+    if (fields.length > 4) return;
+    setErrors(validation(selectedServices, fields));
+    if (!validation(selectedServices, fields).service) {
+      setFields([
+        ...fields,
+        <div className={style.inputDiv}>
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsServices}
+            value={selectedServices[fields.length + 1]}
+            onChange={servicesChangeHandler}
+            name={fields.length + 1}
+          />
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsWorkers}
+            value={selectedWorkers[fields.length + 1]}
+            onChange={workersChangeHandler}
+            name={fields.length + 1}
+          />
+          <button type="button" onClick={eraseField} id={fields.length + 1}>
+            Borrar
+          </button>
+        </div>,
+      ]);
+    }
+  };
+
+  const eraseField = (event) => {
+    /*
+    console.log(event.target.id);
+    let arr = fields;
+    console.log(arr);
+    arr.splice(event.target.id, 1);
+    console.log(arr);
+    */
+  };
   return (
     <div>
       <Link to={"/formVehicle"} state={patent}>
@@ -163,8 +211,8 @@ const FormService = () => {
           alt=""
         />
       </Link>
-      <form onSubmit={handleSubmit}>
-        <h1 className={style.title}>Crear Servicio</h1>
+      <form className={style.form} onSubmit={submitHandler}>
+        <h1 className={style.title}>Crear Servicios</h1>
         <div className={style.inputDiv}>
           <Select
             classNamePrefix="select"
@@ -175,8 +223,8 @@ const FormService = () => {
             options={optionsServices}
             value={selectedServices[0]}
             onChange={servicesChangeHandler}
-            name="0"
-          ></Select>
+            name={0}
+          />
           <Select
             isMulti
             classNamePrefix="select"
@@ -187,85 +235,15 @@ const FormService = () => {
             options={optionsWorkers}
             value={selectedWorkers[0]}
             onChange={workersChangeHandler}
-            name="0"
-          ></Select>
+            name={0}
+          />
         </div>
-        <div className={style.inputDiv}>
-          <Select
-            classNamePrefix="select"
-            placeholder="Seleccione un tipo de servicio"
-            theme={selectTheme}
-            styles={selectStyles}
-            options={optionsServices}
-            className={style.select}
-            value={selectedServices[1]}
-            onChange={servicesChangeHandler}
-            name="1"
-          ></Select>
-          <Select
-            isMulti
-            classNamePrefix="select"
-            placeholder="Seleccione Trabajadores"
-            theme={selectTheme}
-            styles={selectStyles}
-            options={optionsWorkers}
-            className={style.select}
-            value={selectedWorkers[1]}
-            onChange={workersChangeHandler}
-            name="1"
-          ></Select>
-        </div>
-        <div className={style.inputDiv}>
-          <Select
-            classNamePrefix="select"
-            placeholder="Seleccione un tipo de servicio"
-            theme={selectTheme}
-            styles={selectStyles}
-            options={optionsServices}
-            className={style.select}
-            value={selectedServices[2]}
-            onChange={servicesChangeHandler}
-            name="2"
-          ></Select>
-          <Select
-            isMulti
-            classNamePrefix="select"
-            placeholder="Seleccione Trabajadores"
-            theme={selectTheme}
-            styles={selectStyles}
-            options={optionsWorkers}
-            className={style.select}
-            value={selectedWorkers[2]}
-            onChange={workersChangeHandler}
-            name="2"
-          ></Select>
-        </div>
-        <div className={style.inputDiv}>
-          <Select
-            classNamePrefix="select"
-            placeholder="Seleccione un tipo de servicio"
-            theme={selectTheme}
-            styles={selectStyles}
-            options={optionsServices}
-            className={style.select}
-            value={selectedServices[3]}
-            onChange={servicesChangeHandler}
-            name="3"
-          ></Select>
-          <Select
-            isMulti
-            classNamePrefix="select"
-            placeholder="Seleccione Trabajadores"
-            theme={selectTheme}
-            styles={selectStyles}
-            options={optionsWorkers}
-            className={style.select}
-            value={selectedWorkers[3]}
-            onChange={workersChangeHandler}
-            name="3"
-          ></Select>
-        </div>
-        <button type="submit" className={style.submit}>
+        {fields}
+        {errors.service && <p className={style.error}>{errors.service}</p>}
+        <button type="button" onClick={addFields} className={style.addBtn}>
+          +
+        </button>
+        <button className={style.submit} type="submit">
           Enviar
         </button>
       </form>

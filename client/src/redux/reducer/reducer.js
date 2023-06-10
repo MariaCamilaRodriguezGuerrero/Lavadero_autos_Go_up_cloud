@@ -4,34 +4,31 @@ import {
   CLEAN_VEHICLE,
   GET_SERVICES,
   GET_WORKERS,
+  POST_ORDER,
+  GET_ORDERS,
 } from "../actions/types";
 
 const inicialState = {
-  ongoingServices: [
+  orders: [
     {
-      patent: "HFT434",
-      client: "Lautaro Walter",
-      whatsapp: "03232313",
-      brand: "Porshe",
-      model: "Porsche Macan",
-      vehicleType: "sedán",
+      patent: "CDLG54",
+      client: "María",
+      whatsapp: "912376434",
+      brand: "Renault",
+      model: "R4",
+      vehicleType: "Camión",
       services: [
         {
-          name: "Lavado Carrocería",
-          value: "2000000",
-          workers: [
-            "Gastón García",
-            "Duvan",
-            "Lautaro Walter",
-            "Yhilmar Sanchez",
-          ],
-          date: "08-06-2023 10:00",
+          name: "LIMPIEZA DE TECHO",
+          value: "10000",
+          workers: ["Duvan"],
+          date: "09-06-2023 12:48",
         },
         {
-          name: "Lavado Simple",
-          value: "1550",
-          workers: ["Gastón García", "Lautaro Walter"],
-          date: "08-06-2023 12:15",
+          name: "LIMPIEZA DE PLASTICOS",
+          value: "10000",
+          workers: ["María", "Duvan"],
+          date: "09-06-2023 12:15",
         },
       ],
     },
@@ -39,6 +36,7 @@ const inicialState = {
   vehicleData: {},
   servicesData: [],
   workersData: [],
+  postOrderMessage: "",
 };
 
 export default function rootReducer(state = inicialState, { type, payload }) {
@@ -53,6 +51,8 @@ export default function rootReducer(state = inicialState, { type, payload }) {
       return { ...state, servicesData: payload };
     case GET_WORKERS:
       return { ...state, workersData: payload };
+    case POST_ORDER:
+      return { ...state, postOrderMessage: payload };
     default:
       return { ...state };
   }

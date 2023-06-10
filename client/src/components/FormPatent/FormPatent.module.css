@@ -50,6 +50,7 @@
   background-color: #30b4c9;
 }
 
-.error{
+.error {
   color: rgb(255, 0, 0);
+  margin: 0px;
 }

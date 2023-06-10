@@ -1,13 +1,14 @@
+import style from "./FormPatent.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import style from "./FormPatente.module.css";
 import { useDispatch } from "react-redux";
-import { getVehicle, cleanVehicleData } from "../../redux/actions/actions";
+import { cleanVehicleData } from "../../redux/actions/actions";
+import validation from "./validation";
 
 const FormPatente = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [patent, setPatent] = useState("");
+  const [patent, setPatent] = useState("CDLG54");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -16,15 +17,13 @@ const FormPatente = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getVehicle(patent.toUpperCase()));
-    if (patent) {
+    setError(validation(patent));
+    if (!validation(patent)) {
       navigate(`/formVehicle`, {
         state: {
           patent: patent.toUpperCase(),
         },
       });
-    } else {
-      setError("Por favor, ingresa la patente del vehículo");
     }
   };
 
@@ -38,7 +37,7 @@ const FormPatente = () => {
           value={patent}
           onChange={(e) => setPatent(e.target.value)}
         />
-        {error && <div className={style.error}>{error}</div>}
+        {error && <p className={style.error}>{error}</p>}
         <button type="submit" className={style.submit}>
           Enviar
         </button>

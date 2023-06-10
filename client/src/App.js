@@ -1,6 +1,6 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import FormPatente from "./components/FormPatente/FormPatente";
+import FormPatente from "./components/FormPatent/FormPatent";
 import Services from "./views/Services/Services";
 import FormVehicle from "./components/FormVehicle/FormVehicle";
 import Billing from "./components/CardServices/Billing/Billing";

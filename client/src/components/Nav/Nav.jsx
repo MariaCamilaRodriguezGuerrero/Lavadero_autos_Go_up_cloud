@@ -19,7 +19,7 @@ export default function Nav() {
             : style.item
         }
       >
-        Ingresar Vehiculo
+        Ingresar Vehículo
       </Link>
       <Link
         to={"/services"}

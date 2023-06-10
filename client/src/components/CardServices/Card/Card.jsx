@@ -31,7 +31,7 @@ const Card = ({
         <span className={style.spanData4}>{client}</span>
         <span className={style.spanData4}>+56 {whatsapp}</span>
 
-        <span className={style.spanData2}>5-6-2023 10:00</span>
+        <span className={style.spanData2}>{services[0].date}</span>
 
         <div className={style.servicesWorkerDiv}>
           {services.map((service) => (

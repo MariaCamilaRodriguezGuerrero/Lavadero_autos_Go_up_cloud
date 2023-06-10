@@ -3,3 +3,5 @@ export const GET_VEHICLE = "GET_VEHICLE";
 export const CLEAN_VEHICLE = "CLEAN_VEHICLE";
 export const GET_SERVICES = "GET_SERVICES";
 export const GET_WORKERS = "GET_WORKERS";
+export const POST_ORDER = "POST_ORDER";
+export const GET_ORDERS = "GET_ORDERS";
