@@ -13,33 +13,32 @@ export default function Cards() {
   //   const [pageNumberToShow, setPageNumberToShow] = useState(0);
   const displayOrders =
     typeof orders !== "string" &&
+    orders.length &&
     orders
       .slice(pagesVisited, pagesVisited + ordersPerPage)
       .map(
         (
           {
-            client,
+            licensePlate,
             vehicleType,
-            patent,
+            client,
             whatsapp,
-            model,
-            workers,
-            services,
             brand,
+            model,
+            services,
           },
           index
         ) => {
           return (
             <Card
               key={index}
+              licensePlate={licensePlate}
+              vehicleType={vehicleType}
               client={client}
               whatsapp={whatsapp}
-              vehicleType={vehicleType}
-              patent={patent}
-              model={model}
-              workers={workers}
-              services={services}
               brand={brand}
+              model={model}
+              services={services}
             />
           );
         }

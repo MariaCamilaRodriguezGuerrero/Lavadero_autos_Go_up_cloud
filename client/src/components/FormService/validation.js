@@ -1,16 +1,26 @@
-const validation = (selectedServices, fields, selectedWorkers = []) => {
-  let errors = {};
+const validation = (
+  selectedServices,
+  fieldsOnView,
+  selectedWorkers,
+  submit
+) => {
+  let error = "";
 
-  if (selectedServices[fields.length] === undefined) {
-    errors.service = "Seleccione un servicio";
+  if (!selectedServices[fieldsOnView] || !selectedWorkers[fieldsOnView]) {
+    error = "Seleccione un servicio y trabajadores";
   }
-  // console.log(
-  //   selectedWorkers[0] &&
-  //     selectedServices.map((service, index) => selectedWorkers[index]) ===
-  //       undefined
-  // );
-
-  return errors;
+  if (submit) {
+    const arr = [];
+    for (let i = 0; i <= fieldsOnView; i++) {
+      arr.push(
+        !selectedServices[i] || !selectedWorkers[i] || !selectedWorkers[i][0]
+      );
+    }
+    if (arr.find((e) => e === true)) {
+      error = "Seleccione un servicio y trabajadores";
+    }
+  }
+  return error;
 };
 
 export default validation;

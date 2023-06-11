@@ -18,6 +18,12 @@
   display: flex;
   justify-content: center;
 }
+.inputDivDynamic {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30px;
+}
 .select {
   width: 350px;
   font-size: 20px;
@@ -63,6 +69,19 @@
 .addBtn:active {
   background-color: transparent;
   border-color: black;
+}
+.eraseFieldBtn {
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+  font-size: 20px;
+  border: 2px solid transparent;
+  background-color: rgba(255, 110, 110, 0.829);
+  cursor: pointer;
+}
+.eraseFieldBtn:hover {
+  background-color: rgba(255, 3, 3, 0.829);
 }
 @media only screen and (max-width: 800px) {
   .divs {

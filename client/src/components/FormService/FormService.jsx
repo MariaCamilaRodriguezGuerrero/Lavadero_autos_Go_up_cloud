@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import style from "./FormService.module.css";
 import Select from "react-select";
 import validation from "./validation";
+import getDate from "./getDate";
 import {
   getServices,
   getWorkers,
@@ -15,11 +16,7 @@ const FormService = () => {
   const [optionsWorkers, setOptionsWorkers] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedWorkers, setSelectedWorkers] = useState([]);
-  const [fields, setFields] = useState([]);
-  const [errors, setErrors] = useState({
-    service: "",
-    workers: "",
-  });
+  const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,6 +25,7 @@ const FormService = () => {
   const { servicesData, workersData, postOrderMessage } = useSelector(
     (state) => state
   );
+  const [fieldsOnView, setFieldsOnView] = useState(0);
 
   useEffect(() => {
     location.state === null && navigate("/createVehicle");
@@ -65,45 +63,27 @@ const FormService = () => {
   }, [workersData]);
 
   useEffect(() => {
-    console.log(postOrderMessage);
-  }, [postOrderMessage]);
+    filterOptions();
+  }, [selectedServices]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    setErrors(validation(selectedServices, fields, selectedWorkers));
-    if (false) {
-      /*
-      var today = new Date();
-      const year = today.getFullYear();
-      const month =
-        today.getMonth() + 1 < 10
-          ? `0${today.getMonth() + 1}`
-          : today.getMonth() + 1;
-      const day =
-        today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
-      let hours =
-        today.getHours() < 10 ? `0${today.getHours()}` : today.getHours();
-      let minutes =
-        today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
-      let seconds =
-        today.getSeconds() < 10 ? `0${today.getSeconds()}` : today.getSeconds();
-
-      var dateTime = `${year}${month}${day}${hours}${minutes}${seconds}`;
+    setError(validation(selectedServices, fieldsOnView, selectedWorkers, true));
+    if (!validation(selectedServices, fieldsOnView, selectedWorkers, true)) {
+      const cleanArray = selectedServices.filter((service) => !!service);
       dispatch(
         postOrder({
           idVehicle: patent,
-          services: selectedServices.map((service, index) => {
+          services: cleanArray.map((service, index) => {
             return {
               idService: service.value,
-              date: dateTime,
+              date: getDate(),
               workers: selectedWorkers[index].map((worker) => worker.value),
             };
           }),
         })
-        );
-        */
-      //navigate(`/services`);
+      );
+      navigate(`/services`);
     }
   };
 
@@ -120,6 +100,7 @@ const FormService = () => {
         .filter((service) => {
           let filteredService = true;
           for (let i = 0; i < selectedServices.length; i++) {
+            if (!selectedServices[i]) continue;
             if (selectedServices[i].value === service.value)
               filteredService = false;
           }
@@ -127,16 +108,16 @@ const FormService = () => {
         })
     );
   };
+
   const servicesChangeHandler = (value, action) => {
     const num = action.name;
-    let servicesPrev = selectedServices;
+    let servicesPrev = selectedServices.map((e) => e);
     servicesPrev[num] = value;
     setSelectedServices(servicesPrev);
-    filterOptions();
   };
   const workersChangeHandler = (value, action) => {
     const num = action.name;
-    let workersNew = selectedWorkers;
+    let workersNew = selectedWorkers.map((e) => e);
     workersNew[num] = value;
     setSelectedWorkers(workersNew);
   };
@@ -151,57 +132,34 @@ const FormService = () => {
     colors: {
       ...theme.colors,
       primary25: "#3cd8f0",
-      primary: "black",
+      primary: "#3cd8f0",
     },
   });
 
   const addFields = () => {
-    if (fields.length > 4) return;
-    setErrors(validation(selectedServices, fields));
-    if (!validation(selectedServices, fields).service) {
-      setFields([
-        ...fields,
-        <div className={style.inputDiv}>
-          <Select
-            classNamePrefix="select"
-            placeholder="Seleccione un tipo de servicio"
-            theme={selectTheme}
-            className={style.select}
-            styles={selectStyles}
-            options={optionsServices}
-            value={selectedServices[fields.length + 1]}
-            onChange={servicesChangeHandler}
-            name={fields.length + 1}
-          />
-          <Select
-            isMulti
-            classNamePrefix="select"
-            placeholder="Seleccione Trabajadores"
-            theme={selectTheme}
-            className={style.select}
-            styles={selectStyles}
-            options={optionsWorkers}
-            value={selectedWorkers[fields.length + 1]}
-            onChange={workersChangeHandler}
-            name={fields.length + 1}
-          />
-          <button type="button" onClick={eraseField} id={fields.length + 1}>
-            Borrar
-          </button>
-        </div>,
-      ]);
+    if (fieldsOnView >= "4") return;
+    setError(validation(selectedServices, fieldsOnView, selectedWorkers));
+    if (!validation(selectedServices, fieldsOnView, selectedWorkers)) {
+      document.getElementById(fieldsOnView + 1).style.display = "flex";
+      setFieldsOnView(fieldsOnView + 1);
     }
   };
 
   const eraseField = (event) => {
-    /*
-    console.log(event.target.id);
-    let arr = fields;
-    console.log(arr);
-    arr.splice(event.target.id, 1);
-    console.log(arr);
-    */
+    const num = event.target.name;
+    document.getElementById(fieldsOnView).style.display = "none";
+    setFieldsOnView(fieldsOnView - 1);
+    const servicesPrev = selectedServices.map((e) => e);
+    servicesPrev.splice(num, 1);
+    servicesPrev.push(null);
+    setSelectedServices(servicesPrev);
+    const workersNew = selectedWorkers.map((e) => e);
+    workersNew.splice(num, 1);
+    workersNew.push(null);
+    setSelectedWorkers(workersNew);
+    setError(validation(selectedServices, fieldsOnView, selectedWorkers));
   };
+
   return (
     <div>
       <Link to={"/formVehicle"} state={patent}>
@@ -217,6 +175,7 @@ const FormService = () => {
           <Select
             classNamePrefix="select"
             placeholder="Seleccione un tipo de servicio"
+            isClearable={true}
             theme={selectTheme}
             className={style.select}
             styles={selectStyles}
@@ -238,8 +197,177 @@ const FormService = () => {
             name={0}
           />
         </div>
-        {fields}
-        {errors.service && <p className={style.error}>{errors.service}</p>}
+        <div className={style.inputDivDynamic} id="1">
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            isClearable={true}
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsServices}
+            value={selectedServices[1]}
+            onChange={servicesChangeHandler}
+            name={1}
+          />
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsWorkers}
+            value={selectedWorkers[1]}
+            onChange={workersChangeHandler}
+            name={1}
+          />
+          <button
+            type="button"
+            onClick={eraseField}
+            name={1}
+            className={style.eraseFieldBtn}
+          >
+            x
+          </button>
+        </div>
+        <div className={style.inputDivDynamic} id="2">
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            isClearable={true}
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsServices}
+            value={selectedServices[2]}
+            onChange={servicesChangeHandler}
+            name={2}
+          />
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsWorkers}
+            value={selectedWorkers[2]}
+            onChange={workersChangeHandler}
+            name={2}
+          />
+          <button
+            type="button"
+            onClick={eraseField}
+            name={2}
+            className={style.eraseFieldBtn}
+          >
+            x
+          </button>
+        </div>
+        <div className={style.inputDivDynamic} id="3">
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            isClearable={true}
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsServices}
+            value={selectedServices[3]}
+            onChange={servicesChangeHandler}
+            name={3}
+          />
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsWorkers}
+            value={selectedWorkers[3]}
+            onChange={workersChangeHandler}
+            name={3}
+          />
+          <button
+            type="button"
+            onClick={eraseField}
+            name={3}
+            className={style.eraseFieldBtn}
+          >
+            x
+          </button>
+        </div>
+        <div className={style.inputDivDynamic} id="4">
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            isClearable={true}
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsServices}
+            value={selectedServices[4]}
+            onChange={servicesChangeHandler}
+            name={4}
+          />
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsWorkers}
+            value={selectedWorkers[4]}
+            onChange={workersChangeHandler}
+            name={4}
+          />
+          <button
+            type="button"
+            onClick={eraseField}
+            name={4}
+            className={style.eraseFieldBtn}
+          >
+            x
+          </button>
+        </div>
+        <div className={style.inputDivDynamic} id="5">
+          <Select
+            classNamePrefix="select"
+            placeholder="Seleccione un tipo de servicio"
+            isClearable={true}
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsServices}
+            value={selectedServices[5]}
+            onChange={servicesChangeHandler}
+            name={5}
+          />
+          <Select
+            isMulti
+            classNamePrefix="select"
+            placeholder="Seleccione Trabajadores"
+            theme={selectTheme}
+            className={style.select}
+            styles={selectStyles}
+            options={optionsWorkers}
+            value={selectedWorkers[5]}
+            onChange={workersChangeHandler}
+            name={5}
+          />
+          <button
+            type="button"
+            onClick={eraseField}
+            name={5}
+            className={style.eraseFieldBtn}
+          >
+            x
+          </button>
+        </div>
+        {error && <p className={style.error}>{error}</p>}
         <button type="button" onClick={addFields} className={style.addBtn}>
           +
         </button>

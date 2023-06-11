@@ -2,13 +2,13 @@ import style from "./Card.module.css";
 import { Link, useLocation } from "react-router-dom";
 
 const Card = ({
-  client,
+  licensePlate,
   vehicleType,
-  patent,
+  client,
   whatsapp,
+  brand,
   model,
   services,
-  brand,
 }) => {
   const location = useLocation();
 
@@ -27,7 +27,7 @@ const Card = ({
         PENDIENTE
       </Link>
       <p className={style.text}>
-        <span className={style.spanDataP}>{patent}</span>
+        <span className={style.spanDataP}>{licensePlate}</span>
         <span className={style.spanData4}>{client}</span>
         <span className={style.spanData4}>+56 {whatsapp}</span>
 
@@ -36,7 +36,7 @@ const Card = ({
         <div className={style.servicesWorkerDiv}>
           {services.map((service) => (
             <div className={style.servicesDiv}>
-              <span className={style.services}>· {service.name}</span>
+              <span className={style.services}>· {service.serviceName}</span>
 
               <div className={style.workersDiv}>
                 {service.workers.map((worker) => (
@@ -50,7 +50,7 @@ const Card = ({
         <span className={style.spanData}>
           $
           {services
-            .map((e) => Number(e.value))
+            .map((e) => Number(e.cost))
             .reduce(
               (accumulator, currentValue) => accumulator + currentValue,
               0
@@ -62,12 +62,12 @@ const Card = ({
           state={{
             background: location,
             data: {
-              client,
+              licensePlate,
               vehicleType,
-              patent,
+              client,
               whatsapp,
-              model,
               brand,
+              model,
               services,
             },
           }}

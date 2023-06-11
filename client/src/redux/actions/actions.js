@@ -84,7 +84,7 @@ export const getOrders = () => {
   return async function (dispatch) {
     try {
       const serverData = await axios.get(
-        `http://lavadero_autos_api.test/orders`
+        `http://lavadero_autos_api.test/orders?orderStatus=pending`
       );
       dispatch({ type: GET_ORDERS, payload: serverData.data });
     } catch (error) {

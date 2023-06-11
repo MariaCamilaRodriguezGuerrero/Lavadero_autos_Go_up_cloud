@@ -9,34 +9,11 @@ import {
 } from "../actions/types";
 
 const inicialState = {
-  orders: [
-    {
-      patent: "CDLG54",
-      client: "María",
-      whatsapp: "912376434",
-      brand: "Renault",
-      model: "R4",
-      vehicleType: "Camión",
-      services: [
-        {
-          name: "LIMPIEZA DE TECHO",
-          value: "10000",
-          workers: ["Duvan"],
-          date: "09-06-2023 12:48",
-        },
-        {
-          name: "LIMPIEZA DE PLASTICOS",
-          value: "10000",
-          workers: ["María", "Duvan"],
-          date: "09-06-2023 12:15",
-        },
-      ],
-    },
-  ],
   vehicleData: {},
   servicesData: [],
   workersData: [],
   postOrderMessage: "",
+  orders: [],
 };
 
 export default function rootReducer(state = inicialState, { type, payload }) {
@@ -53,6 +30,8 @@ export default function rootReducer(state = inicialState, { type, payload }) {
       return { ...state, workersData: payload };
     case POST_ORDER:
       return { ...state, postOrderMessage: payload };
+    case GET_ORDERS:
+      return { ...state, orders: payload };
     default:
       return { ...state };
   }

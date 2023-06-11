@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import style from "./Login.module.css";
-import img from "./img/Chevrolet-Camaro-PNG-Free-Download.png"
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import img from "./img/Chevrolet-Camaro-PNG-Free-Download.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -38,11 +38,11 @@ const Login = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });  
+      });
     } else {
       setError("Nombre de usuario o contraseña incorrectos");
-    } 
-  };  
+    }
+  };
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -51,7 +51,7 @@ const Login = () => {
   return (
     <div className={style.mainDiv}>
       <div className={style.loginImg}>
-        <img src={img} alt="Logo" />
+        <img src={img} alt="Logo" style={{ pointerEvents: "none" }} />
       </div>
       <div className={style.loginBox}>
         <div className={style.loginContainer}>

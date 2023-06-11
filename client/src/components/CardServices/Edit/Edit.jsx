@@ -7,7 +7,7 @@ const Edit = () => {
   const {
     client,
     whatsapp,
-    patent,
+    licensePlate,
     model,
     workers,
     services,
@@ -45,7 +45,7 @@ const Edit = () => {
             </div>
             <div className={style.dataItem}>
               <span className={style.dataLabel}>Patente:</span>
-              <span className={style.dataValue}>{patent}</span>
+              <span className={style.dataValue}>{licensePlate}</span>
             </div>
           </div>
           <div className={style.dataContainer2}>
@@ -68,7 +68,7 @@ const Edit = () => {
           {services.map((service) => (
             <div className={style.servicesDiv}>
               <span className={style.services}>
-                · {service.name} ${service.value}
+                · {service.serviceName} ${service.cost}
               </span>
 
               <div className={style.workersDiv}>

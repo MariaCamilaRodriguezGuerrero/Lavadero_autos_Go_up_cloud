@@ -45,7 +45,7 @@ const Billing = () => {
           {services &&
             services.map((e) => (
               <span>
-                {e.name} - ${e.value}
+                {e.serviceName} - ${e.cost}
               </span>
             ))}
 
@@ -53,7 +53,7 @@ const Billing = () => {
             {services &&
               "Total: $" +
                 services
-                  .map((e) => Number(e.value))
+                  .map((e) => Number(e.cost))
                   .reduce(
                     (accumulator, currentValue) => accumulator + currentValue,
                     0
