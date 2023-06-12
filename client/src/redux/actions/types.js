@@ -8,4 +8,4 @@ export const GET_WORKERS = "GET_WORKERS";
 export const GET_ORDERS = "GET_ORDERS";
 export const POST_ORDER = "POST_ORDER";
 export const PUT_ORDER = "PUT_ORDER";
-export const SEARCH_PATENT = "SEARCH_PATENT";
+export const SEARCH_FILTER = "SEARCH_FILTER";

@@ -8,7 +8,7 @@ import {
   GET_ORDERS,
   POST_VEHICLE,
   PUT_VEHICLE,
-  SEARCH_PATENT,
+  SEARCH_FILTER,
   PUT_ORDER,
 } from "./types";
 
@@ -137,9 +137,9 @@ export const putOrder = (id, status) => {
   };
 };
 
-export const searchPatente = (patent) => {
+export const searchFilter = (filteredArray) => {
   return {
-    type: SEARCH_PATENT,
-    payload: patent,
+    type: SEARCH_FILTER,
+    payload: filteredArray,
   };
 };

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import style from "./Billing.module.css";
 import validation from "./validation";
+import { putOrder, getOrders } from "../../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 const Billing = () => {
   const location = useLocation();
   const { services } = location.state;
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [medioPago, setMedioPago] = useState("");
   const [descuento, setDescuento] = useState(0);
   const [promocion, setPromocion] = useState(0);
@@ -17,9 +20,14 @@ const Billing = () => {
     e.preventDefault();
     setError(validation(medioPago));
     if (!validation(medioPago)) {
-      console.log({
-        services,
+      services.forEach((service) => {
+        dispatch(
+          putOrder(service.orderService, {
+            orderStatus: "completed",
+          })
+        );
       });
+      navigate("/services", { state: "reload" });
     }
   };
 
