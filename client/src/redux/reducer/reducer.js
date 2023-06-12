@@ -6,6 +6,10 @@ import {
   GET_WORKERS,
   POST_ORDER,
   GET_ORDERS,
+  POST_VEHICLE,
+  PUT_VEHICLE,
+  SEARCH_PATENT,
+  PUT_ORDER,
 } from "../actions/types";
 
 const inicialState = {
@@ -13,7 +17,11 @@ const inicialState = {
   servicesData: [],
   workersData: [],
   postOrderMessage: "",
+  postVehicleMessage: "",
+  putVehicleMessage: "",
+  putOrderMessage: "",
   orders: [],
+  ordersFiltered: [],
 };
 
 export default function rootReducer(state = inicialState, { type, payload }) {
@@ -32,6 +40,14 @@ export default function rootReducer(state = inicialState, { type, payload }) {
       return { ...state, postOrderMessage: payload };
     case GET_ORDERS:
       return { ...state, orders: payload };
+    case POST_VEHICLE:
+      return { ...state, postVehicleMessage: payload };
+    case PUT_VEHICLE:
+      return { ...state, putVehicleMessage: payload };
+    case PUT_ORDER:
+      return { ...state, putOrderMessage: payload };
+    case SEARCH_PATENT:
+      return { ...state, vehicleData: payload };
     default:
       return { ...state };
   }

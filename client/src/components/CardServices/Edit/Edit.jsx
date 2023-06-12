@@ -87,15 +87,215 @@ const Edit = () => {
               </div>
             </div>
           ))}
-          <div className={style.botonagregar}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 448 512"
-            >
-              <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-            </svg>
-          </div>
+          <h3>Agregar servicios</h3>
+          {/*
+          <form className={style.form} onSubmit={submitHandler}>
+            <h1 className={style.title}>Crear Servicios</h1>
+            <div className={style.inputDiv}>
+              <Select
+                classNamePrefix="select"
+                placeholder="Seleccione un tipo de servicio"
+                isClearable={true}
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsServices}
+                value={selectedServices[0]}
+                onChange={servicesChangeHandler}
+                name={0}
+              />
+              <Select
+                isMulti
+                classNamePrefix="select"
+                placeholder="Seleccione Trabajadores"
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsWorkers}
+                value={selectedWorkers[0]}
+                onChange={workersChangeHandler}
+                name={0}
+              />
+            </div>
+            <div className={style.inputDivDynamic} id="1">
+              <Select
+                classNamePrefix="select"
+                placeholder="Seleccione un tipo de servicio"
+                isClearable={true}
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsServices}
+                value={selectedServices[1]}
+                onChange={servicesChangeHandler}
+                name={1}
+              />
+              <Select
+                isMulti
+                classNamePrefix="select"
+                placeholder="Seleccione Trabajadores"
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsWorkers}
+                value={selectedWorkers[1]}
+                onChange={workersChangeHandler}
+                name={1}
+              />
+              <button
+                type="button"
+                onClick={eraseField}
+                name={1}
+                className={style.eraseFieldBtn}
+              >
+                x
+              </button>
+            </div>
+            <div className={style.inputDivDynamic} id="2">
+              <Select
+                classNamePrefix="select"
+                placeholder="Seleccione un tipo de servicio"
+                isClearable={true}
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsServices}
+                value={selectedServices[2]}
+                onChange={servicesChangeHandler}
+                name={2}
+              />
+              <Select
+                isMulti
+                classNamePrefix="select"
+                placeholder="Seleccione Trabajadores"
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsWorkers}
+                value={selectedWorkers[2]}
+                onChange={workersChangeHandler}
+                name={2}
+              />
+              <button
+                type="button"
+                onClick={eraseField}
+                name={2}
+                className={style.eraseFieldBtn}
+              >
+                x
+              </button>
+            </div>
+            <div className={style.inputDivDynamic} id="3">
+              <Select
+                classNamePrefix="select"
+                placeholder="Seleccione un tipo de servicio"
+                isClearable={true}
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsServices}
+                value={selectedServices[3]}
+                onChange={servicesChangeHandler}
+                name={3}
+              />
+              <Select
+                isMulti
+                classNamePrefix="select"
+                placeholder="Seleccione Trabajadores"
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsWorkers}
+                value={selectedWorkers[3]}
+                onChange={workersChangeHandler}
+                name={3}
+              />
+              <button
+                type="button"
+                onClick={eraseField}
+                name={3}
+                className={style.eraseFieldBtn}
+              >
+                x
+              </button>
+            </div>
+            <div className={style.inputDivDynamic} id="4">
+              <Select
+                classNamePrefix="select"
+                placeholder="Seleccione un tipo de servicio"
+                isClearable={true}
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsServices}
+                value={selectedServices[4]}
+                onChange={servicesChangeHandler}
+                name={4}
+              />
+              <Select
+                isMulti
+                classNamePrefix="select"
+                placeholder="Seleccione Trabajadores"
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsWorkers}
+                value={selectedWorkers[4]}
+                onChange={workersChangeHandler}
+                name={4}
+              />
+              <button
+                type="button"
+                onClick={eraseField}
+                name={4}
+                className={style.eraseFieldBtn}
+              >
+                x
+              </button>
+            </div>
+            <div className={style.inputDivDynamic} id="5">
+              <Select
+                classNamePrefix="select"
+                placeholder="Seleccione un tipo de servicio"
+                isClearable={true}
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsServices}
+                value={selectedServices[5]}
+                onChange={servicesChangeHandler}
+                name={5}
+              />
+              <Select
+                isMulti
+                classNamePrefix="select"
+                placeholder="Seleccione Trabajadores"
+                theme={selectTheme}
+                className={style.select}
+                styles={selectStyles}
+                options={optionsWorkers}
+                value={selectedWorkers[5]}
+                onChange={workersChangeHandler}
+                name={5}
+              />
+              <button
+                type="button"
+                onClick={eraseField}
+                name={5}
+                className={style.eraseFieldBtn}
+              >
+                x
+              </button>
+            </div>
+            {error && <p className={style.error}>{error}</p>}
+            <button type="button" onClick={addFields} className={style.addBtn}>
+              +
+            </button>
+            <button className={style.submit} type="submit">
+              Enviar
+            </button>
+          </form>
+*/}
         </div>
 
         <form onSubmit={handleSubmit}>

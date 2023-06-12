@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
 import Cards from "../../components/CardServices/Cards/Cards";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
   getOrders,
@@ -14,6 +14,7 @@ import {
 
 const Services = () => {
   const dispatch = useDispatch();
+  const { orders } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getServices());
@@ -25,7 +26,7 @@ const Services = () => {
     <div className={style.mainDiv}>
       <h1 className={style.title}>Servicios en Curso</h1>
       <div className={style.cards}>
-        <SearchBar />
+        <SearchBar array={orders} />
         <div className={style.card}>
           <p className={style.estado}>ESTADO</p>
           <p className={style.text}>

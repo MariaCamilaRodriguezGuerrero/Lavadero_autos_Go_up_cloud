@@ -8,7 +8,7 @@ import validation from "./validation";
 const FormPatente = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [patent, setPatent] = useState("CDLG54");
+  const [patent, setPatent] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {

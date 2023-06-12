@@ -3,16 +3,29 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
-import { getVehicle } from "../../redux/actions/actions";
+import {
+  getVehicle,
+  postVehicle,
+  putVehicle,
+} from "../../redux/actions/actions";
+import validation from "./validation";
 
 const FormVehicle = () => {
-  const { vehicleData } = useSelector((state) => state);
-  const [client, setClient] = useState("");
-  const [vehicleType, setVehicleType] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
-  const [model, setModel] = useState("");
-  const [brand, setBrand] = useState("");
-  const [error, setError] = useState("");
+  const { vehicleData, postVehicleMessage, putVehicleMessage } = useSelector(
+    (state) => state
+  );
+  const [form, setForm] = useState({
+    client: "",
+    whatsapp: "",
+    vehicleType: "",
+    model: "",
+    brand: "",
+  });
+  const [errors, setErrors] = useState({
+    client: "",
+    whatsapp: "",
+    vehicleType: "",
+  });
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,14 +40,26 @@ const FormVehicle = () => {
   }, [dispatch, patent]);
 
   useEffect(() => {
-    setClient(vehicleData.client);
-    setVehicleType({
-      value: vehicleData.vehicleType,
-      label: vehicleData.vehicleType,
+    console.log(postVehicleMessage);
+  }, [postVehicleMessage]);
+  useEffect(() => {
+    console.log(putVehicleMessage);
+  }, [putVehicleMessage]);
+
+  useEffect(() => {
+    console.log(vehicleData);
+    setForm({
+      client: vehicleData.client,
+      vehicleType: vehicleData.vehicleType
+        ? {
+            value: vehicleData.vehicleType,
+            label: vehicleData.vehicleType,
+          }
+        : null,
+      whatsapp: vehicleData.whatsapp,
+      brand: vehicleData.brand,
+      model: vehicleData.model,
     });
-    setWhatsapp(vehicleData.whatsapp);
-    setBrand(vehicleData.brand);
-    setModel(vehicleData.model);
   }, [vehicleData]);
 
   const ejemploTipoVehiculo = [
@@ -53,53 +78,68 @@ const FormVehicle = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let valid = true;
+    setErrors(validation(form));
+    if (!Object.values(validation(form)).filter((e) => !!e).length) {
+      if (vehicleData.status) {
+        dispatch(
+          postVehicle({
+            licensePlate: patent,
+            vehicleType: form.vehicleType.value,
+            client: form.client,
+            whatsapp: form.whatsapp,
+            brand: form.brand,
+            model: form.model,
+          })
+        );
+      }
+      if (
+        vehicleData.client !== form.client ||
+        vehicleData.vehicleType !== form.vehicleType.value ||
+        vehicleData.whatsapp !== form.whatsapp ||
+        vehicleData.brand !== form.brand ||
+        vehicleData.model !== form.model
+      ) {
+        dispatch(
+          putVehicle({
+            licensePlate: patent,
+            vehicleType: form.vehicleType.value,
+            client: form.client,
+            whatsapp: form.whatsapp,
+            brand: form.brand,
+            model: form.model,
+          })
+        );
+      }
 
-    // Validar campos requeridos
-    if (client.trim() === "") {
-      valid = false;
-      document.getElementById("clienteError").style.display = "block";
-    } else {
-      document.getElementById("clienteError").style.display = "none";
-    }
-
-    if (whatsapp.trim() === "") {
-      valid = false;
-      document.getElementById("whatsappError").style.display = "block";
-    } else {
-      document.getElementById("whatsappError").style.display = "none";
-    }
-
-    if (vehicleType === "") {
-      valid = false;
-      document.getElementById("tipoVehiculoError").style.display = "block";
-    } else {
-      document.getElementById("tipoVehiculoError").style.display = "none";
-    }
-    //envío Post o Put al Back
-    /*
-    console.log({
-      id: patent,
-      vehicleType: vehicleType.value,
-      client,
-      whatsapp,
-      brand,
-      model,
-    });
-    */
-    if (valid) {
       navigate(`/formService`, {
         state: {
           patent,
-          vehicleType,
+          vehicleType: form.vehicleType,
         },
       });
     }
   };
 
-  const handleWhatsappChange = (e) => {
-    const inputValue = e.target.value.replace(/\D/g, ""); // Filtrar solo caracteres numéricos
-    setWhatsapp(inputValue);
+  const changehandler = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
+    setForm({
+      ...form,
+      [property]: value,
+    });
+  };
+  const whatsappChangeHandler = (e) => {
+    const value = e.target.value.replace(/\D/g, ""); // Filtrar solo caracteres numéricos
+    setForm({
+      ...form,
+      whatsapp: value,
+    });
+  };
+  const vehicleTypeChangeHandler = (value, action) => {
+    setForm({
+      ...form,
+      [action.name]: value,
+    });
   };
 
   const selectStyles = {
@@ -131,53 +171,56 @@ const FormVehicle = () => {
           <div className={style.column}>
             <label className={style.label}>Cliente*</label>
             <input
+              name="client"
               type="text"
-              value={client}
+              value={form.client}
               className={style.input}
-              onChange={(e) => setClient(e.target.value)}
+              onChange={changehandler}
             />
-            <p id="clienteError" className={style.error}>
-              Ingrese el nombre del cliente
-            </p>
+            {errors.client && <p className={style.error}>{errors.client}</p>}
             <label className={style.label}>WhatsApp*</label>
             <input
+              name="whatsapp"
               type="text"
-              value={whatsapp}
+              value={form.whatsapp}
               className={style.input}
-              onChange={handleWhatsappChange}
+              onChange={whatsappChangeHandler}
             />
-            <p id="whatsappError" className={style.error}>
-              Ingrese el número de WhatsApp
-            </p>
-
+            {errors.whatsapp && (
+              <p className={style.error}>{errors.whatsapp}</p>
+            )}
             <label className={style.label}>Tipo de vehiculo*</label>
             <Select
+              name="vehicleType"
               options={ejemploTipoVehiculo}
               placeholder="Seleccione un tipo"
               className={style.select}
               styles={selectStyles}
-              value={vehicleType}
-              onChange={(e) => setVehicleType(e)}
+              value={form.vehicleType}
+              onChange={vehicleTypeChangeHandler}
               theme={selectTheme}
+              isClearable={true}
             />
-            <p id="tipoVehiculoError" className={style.error}>
-              Seleccione el tipo de vehículo
-            </p>
+            {errors.vehicleType && (
+              <p className={style.error}>{errors.vehicleType}</p>
+            )}
           </div>
           <div className={style.column}>
             <label className={style.label}>Modelo</label>
             <input
+              name="model"
               type="text"
-              value={model}
+              value={form.model}
               className={style.input}
-              onChange={(e) => setModel(e.target.value)}
+              onChange={changehandler}
             />
             <label className={style.label}>Marca</label>
             <input
+              name="brand"
               type="text"
-              value={brand}
+              value={form.brand}
               className={style.input}
-              onChange={(e) => setBrand(e.target.value)}
+              onChange={changehandler}
             />
             <label className={style.label}>Patente</label>
             <p className={style.patent}>{patent}</p>

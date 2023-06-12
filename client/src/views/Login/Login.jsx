@@ -17,8 +17,8 @@ const Login = () => {
     e.preventDefault();
 
     // Validaciones de credenciales
-    const validUsername1 = "";
-    const validPassword1 = "";
+    const validUsername1 = "Gaston";
+    const validPassword1 = "superAdmin123";
 
     const validUsername2 = "";
     const validPassword2 = "";

@@ -1,13 +1,56 @@
-import style from "./Billing.module.css";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import style from "./Billing.module.css";
+import validation from "./validation";
 
 const Billing = () => {
   const location = useLocation();
   const { services } = location.state;
 
+  const [medioPago, setMedioPago] = useState("");
+  const [descuento, setDescuento] = useState(0);
+  const [promocion, setPromocion] = useState(0);
+  const [propina, setPropina] = useState(0);
+  const [error, setError] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    //navigate(`/services`);
+    setError(validation(medioPago));
+    if (!validation(medioPago)) {
+      console.log({
+        services,
+      });
+    }
+  };
+
+  const calculateTotal = () => {
+    const subtotal = services
+      .map((e) => Number(e.cost))
+      .reduce((accumulator, currentValue) => accumulator + currentValue);
+    const descuentoAplicado = (subtotal * descuento) / 100;
+    const promocionAplicada = (subtotal * promocion) / 100;
+    return subtotal - descuentoAplicado - promocionAplicada + propina;
+  };
+
+  const handleDescuentoChange = (e) => {
+    const value = Number(e.target.value);
+    if (!isNaN(value)) {
+      setDescuento(value);
+    }
+  };
+
+  const handlePromocionChange = (e) => {
+    const value = Number(e.target.value);
+    if (!isNaN(value)) {
+      setPromocion(value);
+    }
+  };
+
+  const handlePropinaChange = (e) => {
+    const value = Number(e.target.value);
+    if (!isNaN(value)) {
+      setPropina(value);
+    }
   };
 
   return (
@@ -23,42 +66,63 @@ const Billing = () => {
               />
             </Link>
           </div>
-          <div className={style.column}>
-            <h1 className={style.title}>FACTURA</h1>
-          </div>
-          <div className={style.column}></div>
+          <h1 className={style.title}>FACTURA</h1>
         </div>
         <form onSubmit={handleSubmit} className={style.form}>
-          <label>Medio de Pago</label>
-          <select>
-            <option>Seleccione</option>
-            <option>Efectivo</option>
-            <option>Transferencia</option>
-            <option>Red de Compra</option>
-          </select>
-          <label>Descuento</label>
-          <input type="number"></input>
-          <label>Promoción del día</label>
-          <input type="number"></input>
-          <label>Propina</label>
-          <input type="number"></input>
-          {services &&
-            services.map((e) => (
-              <span>
-                {e.serviceName} - ${e.cost}
-              </span>
-            ))}
+          <div className={style.row}>
+            <label>Medio de Pago:</label>
+            <select
+              value={medioPago}
+              onChange={(e) => setMedioPago(e.target.value)}
+            >
+              <option value="">Seleccione</option>
+              <option value="Efectivo">Efectivo</option>
+              <option value="Transferencia">Transferencia</option>
+              <option value="Red de Compra">Red de Compra</option>
+            </select>
+          </div>
+          {error && <p className={style.error}>{error}</p>}
+          <div className={style.row}>
+            <label>Descuento: </label>
+            <input
+              type="text"
+              value={descuento}
+              onChange={handleDescuentoChange}
+            />
+            <div>%</div>
+          </div>
+          <div className={style.row}>
+            <label>Promoción del día: </label>
+            <input
+              type="text"
+              value={promocion}
+              onChange={handlePromocionChange}
+            />
+            <div>%</div>
+          </div>
+          <div className={style.row}>
+            <label>Propina:</label>
+            <input type="text" value={propina} onChange={handlePropinaChange} />
+          </div>
 
-          <span>
+          <div className={style.column}>
             {services &&
-              "Total: $" +
-                services
-                  .map((e) => Number(e.cost))
-                  .reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    0
-                  )}
+              services.map((e) => (
+                <span key={e.serviceName}>
+                  {e.serviceName}: ${e.cost}
+                </span>
+              ))}
+
+            <span>Descuento: {descuento}%</span>
+
+            <span>Promoción del día: {promocion}%</span>
+
+            <span>Propina: ${propina}</span>
+          </div>
+          <span className={style.total}>
+            Total: ${services && calculateTotal()}
           </span>
+
           <button type="submit" className={style.submit}>
             Enviar
           </button>

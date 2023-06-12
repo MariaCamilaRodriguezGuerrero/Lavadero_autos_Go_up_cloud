@@ -6,16 +6,17 @@ import Card from "../Card/Card";
 
 export default function Cards() {
   const dispatch = useDispatch();
-  const { orders } = useSelector((state) => state);
+  const { ordersFiltered } = useSelector((state) => state);
   const ordersPerPage = 10;
   const pageNumber = useSelector((state) => state.pageNumber);
   const pagesVisited = pageNumber * ordersPerPage;
   //   const [pageNumberToShow, setPageNumberToShow] = useState(0);
   const displayOrders =
-    typeof orders !== "string" &&
-    orders.length &&
-    orders
+    typeof ordersFiltered !== "string" &&
+    ordersFiltered.length &&
+    ordersFiltered
       .slice(pagesVisited, pagesVisited + ordersPerPage)
+      .reverse()
       .map(
         (
           {
@@ -51,7 +52,7 @@ export default function Cards() {
   if (
     typeof displayOrders === "object" &&
     displayOrders.length === 0 &&
-    orders[0]
+    ordersFiltered[0]
   ) {
     dispatch(changePageNumber(0));
   }

@@ -137,7 +137,7 @@ const FormService = () => {
   });
 
   const addFields = () => {
-    if (fieldsOnView >= "4") return;
+    if (fieldsOnView >= "5") return;
     setError(validation(selectedServices, fieldsOnView, selectedWorkers));
     if (!validation(selectedServices, fieldsOnView, selectedWorkers)) {
       document.getElementById(fieldsOnView + 1).style.display = "flex";
@@ -162,7 +162,7 @@ const FormService = () => {
 
   return (
     <div>
-      <Link to={"/formVehicle"} state={patent}>
+      <Link to={"/formVehicle"} state={{ patent }}>
         <img
           className={style.backBtn}
           src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
