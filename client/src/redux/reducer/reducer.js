@@ -20,116 +20,7 @@ const inicialState = {
   postVehicleMessage: "",
   putVehicleMessage: "",
   putOrderMessage: "",
-  orders: [ {
-    "licensePlate": "ASDE11",
-    "vehicleType": "SEDAN/CITY CAR",
-    "client": "Carlos2",
-    "whatsapp": "555555555",
-    "brand": "",
-    "model": "",
-    "services": [
-        {
-            "serviceName": "LIMPIEZA FULL",
-            "cost": "5000",
-            "workers": [
-                "Maria",
-                "Duvan"
-            ],
-            "date": "12-06-2023 11:38"
-        },
-        {
-          "serviceName": "LIMPIEZA FULL",
-          "cost": "5000",
-          "workers": [
-              "Maria",
-              "Duvan"
-          ],
-          "date": "12-06-2023 11:38"
-      },
-      {
-        "serviceName": "LIMPIEZA FULL",
-        "cost": "5000",
-        "workers": [
-            "Maria",
-            "Duvan"
-        ],
-        "date": "12-06-2023 11:38"
-    },
-    {
-      "serviceName": "LIMPIEZA FULL",
-      "cost": "5000",
-      "workers": [
-          "Maria",
-          "Duvan"
-      ],
-      "date": "12-06-2023 11:38"
-  },
-  {
-    "serviceName": "LIMPIEZA FULL",
-    "cost": "5000",
-    "workers": [
-        "Maria",
-        "Duvan"
-    ],
-    "date": "12-06-2023 11:38"
-},
-{
-  "serviceName": "LIMPIEZA FULL",
-  "cost": "5000",
-  "workers": [
-      "Maria",
-      "Duvan"
-  ],
-  "date": "12-06-2023 11:38"
-},
-{
-  "serviceName": "LIMPIEZA FULL",
-  "cost": "5000",
-  "workers": [
-      "Maria",
-      "Duvan"
-  ],
-  "date": "12-06-2023 11:38"
-},
-{
-  "serviceName": "LIMPIEZA FULL",
-  "cost": "5000",
-  "workers": [
-      "Maria",
-      "Duvan"
-  ],
-  "date": "12-06-2023 11:38"
-},
-{
-  "serviceName": "LIMPIEZA FULL",
-  "cost": "5000",
-  "workers": [
-      "Maria",
-      "Duvan"
-  ],
-  "date": "12-06-2023 11:38"
-},
-    ]
-},
-{
-    "licensePlate": "AABB55",
-    "vehicleType": "SEDAN/CITY CAR",
-    "client": "lautaro",
-    "whatsapp": "1111111111",
-    "brand": "",
-    "model": "",
-    "services": [
-        {
-            "serviceName": "LIMPIEZA FULL",
-            "cost": "5000",
-            "workers": [
-                "Maria",
-                "Duvan"
-            ],
-            "date": "12-06-2023 11:01"
-        }
-    ]
-},],
+  orders: [],
   ordersFiltered: [],
 };
 
@@ -150,7 +41,7 @@ export default function rootReducer(state = inicialState, { type, payload }) {
     case GET_ORDERS:
       return { ...state, orders: payload };
     case SEARCH_FILTER:
-      return {...state, ordersFiltered: payload,};
+      return { ...state, ordersFiltered: payload };
     case POST_VEHICLE:
       return { ...state, postVehicleMessage: payload };
     case PUT_VEHICLE:

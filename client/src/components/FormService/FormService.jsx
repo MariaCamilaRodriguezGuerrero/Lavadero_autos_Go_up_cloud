@@ -83,7 +83,9 @@ const FormService = () => {
           }),
         })
       );
-      navigate(`/services`);
+      setTimeout(() => {
+        navigate("/services");
+      }, "800");
     }
   };
 

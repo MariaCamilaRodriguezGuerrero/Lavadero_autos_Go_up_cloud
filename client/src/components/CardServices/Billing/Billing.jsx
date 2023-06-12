@@ -27,7 +27,10 @@ const Billing = () => {
           })
         );
       });
-      navigate("/services", { state: "reload" });
+      setTimeout(() => {
+        dispatch(getOrders());
+        navigate("/services");
+      }, "1000");
     }
   };
 

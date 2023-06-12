@@ -26,7 +26,7 @@ const Services = () => {
     <div className={style.mainDiv}>
       <h1 className={style.title}>Servicios en Curso</h1>
       <div className={style.cards}>
-        <SearchBar array={ orders } />
+        <SearchBar array={orders} />
         <div className={style.card}>
           <p className={style.estado}>ESTADO</p>
           <p className={style.text}>

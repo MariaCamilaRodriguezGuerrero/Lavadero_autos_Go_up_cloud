@@ -3,18 +3,23 @@ import styles from "./Cards.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changePageNumber } from "../../../redux/actions/actions";
 import Card from "../Card/Card";
+import { useEffect, useState } from "react";
 
 export default function Cards() {
   const dispatch = useDispatch();
   const { ordersFiltered } = useSelector((state) => state);
+  const [cardsShow, setCardsShow] = useState("");
+  useEffect(() => {
+    setCardsShow(ordersFiltered);
+  }, [ordersFiltered]);
   const ordersPerPage = 10;
   const pageNumber = useSelector((state) => state.pageNumber);
   const pagesVisited = pageNumber * ordersPerPage;
   //   const [pageNumberToShow, setPageNumberToShow] = useState(0);
-  const displayOrders =
-    typeof ordersFiltered !== "string" &&
-    ordersFiltered.length &&
-    ordersFiltered
+  const displayCards =
+    typeof cardsShow !== "string" &&
+    cardsShow.length &&
+    cardsShow
       .slice(pagesVisited, pagesVisited + ordersPerPage)
       .reverse()
       .map(
@@ -50,9 +55,9 @@ export default function Cards() {
   //   }, [pageNumber]);
 
   if (
-    typeof displayOrders === "object" &&
-    displayOrders.length === 0 &&
-    ordersFiltered[0]
+    typeof displayCards === "object" &&
+    displayCards.length === 0 &&
+    cardsShow[0]
   ) {
     dispatch(changePageNumber(0));
   }
@@ -69,7 +74,7 @@ export default function Cards() {
         {!ongoingServices[0] && errorToShow === "" ? (
           <p className={styles.message}>No matches found</p>
         ) : null} */}
-        {displayOrders}
+        {displayCards}
       </div>
     </div>
   );
