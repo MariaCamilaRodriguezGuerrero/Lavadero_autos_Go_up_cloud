@@ -7,11 +7,12 @@ import CardBilling from "../CardBilling/CardBilling";
 
 export default function CardsBilling() {
   const dispatch = useDispatch();
-  const { ordersFiltered } = useSelector((state) => state);
+  const { ordersCompletedFiltered } = useSelector((state) => state);
   const [cardsShow, setCardsShow] = useState("");
   useEffect(() => {
-    setCardsShow(ordersFiltered);
-  }, [ordersFiltered]);
+    console.log(ordersCompletedFiltered);
+    setCardsShow(ordersCompletedFiltered);
+  }, [ordersCompletedFiltered]);
   const ordersPerPage = 10;
   const pageNumber = useSelector((state) => state.pageNumber);
   const pagesVisited = pageNumber * ordersPerPage;
@@ -21,7 +22,6 @@ export default function CardsBilling() {
     cardsShow.length &&
     cardsShow
       .slice(pagesVisited, pagesVisited + ordersPerPage)
-      .reverse()
       .map(
         (
           {

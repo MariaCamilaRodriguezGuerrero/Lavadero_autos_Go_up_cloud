@@ -10,6 +10,7 @@ import {
   PUT_VEHICLE,
   SEARCH_FILTER,
   PUT_ORDER,
+  GET_ORDERS_COMPLETED,
 } from "./types";
 
 import axios from "axios";
@@ -96,13 +97,13 @@ export const getOrders = () => {
   };
 };
 
-export const getOrdersByBilling = () => {
+export const getOrdersCompleted = () => {
   return async function (dispatch) {
     try {
       const serverData = await axios.get(
         `http://lavadero_autos_api.test/orders?orderStatus=completed`
       );
-      dispatch({ type: GET_ORDERS, payload: serverData.data });
+      dispatch({ type: GET_ORDERS_COMPLETED, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }
@@ -143,16 +144,16 @@ export const putOrder = (id, status) => {
         `http://lavadero_autos_api.test/orders/${id}`,
         status
       );
-      dispatch({ type: PUT_VEHICLE, payload: serverData.data });
+      dispatch({ type: PUT_ORDER, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }
   };
 };
 
-export const searchFilter = (filteredArray) => {
+export const searchFilter = (filteredArray, saveInto) => {
   return {
     type: SEARCH_FILTER,
-    payload: filteredArray,
+    payload: { filteredArray, saveInto },
   };
 };

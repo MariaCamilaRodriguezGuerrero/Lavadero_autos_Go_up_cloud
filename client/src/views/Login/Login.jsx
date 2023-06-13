@@ -20,8 +20,8 @@ const Login = () => {
     const validUsername1 = "Gaston";
     const validPassword1 = "superAdmin123";
 
-    const validUsername2 = "";
-    const validPassword2 = "";
+    const validUsername2 = "admin";
+    const validPassword2 = "admin";
 
     if (
       (username === validUsername1 && password === validPassword1) ||

@@ -3,11 +3,19 @@ import Pagination from "../../components/Pagination/Pagination";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import style from "./BillingList.module.css";
 // import { ToastContainer } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CardsBilling from "./CardsBilling/CardsBilling";
+import { getOrdersCompleted } from "../../redux/actions/actions";
+import { useEffect } from "react";
 
 const BillingList = () => {
-  const { orders } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { ordersCompleted } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getOrdersCompleted());
+  }, [dispatch]);
+
   return (
     <div className={style.mainDiv}>
       <Link to={"/dashboard"}>
@@ -19,7 +27,7 @@ const BillingList = () => {
       </Link>
       <h1 className={style.title}>Facturación</h1>
       <div className={style.cards}>
-        <SearchBar array={orders} />
+        <SearchBar array={ordersCompleted} />
         <div className={style.card}>
           <p className={style.estado}>ESTADO</p>
           <p className={style.text}>
@@ -32,7 +40,7 @@ const BillingList = () => {
             <span className={style.spanData}>Valor</span>
           </p>
         </div>
-        <CardsBilling/>
+        <CardsBilling />
         <Pagination />
         <Outlet />
         {/* <ToastContainer

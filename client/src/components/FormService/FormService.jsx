@@ -37,6 +37,7 @@ const FormService = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log(servicesData);
     servicesData.length &&
       setOptionsServices(
         servicesData

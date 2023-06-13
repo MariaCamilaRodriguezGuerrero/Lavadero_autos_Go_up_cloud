@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import style from "./Billing.module.css";
 import validation from "./validation";
@@ -27,13 +27,17 @@ const Billing = () => {
           })
         );
       });
+
+      //dispatch(getOrders());
       setTimeout(() => {
-        dispatch(getOrders());
         navigate("/services");
-      }, "1000");
+      }, 200);
     }
   };
 
+  useEffect(() => {
+    return () => dispatch(getOrders());
+  }, [dispatch]);
   const calculateTotal = () => {
     const subtotal = services
       .map((e) => Number(e.cost))
