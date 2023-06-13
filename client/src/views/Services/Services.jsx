@@ -32,7 +32,7 @@ const Services = () => {
           <p className={style.text}>
             <span className={style.spanDataP}>Patente</span>
             <span className={style.spanData4}>Cliente</span>
-            <span className={style.spanData4}>WhatsApp</span>
+            <span className={style.spanData4}>Telefono</span>
             <span className={style.spanData2}>Fecha Hora</span>
             <span className={style.spanData3}>Tipo Servicio</span>
             <span className={style.spanData3}>Trabajador</span>

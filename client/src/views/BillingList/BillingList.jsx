@@ -4,7 +4,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import style from "./BillingList.module.css";
 // import { ToastContainer } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import CardsBilling from "./CardsBilling/CardsBilling";
+import CardsBilling from "../../components/CardBilling/Cards/CardsBilling";
 import { getOrdersCompleted } from "../../redux/actions/actions";
 import { useEffect } from "react";
 
@@ -33,7 +33,7 @@ const BillingList = () => {
           <p className={style.text}>
             <span className={style.spanDataP}>Patente</span>
             <span className={style.spanData4}>Cliente</span>
-            <span className={style.spanData4}>WhatsApp</span>
+            <span className={style.spanData4}>Telefono</span>
             <span className={style.spanData2}>Fecha Hora</span>
             <span className={style.spanData3}>Tipo Servicio</span>
             <span className={style.spanData3}>Trabajador</span>

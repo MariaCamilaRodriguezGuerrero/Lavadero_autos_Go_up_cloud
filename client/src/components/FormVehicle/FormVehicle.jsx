@@ -20,11 +20,13 @@ const FormVehicle = () => {
     vehicleType: "",
     model: "",
     brand: "",
+    color: "", // Nuevo campo para el color del vehículo
   });
   const [errors, setErrors] = useState({
     client: "",
-    whatsapp: "",
+    brand: "",
     vehicleType: "",
+    color: "", // Nuevo campo para los errores del color del vehículo
   });
   const location = useLocation();
   const navigate = useNavigate();
@@ -59,6 +61,7 @@ const FormVehicle = () => {
       whatsapp: vehicleData.whatsapp,
       brand: vehicleData.brand,
       model: vehicleData.model,
+      color: vehicleData.color, // Asignar el valor del color del vehículo
     });
   }, [vehicleData]);
 
@@ -89,6 +92,7 @@ const FormVehicle = () => {
             whatsapp: form.whatsapp,
             brand: form.brand,
             model: form.model,
+            color: form.color, // Enviar el color del vehículo
           })
         );
       }
@@ -97,7 +101,8 @@ const FormVehicle = () => {
         vehicleData.vehicleType !== form.vehicleType.value ||
         vehicleData.whatsapp !== form.whatsapp ||
         vehicleData.brand !== form.brand ||
-        vehicleData.model !== form.model
+        vehicleData.model !== form.model ||
+        vehicleData.color !== form.color // Comprobar si el color del vehículo ha cambiado
       ) {
         dispatch(
           putVehicle({
@@ -107,6 +112,7 @@ const FormVehicle = () => {
             whatsapp: form.whatsapp,
             brand: form.brand,
             model: form.model,
+            color: form.color, // Enviar el color del vehículo
           })
         );
       }
@@ -167,6 +173,8 @@ const FormVehicle = () => {
       <h1 className={style.title}>Datos del Vehículo</h1>
       <p className={style.subtitle}>Los campos con * son obligatorios</p>
       <form onSubmit={handleSubmit}>
+        <label className={style.label}>Patente</label>
+        <p className={style.patent}>{patent}</p>
         <div className={style.form}>
           <div className={style.column}>
             <label className={style.label}>Cliente*</label>
@@ -178,7 +186,7 @@ const FormVehicle = () => {
               onChange={changehandler}
             />
             {errors.client && <p className={style.error}>{errors.client}</p>}
-            <label className={style.label}>WhatsApp*</label>
+            <label className={style.label}>Telefono</label>
             <input
               name="whatsapp"
               type="text"
@@ -186,9 +194,6 @@ const FormVehicle = () => {
               className={style.input}
               onChange={whatsappChangeHandler}
             />
-            {errors.whatsapp && (
-              <p className={style.error}>{errors.whatsapp}</p>
-            )}
             <label className={style.label}>Tipo de vehiculo*</label>
             <Select
               name="vehicleType"
@@ -214,7 +219,7 @@ const FormVehicle = () => {
               className={style.input}
               onChange={changehandler}
             />
-            <label className={style.label}>Marca</label>
+            <label className={style.label}>Marca*</label>
             <input
               name="brand"
               type="text"
@@ -222,8 +227,20 @@ const FormVehicle = () => {
               className={style.input}
               onChange={changehandler}
             />
-            <label className={style.label}>Patente</label>
-            <p className={style.patent}>{patent}</p>
+            {errors.brand && (
+              <p className={style.error}>{errors.brand}</p>
+            )}
+            <label className={style.label}>Color*</label>
+            <input
+              name="color"
+              type="text"
+              value={form.color}
+              className={style.input}
+              onChange={changehandler}
+            />
+            {errors.color && (
+              <p className={style.error}>{errors.color}</p>
+            )}
           </div>
         </div>
         <button type="submit" className={style.submit}>

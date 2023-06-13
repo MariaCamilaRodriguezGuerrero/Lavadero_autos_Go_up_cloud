@@ -11,24 +11,22 @@ const Billing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [medioPago, setMedioPago] = useState("");
-  const [descuento, setDescuento] = useState(0);
-  const [promocion, setPromocion] = useState(0);
-  const [propina, setPropina] = useState(0);
+  const [descuentos, setDescuentos] = useState([]);
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(validation(medioPago));
     if (!validation(medioPago)) {
-      services.forEach((service) => {
+      services.forEach((service, index) => {
         dispatch(
           putOrder(service.orderService, {
             orderStatus: "completed",
+            descuento: descuentos[index] || 0,
           })
         );
       });
 
-      //dispatch(getOrders());
       setTimeout(() => {
         navigate("/services");
       }, 200);
@@ -38,33 +36,20 @@ const Billing = () => {
   useEffect(() => {
     return () => dispatch(getOrders());
   }, [dispatch]);
+
   const calculateTotal = () => {
     const subtotal = services
-      .map((e) => Number(e.cost))
+      .map((e, index) => Number(e.cost) - (descuentos[index] || 0))
       .reduce((accumulator, currentValue) => accumulator + currentValue);
-    const descuentoAplicado = (subtotal * descuento) / 100;
-    const promocionAplicada = (subtotal * promocion) / 100;
-    return subtotal - descuentoAplicado - promocionAplicada + propina;
+    return subtotal;
   };
 
-  const handleDescuentoChange = (e) => {
+  const handleDescuentoChange = (e, index) => {
     const value = Number(e.target.value);
     if (!isNaN(value)) {
-      setDescuento(value);
-    }
-  };
-
-  const handlePromocionChange = (e) => {
-    const value = Number(e.target.value);
-    if (!isNaN(value)) {
-      setPromocion(value);
-    }
-  };
-
-  const handlePropinaChange = (e) => {
-    const value = Number(e.target.value);
-    if (!isNaN(value)) {
-      setPropina(value);
+      const updatedDescuentos = [...descuentos];
+      updatedDescuentos[index] = value;
+      setDescuentos(updatedDescuentos);
     }
   };
 
@@ -97,47 +82,28 @@ const Billing = () => {
             </select>
           </div>
           {error && <p className={style.error}>{error}</p>}
-          <div className={style.row}>
-            <label>Descuento: </label>
-            <input
-              type="text"
-              value={descuento}
-              onChange={handleDescuentoChange}
-            />
-            <div>%</div>
-          </div>
-          <div className={style.row}>
-            <label>Promoción del día: </label>
-            <input
-              type="text"
-              value={promocion}
-              onChange={handlePromocionChange}
-            />
-            <div>%</div>
-          </div>
-          <div className={style.row}>
-            <label>Propina:</label>
-            <input type="text" value={propina} onChange={handlePropinaChange} />
-          </div>
-
+          {services.map((service, index) => (
+            <div className={style.row} key={index}>
+              <label>{service.serviceName}: </label>
+              <input
+                type="text"
+                value={descuentos[index] || ""}
+                onChange={(e) => handleDescuentoChange(e, index)}
+              />
+              <div>%</div>
+            </div>
+          ))}
           <div className={style.column}>
-            {services &&
-              services.map((e) => (
-                <span key={e.serviceName}>
-                  {e.serviceName}: ${e.cost}
-                </span>
-              ))}
-
-            <span>Descuento: {descuento}%</span>
-
-            <span>Promoción del día: {promocion}%</span>
-
-            <span>Propina: ${propina}</span>
+            {services.map((service, index) => (
+              <span key={service.serviceName}>
+                {service.serviceName}: ${service.cost} - Descuento:{" "}
+                {descuentos[index] || 0}%
+              </span>
+            ))}
           </div>
           <span className={style.total}>
-            Total: ${services && calculateTotal()}
+            Total: ${calculateTotal()}
           </span>
-
           <button type="submit" className={style.submit}>
             Enviar
           </button>

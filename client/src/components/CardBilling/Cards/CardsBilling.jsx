@@ -3,7 +3,7 @@ import styles from "./CardsBilling.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changePageNumber } from "../../../redux/actions/actions";
 import { useEffect, useState } from "react";
-import CardBilling from "../CardBilling/CardBilling";
+import CardBilling from "../Card/CardBilling";
 
 export default function CardsBilling() {
   const dispatch = useDispatch();
