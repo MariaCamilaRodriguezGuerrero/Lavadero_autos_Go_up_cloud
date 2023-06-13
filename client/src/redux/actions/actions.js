@@ -96,6 +96,19 @@ export const getOrders = () => {
   };
 };
 
+export const getOrdersByBilling = () => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `http://lavadero_autos_api.test/orders?orderStatus=completed`
+      );
+      dispatch({ type: GET_ORDERS, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
 export const postVehicle = (vehicle) => {
   return async function (dispatch) {
     try {
