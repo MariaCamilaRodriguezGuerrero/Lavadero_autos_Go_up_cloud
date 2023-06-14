@@ -29,7 +29,7 @@ const Card = ({
       <p className={style.text}>
         <span className={style.spanDataP}>{licensePlate}</span>
         <span className={style.spanData4}>{client}</span>
-        <span className={style.spanData4}>{whatsapp}</span>
+        <span className={style.spanData4}>{whatsapp || "No ingresado"}</span>
         <span className={style.spanData2}>{services[0].date}</span>
 
         <div className={style.servicesWorkerDiv}>
