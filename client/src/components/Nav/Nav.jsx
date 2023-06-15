@@ -37,6 +37,14 @@ export default function Nav() {
       >
         Resumen del Día
       </Link>
+      <Link
+        to={"/billingList"}
+        className={
+          location.pathname === "/billingList" ? style.itemActive : style.item
+        }
+      >
+        Facturación
+      </Link>
     </div>
   );
 }

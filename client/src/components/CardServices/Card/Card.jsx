@@ -8,6 +8,7 @@ const Card = ({
   whatsapp,
   brand,
   model,
+  color,
   services,
 }) => {
   const location = useLocation();
@@ -68,6 +69,7 @@ const Card = ({
               brand,
               model,
               services,
+              color,
             },
           }}
           className={style.spanDataE}

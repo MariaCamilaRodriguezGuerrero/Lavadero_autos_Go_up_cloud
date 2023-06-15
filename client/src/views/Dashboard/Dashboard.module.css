@@ -17,9 +17,12 @@
   align-items: center;
   margin: 20px;
   border-radius: 20px;
-  background-color: #54b7ff;
+  background-color: #30b4c9;
 }
 .chart {
+  border: #30b4c9 2px solid;
+  border-radius: 20px;
+  padding: 20px;
   width: 700px;
   height: fit-content;
   margin: 50px;

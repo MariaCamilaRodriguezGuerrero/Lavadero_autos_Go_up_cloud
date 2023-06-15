@@ -32,6 +32,7 @@ export default function Cards() {
             brand,
             model,
             services,
+            color,
           },
           index
         ) => {
@@ -45,6 +46,7 @@ export default function Cards() {
               brand={brand}
               model={model}
               services={services}
+              color={color}
             />
           );
         }

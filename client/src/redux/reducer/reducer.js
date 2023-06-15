@@ -11,6 +11,8 @@ import {
   SEARCH_FILTER,
   PUT_ORDER,
   GET_ORDERS_COMPLETED,
+  GET_PAYROLLS,
+  POST_PAYROLLS,
 } from "../actions/types";
 
 const inicialState = {
@@ -25,6 +27,8 @@ const inicialState = {
   ordersFiltered: [],
   ordersCompleted: [],
   ordersCompletedFiltered: [],
+  payrolls: [],
+  postPayrollMessage: "",
 };
 
 export default function rootReducer(state = inicialState, { type, payload }) {
@@ -53,6 +57,10 @@ export default function rootReducer(state = inicialState, { type, payload }) {
       return { ...state, putOrderMessage: payload };
     case GET_ORDERS_COMPLETED:
       return { ...state, ordersCompleted: payload };
+    case GET_PAYROLLS:
+      return { ...state, payrolls: payload };
+    case POST_PAYROLLS:
+      return { ...state, postPayrollMessage: payload };
     default:
       return { ...state };
   }

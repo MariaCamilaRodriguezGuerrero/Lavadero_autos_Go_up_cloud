@@ -28,6 +28,7 @@ const Edit = () => {
     licensePlate,
     model,
     workers,
+    color,
     services,
     brand,
     vehicleType,
@@ -202,7 +203,7 @@ const Edit = () => {
               <span className={style.dataValue}>{client}</span>
             </div>
             <div className={style.dataItem}>
-              <span className={style.dataLabel}>WhatsApp:</span>
+              <span className={style.dataLabel}>Telefono:</span>
               <span className={style.dataValue}>{whatsapp}</span>
             </div>
             <div className={style.dataItem}>
@@ -220,6 +221,10 @@ const Edit = () => {
             <div className={style.dataItem}>
               <span className={style.dataLabel}>Tipo de vehiculo:</span>
               <span className={style.dataValue}>{vehicleType}</span>
+            </div>
+            <div className={style.dataItem}>
+              <span className={style.dataLabel}>Color:</span>
+              <span className={style.dataValue}>{color}</span>
             </div>
           </div>
           <div className={style.dataContainer2}>

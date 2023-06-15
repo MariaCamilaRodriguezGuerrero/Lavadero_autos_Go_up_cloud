@@ -11,22 +11,22 @@ const Billing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [medioPago, setMedioPago] = useState("");
-  const [descuentos, setDescuentos] = useState([]);
+  const [descuento, setDescuento] = useState(0);
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(validation(medioPago));
     if (!validation(medioPago)) {
-      services.forEach((service, index) => {
+      services.forEach((service) => {
         dispatch(
           putOrder(service.orderService, {
             orderStatus: "completed",
-            descuento: descuentos[index] || 0,
           })
         );
       });
 
+      //dispatch(getOrders());
       setTimeout(() => {
         navigate("/services");
       }, 200);
@@ -39,17 +39,16 @@ const Billing = () => {
 
   const calculateTotal = () => {
     const subtotal = services
-      .map((e, index) => Number(e.cost) - (descuentos[index] || 0))
+      .map((e) => Number(e.cost))
       .reduce((accumulator, currentValue) => accumulator + currentValue);
-    return subtotal;
+    const descuentoAplicado = (subtotal * descuento) / 100;
+    return subtotal - descuentoAplicado;
   };
 
-  const handleDescuentoChange = (e, index) => {
+  const handleDescuentoChange = (e) => {
     const value = Number(e.target.value);
     if (!isNaN(value)) {
-      const updatedDescuentos = [...descuentos];
-      updatedDescuentos[index] = value;
-      setDescuentos(updatedDescuentos);
+      setDescuento(value);
     }
   };
 
@@ -82,28 +81,31 @@ const Billing = () => {
             </select>
           </div>
           {error && <p className={style.error}>{error}</p>}
-          {services.map((service, index) => (
-            <div className={style.row} key={index}>
-              <label>{service.serviceName}: </label>
-              <input
-                type="text"
-                value={descuentos[index] || ""}
-                onChange={(e) => handleDescuentoChange(e, index)}
-              />
-              <div>%</div>
-            </div>
-          ))}
+          <div className={style.row}>
+            <label>Descuento: </label>
+            <select value={descuento} onChange={handleDescuentoChange}>
+              <option value={0}>0%</option>
+              <option value={5}>5%</option>
+              <option value={10}>10%</option>
+              <option value={15}>15%</option>
+              <option value={20}>20%</option>
+            </select>
+          </div>
+
           <div className={style.column}>
-            {services.map((service, index) => (
-              <span key={service.serviceName}>
-                {service.serviceName}: ${service.cost} - Descuento:{" "}
-                {descuentos[index] || 0}%
-              </span>
-            ))}
+            {services &&
+              services.map((e) => (
+                <span key={e.serviceName}>
+                  {e.serviceName}: ${e.cost}
+                </span>
+              ))}
+
+            <span>Descuento: {descuento}%</span>
           </div>
           <span className={style.total}>
-            Total: ${calculateTotal()}
+            Total: ${services && calculateTotal()}
           </span>
+
           <button type="submit" className={style.submit}>
             Enviar
           </button>

@@ -9,8 +9,9 @@ const getDate = () => {
   let hours = today.getHours() < 10 ? `0${today.getHours()}` : today.getHours();
   let minutes =
     today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
-
-  return `${year}${month}${day}${hours}${minutes}`;
+  let seconds =
+    today.getSeconds() < 10 ? `0${today.getSeconds()}` : today.getSeconds();
+  return `${year}${month}${day}${hours}${minutes}${seconds}`;
 };
 
 export default getDate;
