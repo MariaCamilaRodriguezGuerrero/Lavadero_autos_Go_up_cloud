@@ -1,31 +1,35 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./Login.module.css";
 import img from "./img/Chevrolet-Camaro-PNG-Free-Download.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers } from "../../redux/actions/actions";
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { usersData } = useSelector((state) => state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validaciones de credenciales
-    const validUsername1 = "Gaston";
-    const validPassword1 = "superAdmin123";
-
-    const validUsername2 = "admin";
-    const validPassword2 = "admin";
-
     if (
-      (username === validUsername1 && password === validPassword1) ||
-      (username === validUsername2 && password === validPassword2)
+      usersData.filter(
+        (user) =>
+          user.user_name === username &&
+          user.user_password === password &&
+          user.user_status === "active"
+      ).length
     ) {
       // Inicio de sesión exitoso, mostrar alerta de bienvenida
       navigate("/services");

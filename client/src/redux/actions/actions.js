@@ -13,6 +13,7 @@ import {
   GET_ORDERS_COMPLETED,
   GET_PAYROLLS,
   POST_PAYROLLS,
+  GET_USERS,
 } from "./types";
 
 import axios from "axios";
@@ -202,6 +203,19 @@ export const getPayrolls = () => {
         `http://lavadero_autos_api.test/payrolls/${year}${month}${day}`
       );
       dispatch({ type: GET_PAYROLLS, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+export const getUsers = () => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `http://lavadero_autos_api.test/users`
+      );
+      dispatch({ type: GET_USERS, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }

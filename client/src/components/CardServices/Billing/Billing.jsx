@@ -12,6 +12,7 @@ const Billing = () => {
   const navigate = useNavigate();
   const [medioPago, setMedioPago] = useState("");
   const [descuento, setDescuento] = useState(0);
+  const [tip, setTip] = useState(0);
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
@@ -22,6 +23,8 @@ const Billing = () => {
         dispatch(
           putOrder(service.orderService, {
             orderStatus: "completed",
+            invoiced: calculateTotal(),
+            tip,
           })
         );
       });
@@ -69,7 +72,7 @@ const Billing = () => {
         </div>
         <form onSubmit={handleSubmit} className={style.form}>
           <div className={style.row}>
-            <label>Medio de Pago:</label>
+            <label>Medio de Pago</label>
             <select
               value={medioPago}
               onChange={(e) => setMedioPago(e.target.value)}
@@ -82,7 +85,7 @@ const Billing = () => {
           </div>
           {error && <p className={style.error}>{error}</p>}
           <div className={style.row}>
-            <label>Descuento: </label>
+            <label>Descuento</label>
             <select value={descuento} onChange={handleDescuentoChange}>
               <option value={0}>0%</option>
               <option value={5}>5%</option>
@@ -91,7 +94,13 @@ const Billing = () => {
               <option value={20}>20%</option>
             </select>
           </div>
-
+          <div className={style.row}>
+            <label>Propina</label>
+            <input
+              type="number"
+              onChange={(e) => setTip(e.target.value)}
+            ></input>
+          </div>
           <div className={style.column}>
             {services &&
               services.map((e) => (

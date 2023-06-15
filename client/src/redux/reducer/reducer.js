@@ -13,6 +13,7 @@ import {
   GET_ORDERS_COMPLETED,
   GET_PAYROLLS,
   POST_PAYROLLS,
+  GET_USERS,
 } from "../actions/types";
 
 const inicialState = {
@@ -29,6 +30,7 @@ const inicialState = {
   ordersCompletedFiltered: [],
   payrolls: [],
   postPayrollMessage: "",
+  usersData: [],
 };
 
 export default function rootReducer(state = inicialState, { type, payload }) {
@@ -61,6 +63,8 @@ export default function rootReducer(state = inicialState, { type, payload }) {
       return { ...state, payrolls: payload };
     case POST_PAYROLLS:
       return { ...state, postPayrollMessage: payload };
+    case GET_USERS:
+      return { ...state, usersData: payload };
     default:
       return { ...state };
   }

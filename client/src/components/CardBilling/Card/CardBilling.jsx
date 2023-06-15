@@ -14,18 +14,15 @@ const CardBilling = ({
 
   return (
     <div className={style.card}>
-      <Link
-        to=""
-        state={{ background: location, services }}
-        className={style.pendiente}
-      >
+      <div className={style.pendiente}>
         <img
           className={style.billingImg}
           src="https://www.svgrepo.com/show/92787/check-mark.svg"
           alt=""
         />
-        FACTURADO
-      </Link>
+        <p>FACTURADO</p>
+      </div>
+
       <p className={style.text}>
         <span className={style.spanDataP}>{licensePlate}</span>
         <span className={style.spanData4}>{client}</span>

@@ -12,3 +12,5 @@ export const SEARCH_FILTER = "SEARCH_FILTER";
 export const GET_ORDERS_COMPLETED = "GET_ORDERS_COMPLETED";
 export const GET_PAYROLLS = "GET_PAYROLLS";
 export const POST_PAYROLLS = "POST_PAYROLLS";
+export const GET_USERS = "GET_USERS";
+export const POST_USER = "POST_USER";
