@@ -64,8 +64,8 @@ const Billing = () => {
                 alt=""
               />
             </Link>
+            <h1 className={style.title}>FACTURA</h1>
           </div>
-          <h1 className={style.title}>FACTURA</h1>
         </div>
         <form onSubmit={handleSubmit} className={style.form}>
           <div className={style.row}>

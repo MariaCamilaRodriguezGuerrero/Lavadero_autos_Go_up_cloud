@@ -8,9 +8,8 @@ import CardBilling from "../Card/CardBilling";
 export default function CardsBilling() {
   const dispatch = useDispatch();
   const { ordersCompletedFiltered } = useSelector((state) => state);
-  const [cardsShow, setCardsShow] = useState("");
+  const [cardsShow, setCardsShow] = useState([]);
   useEffect(() => {
-    console.log(ordersCompletedFiltered);
     setCardsShow(ordersCompletedFiltered);
   }, [ordersCompletedFiltered]);
   const ordersPerPage = 10;

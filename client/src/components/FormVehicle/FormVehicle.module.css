@@ -77,12 +77,12 @@
     flex-direction: column;
   }
   .column {
-    margin: 0;
+    width: 100%;
   }
   .customSelect {
-    margin-bottom: 160px;
+    margin-bottom: 10px;
   }
   .title {
-    margin-top: 100px;
+    margin-top: 140px;
   }
 }

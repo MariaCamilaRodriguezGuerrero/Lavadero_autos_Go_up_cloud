@@ -188,7 +188,7 @@ export const postPayroll = () => {
   };
 };
 
-export const getPayroll = () => {
+export const getPayrolls = () => {
   const today = new Date();
   const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
   const month =

@@ -93,7 +93,17 @@
   .customSelect {
     margin-bottom: 160px;
   }
-  .h1title {
-    margin-top: 100px;
+  .title {
+    margin-top: 140px;
+  }
+  .inputDiv {
+    flex-direction: column;
+  }
+  .inputDivDynamic {
+    flex-direction: column;
+    padding-left: 0px;
+  }
+  .eraseFieldBtn {
+    margin: 10px;
   }
 }

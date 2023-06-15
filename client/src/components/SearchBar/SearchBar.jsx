@@ -8,7 +8,7 @@ const SearchBar = ({ array }) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/billinglist")
+    if (location.pathname === "/billingList")
       dispatch(searchFilter(array, "ordersCompletedFiltered"));
     if (location.pathname === "/services")
       dispatch(searchFilter(array, "ordersFiltered"));
@@ -19,7 +19,7 @@ const SearchBar = ({ array }) => {
     const filteredArray = array.filter((e) =>
       e.licensePlate.toLowerCase().includes(value.toLowerCase())
     );
-    if (location.pathname === "/billinglist")
+    if (location.pathname === "/billingList")
       dispatch(searchFilter(filteredArray, "ordersCompletedFiltered"));
     if (location.pathname === "/services")
       dispatch(searchFilter(filteredArray, "ordersFiltered"));

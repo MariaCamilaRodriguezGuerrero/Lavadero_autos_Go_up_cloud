@@ -27,7 +27,7 @@ const Card = ({
         />
         PENDIENTE
       </Link>
-      <p className={style.text}>
+      <div className={style.text}>
         <span className={style.spanDataP}>{licensePlate}</span>
         <span className={style.spanData4}>{client}</span>
         <span className={style.spanData4}>{whatsapp || "No ingresado"}</span>
@@ -82,7 +82,7 @@ const Card = ({
             />
           </span>
         </Link>
-      </p>
+      </div>
     </div>
   );
 };
