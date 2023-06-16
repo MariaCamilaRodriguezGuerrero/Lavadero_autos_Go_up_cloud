@@ -16,24 +16,26 @@ import {
   GET_USERS,
 } from "../actions/types";
 
-const inicialState = {
-  vehicleData: {},
-  servicesData: [],
-  workersData: [],
-  postOrderMessage: "",
-  postVehicleMessage: "",
-  putVehicleMessage: "",
-  putOrderMessage: "",
-  orders: [],
-  ordersFiltered: [],
-  ordersCompleted: [],
-  ordersCompletedFiltered: [],
-  payrolls: [],
-  postPayrollMessage: "",
-  usersData: [],
+// Estado inicial de la aplicación
+const initialState = {
+  vehicleData: {}, // Datos del vehículo
+  servicesData: [], // Datos de los servicios
+  workersData: [], // Datos de los trabajadores
+  postOrderMessage: "", // Mensaje de respuesta al crear una orden
+  postVehicleMessage: "", // Mensaje de respuesta al crear un vehículo
+  putVehicleMessage: "", // Mensaje de respuesta al actualizar un vehículo
+  putOrderMessage: "", // Mensaje de respuesta al actualizar una orden
+  orders: [], // Lista de órdenes
+  ordersFiltered: [], // Lista de órdenes filtradas
+  ordersCompleted: [], // Lista de órdenes completadas
+  ordersCompletedFiltered: [], // Lista de órdenes completadas filtradas
+  payrolls: [], // Lista de nóminas
+  postPayrollMessage: "", // Mensaje de respuesta al crear una nómina
+  usersData: [], // Datos de los usuarios
 };
 
-export default function rootReducer(state = inicialState, { type, payload }) {
+// Reducer que maneja el estado de la aplicación
+export default function rootReducer(state = initialState, { type, payload }) {
   switch (type) {
     case SET_PAGE_NUMBER:
       return { ...state, pageNumber: payload };

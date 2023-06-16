@@ -21,7 +21,7 @@ export default function Cards() {
     cardsShow.length &&
     cardsShow
       .slice(pagesVisited, pagesVisited + ordersPerPage)
-
+      .reverse()
       .map(
         (
           {

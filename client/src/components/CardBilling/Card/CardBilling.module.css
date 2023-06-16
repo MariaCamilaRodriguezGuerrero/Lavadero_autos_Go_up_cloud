@@ -158,3 +158,88 @@
 .worker {
   font-size: 15px;
 }
+
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .text {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .spanDataE {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    white-space: normal;
+  }
+
+  .spanData,
+  .spanData2,
+  .spanData3,
+  .spanData4,
+  .spanDataT,
+  .spanDataP
+  {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid black;
+    border-left: none;
+    border-right: none;
+    white-space: normal;
+  }
+
+  .spanDataV{
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    white-space: normal;
+  }
+
+  .worker {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    white-space: normal;
+    margin-right: -2px;
+  }
+
+  .pendiente {
+    width: 100%;
+    font-size: 16px;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid black;
+    white-space: normal;
+    border-radius: 20px;
+  }
+
+  .billingImg {
+    width: 12px;
+    height: 16px;
+    margin-right: 5px;
+  }
+
+  .editImg {
+    width: 20px;
+    font-size: 12px;
+  }
+
+  .servicesWorkerDiv {
+    width: 100%;
+    margin-right: -2px;
+  }
+
+  .services {
+    width: 100%;
+    margin-top: 5px;
+  }
+}

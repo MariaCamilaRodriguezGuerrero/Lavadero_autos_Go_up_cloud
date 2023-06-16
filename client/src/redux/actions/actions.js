@@ -18,12 +18,14 @@ import {
 
 import axios from "axios";
 
+// Acción para cambiar el número de página
 export const changePageNumber = (number) => {
   return async function (dispatch) {
     dispatch({ type: SET_PAGE_NUMBER, payload: number });
   };
 };
 
+// Acción para obtener información de un vehículo
 export const getVehicle = (patent) => {
   return async function (dispatch) {
     try {
@@ -37,6 +39,7 @@ export const getVehicle = (patent) => {
   };
 };
 
+// Acción para limpiar la información de un vehículo
 export const cleanVehicleData = () => {
   return async function (dispatch) {
     try {
@@ -47,6 +50,7 @@ export const cleanVehicleData = () => {
   };
 };
 
+// Acción para obtener información de los servicios
 export const getServices = () => {
   return async function (dispatch) {
     try {
@@ -60,6 +64,7 @@ export const getServices = () => {
   };
 };
 
+// Acción para obtener información de los trabajadores
 export const getWorkers = () => {
   return async function (dispatch) {
     try {
@@ -73,6 +78,7 @@ export const getWorkers = () => {
   };
 };
 
+// Acción para crear una nueva orden
 export const postOrder = (services) => {
   return async function (dispatch) {
     try {
@@ -87,6 +93,7 @@ export const postOrder = (services) => {
   };
 };
 
+// Acción para obtener información de las órdenes
 export const getOrders = () => {
   return async function (dispatch) {
     try {
@@ -100,6 +107,7 @@ export const getOrders = () => {
   };
 };
 
+// Acción para obtener las órdenes completadas
 export const getOrdersCompleted = () => {
   const today = new Date();
   const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
@@ -120,6 +128,7 @@ export const getOrdersCompleted = () => {
   };
 };
 
+// Acción para crear un nuevo vehículo
 export const postVehicle = (vehicle) => {
   return async function (dispatch) {
     try {
@@ -134,6 +143,7 @@ export const postVehicle = (vehicle) => {
   };
 };
 
+// Acción para actualizar un vehículo existente
 export const putVehicle = (vehicle) => {
   return async function (dispatch) {
     try {
@@ -147,6 +157,8 @@ export const putVehicle = (vehicle) => {
     }
   };
 };
+
+// Acción para actualizar una orden existente
 export const putOrder = (id, status) => {
   return async function (dispatch) {
     try {
@@ -161,6 +173,7 @@ export const putOrder = (id, status) => {
   };
 };
 
+// Acción para aplicar un filtro de búsqueda
 export const searchFilter = (filteredArray, saveInto) => {
   return {
     type: SEARCH_FILTER,
@@ -168,6 +181,7 @@ export const searchFilter = (filteredArray, saveInto) => {
   };
 };
 
+// Acción para crear una nueva nómina
 export const postPayroll = () => {
   const today = new Date();
   const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
@@ -189,6 +203,7 @@ export const postPayroll = () => {
   };
 };
 
+// Acción para obtener información de las nóminas
 export const getPayrolls = () => {
   const today = new Date();
   const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
@@ -209,6 +224,7 @@ export const getPayrolls = () => {
   };
 };
 
+// Acción para obtener información de los usuarios
 export const getUsers = () => {
   return async function (dispatch) {
     try {

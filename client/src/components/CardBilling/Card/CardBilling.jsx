@@ -1,16 +1,11 @@
 import style from "./CardBilling.module.css";
-import { Link, useLocation } from "react-router-dom";
 
 const CardBilling = ({
   licensePlate,
-  vehicleType,
   client,
   whatsapp,
-  brand,
-  model,
   services,
 }) => {
-  const location = useLocation();
 
   return (
     <div className={style.card}>

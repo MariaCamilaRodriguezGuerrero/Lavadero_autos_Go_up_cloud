@@ -21,6 +21,7 @@ export default function CardsBilling() {
     cardsShow.length &&
     cardsShow
       .slice(pagesVisited, pagesVisited + ordersPerPage)
+      .reverse()
       .map(
         (
           {
@@ -31,6 +32,7 @@ export default function CardsBilling() {
             brand,
             model,
             services,
+            invoiced
           },
           index
         ) => {
@@ -44,6 +46,7 @@ export default function CardsBilling() {
               brand={brand}
               model={model}
               services={services}
+              invoiced={invoiced}
             />
           );
         }

@@ -136,3 +136,14 @@
   font-weight: bold;
 }
 
+@media (max-width: 767px) {
+  .title {
+    margin-top: 160px;
+  }
+
+  .card {
+    display: none;
+  }
+}
+
+
