@@ -55,16 +55,16 @@ const Login = () => {
     } else if (isSuperAdminUser) {
       // Inicio de sesión exitoso para el usuario "Gaston"
       navigate("/algo");
-      toast(`Bienvenido ${username} 😎 `, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      // toast(`Bienvenido ${username} 😎 `, {
+      //   position: "top-right",
+      //   autoClose: 3000,
+      //   hideProgressBar: true,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      // });
     } else {
       setError("Nombre de usuario o contraseña incorrectos");
     }
