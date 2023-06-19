@@ -14,6 +14,10 @@ import FormService from "./components/FormService/FormService";
 // import Nav from "./components/Nav/Nav";
 import NavSuperAdmin from "./componentsSuperAdmin/NavSuperAdmin/NavSuperAdmin";
 import BillingListSuperAdmin from "./viewsSuperAdmin/BillingListSuperAdmin/BillingList";
+import WorkersRegistration from "./viewsSuperAdmin/workersregistration/Workersregistration";
+import ServicesRegistration from "./viewsSuperAdmin/ServicesRegistration/ServicesRegistration";
+import CanceledServices from "./viewsSuperAdmin/CanceledServices/CanceledServices";
+
 
 function App() {
   const location = useLocation();
@@ -44,6 +48,10 @@ function App() {
       )}
       <Routes>
         <Route path="/billingListSuperAdmin" element={<BillingListSuperAdmin />} />
+        <Route path="/workersregistration" element={<WorkersRegistration />} />
+        <Route path="/servicesRegistration" element={<ServicesRegistration />} />
+        <Route path="/canceledServices" element={<CanceledServices />} />
+        
       </Routes>
     </div>
   );

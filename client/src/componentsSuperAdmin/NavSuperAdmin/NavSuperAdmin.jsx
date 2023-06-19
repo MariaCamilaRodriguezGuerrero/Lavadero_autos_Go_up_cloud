@@ -126,6 +126,30 @@ export default function NavSuperAdmin() {
           }
         >
           Facturación
+        </Link>  
+        <Link
+        to={"/workersregistration"}
+        className={
+            location.pathname === "/workersregistration" ? style.itemActive : style.item
+          }
+        >
+          Registro trabajadores
+        </Link>
+        <Link
+        to={"/servicesRegistration"}
+        className={
+            location.pathname === "/servicesRegistration" ? style.itemActive : style.item
+          }
+        >
+          Registro servicios
+        </Link>
+        <Link
+        to={"/canceledServices"}
+        className={
+            location.pathname === "/canceledServices" ? style.itemActive : style.item
+          }
+        >
+          Servicios Cancelados
         </Link>
         <Link to={"/"} className={style.itemLogout}>
           Cerrar sesión
