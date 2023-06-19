@@ -14,7 +14,9 @@ import {
   GET_PAYROLLS,
   POST_PAYROLLS,
   GET_USERS,
+  GET_ORDERS_COMPLETED_SUPER_ADMIN
 } from "./types";
+
 
 import axios from "axios";
 
@@ -122,6 +124,20 @@ export const getOrdersCompleted = () => {
         `http://lavadero_autos_api.test/orders?orderStatus=completed&orderDay=${day}&orderMonth=${month}&orderYear=${year}`
       );
       dispatch({ type: GET_ORDERS_COMPLETED, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+// Acción para obtener las órdenes completadas para superAdmin
+export const getOrdersCompletedSuperAdmin = () => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `http://lavadero_autos_api.test/orders?orderStatus=completed`
+      );
+      dispatch({ type: GET_ORDERS_COMPLETED_SUPER_ADMIN, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }

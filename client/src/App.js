@@ -11,15 +11,17 @@ import Workers from "./views/Workers/Workers";
 import BillingList from "./views/BillingList/BillingList";
 import Withdrawals from "./views/Withdrawals/Withdrawals";
 import FormService from "./components/FormService/FormService";
-import Nav from "./components/Nav/Nav";
+// import Nav from "./components/Nav/Nav";
 import NavSuperAdmin from "./componentsSuperAdmin/NavSuperAdmin/NavSuperAdmin";
+import BillingListSuperAdmin from "./viewsSuperAdmin/BillingListSuperAdmin/BillingList";
 
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
   return (
     <div className="App">
-      {!(location.pathname === "/") && <Nav />}
+      {/* {!(location.pathname === "/") && <Nav />} */}
+      {!(location.pathname === "/") && <NavSuperAdmin />}
       <Routes location={background || location}>
         <Route path="/createVehicle" element={<FormPatente />} />
         <Route path="/formVehicle" element={<FormVehicle />} />
@@ -41,7 +43,7 @@ function App() {
         </Routes>
       )}
       <Routes>
-        <Route path="/NavSuperAdmin" element={<NavSuperAdmin />}/>
+        <Route path="/billingListSuperAdmin" element={<BillingListSuperAdmin />} />
       </Routes>
     </div>
   );

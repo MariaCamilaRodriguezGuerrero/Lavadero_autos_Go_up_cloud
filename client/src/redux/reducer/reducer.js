@@ -14,6 +14,7 @@ import {
   GET_PAYROLLS,
   POST_PAYROLLS,
   GET_USERS,
+  GET_ORDERS_COMPLETED_SUPER_ADMIN
 } from "../actions/types";
 
 // Estado inicial de la aplicación
@@ -32,6 +33,8 @@ const initialState = {
   payrolls: [], // Lista de nóminas
   postPayrollMessage: "", // Mensaje de respuesta al crear una nómina
   usersData: [], // Datos de los usuarios ("admin y superadmin")
+  ordersCompletedSuperAdmin: [], // Lista de órdenes completadas SuperAdmin
+  ordersCompletedFilteredSuperAdmin: [], // Lista de órdenes completadas filtradas
 };
 
 // Reducer que maneja el estado de la aplicación
@@ -67,6 +70,13 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return { ...state, postPayrollMessage: payload };
     case GET_USERS:
       return { ...state, usersData: payload };
+
+    // ----------------- PARA SUPER ADMIN ---------------------------- //
+    case GET_ORDERS_COMPLETED_SUPER_ADMIN:
+      return {
+      ...state,
+      ordersCompletedSuperAdmin: payload,
+      };
     default:
       return { ...state };
   }

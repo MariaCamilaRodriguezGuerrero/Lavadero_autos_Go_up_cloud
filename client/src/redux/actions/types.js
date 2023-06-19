@@ -34,6 +34,7 @@ export const SEARCH_FILTER = "SEARCH_FILTER";
 // Acción para obtener las órdenes completadas
 export const GET_ORDERS_COMPLETED = "GET_ORDERS_COMPLETED";
 
+
 // Acción para obtener la información de las nóminas
 export const GET_PAYROLLS = "GET_PAYROLLS";
 
@@ -45,3 +46,9 @@ export const GET_USERS = "GET_USERS";
 
 // Acción para crear un nuevo usuario
 export const POST_USER = "POST_USER";
+
+
+//----------------------------Rutas de Super Admin -----------------------------------//
+
+// Acción para obtener las órdenes completadas para super Admin
+export const GET_ORDERS_COMPLETED_SUPER_ADMIN = 'GET_ORDERS_COMPLETED_SUPER_ADMIN';

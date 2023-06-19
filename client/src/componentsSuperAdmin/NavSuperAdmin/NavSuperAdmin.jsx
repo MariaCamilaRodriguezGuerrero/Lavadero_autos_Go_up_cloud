@@ -74,9 +74,9 @@ export default function NavSuperAdmin() {
               Resumen del Día
             </Link>
             <Link
-              to={"/billingList"}
+              to={"/billingListSuperAdmin"}
               className={
-                location.pathname === "/billingList"
+                location.pathname === "/billingListSuperAdmin"
                   ? style.itemActive
                   : style.item
               }
@@ -120,9 +120,9 @@ export default function NavSuperAdmin() {
           Resumen del Día
         </Link>
         <Link
-          to={"/billingList"}
+          to={"/billingListSuperAdmin"}
           className={
-            location.pathname === "/billingList" ? style.itemActive : style.item
+            location.pathname === "/billingListSuperAdmin" ? style.itemActive : style.item
           }
         >
           Facturación
