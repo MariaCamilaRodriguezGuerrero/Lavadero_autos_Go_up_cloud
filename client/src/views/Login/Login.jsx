@@ -54,7 +54,7 @@ const Login = () => {
       });
     } else if (isSuperAdminUser) {
       // Inicio de sesión exitoso para el usuario "Gaston"
-      navigate("/algo");
+      navigate("/NavSuperAdmin");
       // toast(`Bienvenido ${username} 😎 `, {
       //   position: "top-right",
       //   autoClose: 3000,

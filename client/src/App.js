@@ -12,7 +12,7 @@ import BillingList from "./views/BillingList/BillingList";
 import Withdrawals from "./views/Withdrawals/Withdrawals";
 import FormService from "./components/FormService/FormService";
 import Nav from "./components/Nav/Nav";
-import Algo from "./componentsSuperAdmin/ALGO/algo";
+import NavSuperAdmin from "./componentsSuperAdmin/NavSuperAdmin/NavSuperAdmin";
 
 function App() {
   const location = useLocation();
@@ -41,7 +41,7 @@ function App() {
         </Routes>
       )}
       <Routes>
-        <Route path="/algo" element={<Algo />}/>
+        <Route path="/NavSuperAdmin" element={<NavSuperAdmin />}/>
       </Routes>
     </div>
   );
