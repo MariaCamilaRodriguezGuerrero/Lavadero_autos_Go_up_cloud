@@ -23,17 +23,39 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      usersData.filter(
-        (user) =>
-          user.user_name === username &&
-          user.user_password === password &&
-          user.user_status === "active"
-      ).length
-    ) {
-      // Inicio de sesión exitoso, mostrar alerta de bienvenida
+    const isAdminUser = usersData.find(
+      (user) =>
+        user.user_name === username &&
+        user.user_password === password &&
+        user.user_status === "active" &&
+        user.user_type === "admin"
+    );
+
+    const isSuperAdminUser = usersData.find(
+      (user) =>
+        user.user_name === username &&
+        user.user_password === password &&
+        user.user_status === "active" &&
+        user.user_type === "superadmin"
+    );
+
+    if (isAdminUser) {
+      // Inicio de sesión exitoso para el usuario "Admin"
       navigate("/services");
       toast(`Bienvenido ${username} 😊`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (isSuperAdminUser) {
+      // Inicio de sesión exitoso para el usuario "Gaston"
+      navigate("/algo");
+      toast(`Bienvenido ${username} 😎 `, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,

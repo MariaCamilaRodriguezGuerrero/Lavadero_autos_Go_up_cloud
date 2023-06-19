@@ -31,7 +31,7 @@ const initialState = {
   ordersCompletedFiltered: [], // Lista de órdenes completadas filtradas
   payrolls: [], // Lista de nóminas
   postPayrollMessage: "", // Mensaje de respuesta al crear una nómina
-  usersData: [], // Datos de los usuarios
+  usersData: [], // Datos de los usuarios ("admin y superadmin")
 };
 
 // Reducer que maneja el estado de la aplicación
