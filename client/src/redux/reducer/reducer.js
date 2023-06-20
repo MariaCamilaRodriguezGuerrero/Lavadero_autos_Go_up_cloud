@@ -14,13 +14,14 @@ import {
   GET_PAYROLLS,
   POST_PAYROLLS,
   GET_USERS,
-  GET_ORDERS_COMPLETED_SUPER_ADMIN
+  GET_ORDERS_COMPLETED_SUPER_ADMIN,
+  GET_ORDERS_CANCELLED_SUPER_ADMIN
 } from "../actions/types";
 
 // Estado inicial de la aplicación
 const initialState = {
   vehicleData: {}, // Datos del vehículo
-  servicesData: [], // Datos de los servicios
+  servicesData: [], // Datos de los servicios 
   workersData: [], // Datos de los trabajadores
   postOrderMessage: "", // Mensaje de respuesta al crear una orden
   postVehicleMessage: "", // Mensaje de respuesta al crear un vehículo
@@ -33,8 +34,12 @@ const initialState = {
   payrolls: [], // Lista de nóminas
   postPayrollMessage: "", // Mensaje de respuesta al crear una nómina
   usersData: [], // Datos de los usuarios ("admin y superadmin")
+
+  // ---------------- STATE DE SUPER ADMIN ---------------- //
   ordersCompletedSuperAdmin: [], // Lista de órdenes completadas SuperAdmin
   ordersCompletedFilteredSuperAdmin: [], // Lista de órdenes completadas filtradas
+  ordersCancelledSuperAdmin: [], // Lista de órdenes completadas SuperAdmin
+  ordersCancelledFilteredSuperAdmin: [], // Lista de órdenes completadas filtradas
 };
 
 // Reducer que maneja el estado de la aplicación
@@ -76,6 +81,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
       ...state,
       ordersCompletedSuperAdmin: payload,
+      };
+    case GET_ORDERS_CANCELLED_SUPER_ADMIN:
+      return {
+      ...state,
+      ordersCancelledSuperAdmin: payload,
       };
     default:
       return { ...state };

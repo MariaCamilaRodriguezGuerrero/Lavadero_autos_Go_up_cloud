@@ -14,7 +14,8 @@ import {
   GET_PAYROLLS,
   POST_PAYROLLS,
   GET_USERS,
-  GET_ORDERS_COMPLETED_SUPER_ADMIN
+  GET_ORDERS_COMPLETED_SUPER_ADMIN,
+  GET_ORDERS_CANCELLED_SUPER_ADMIN
 } from "./types";
 
 
@@ -130,19 +131,6 @@ export const getOrdersCompleted = () => {
   };
 };
 
-// Acción para obtener las órdenes completadas para superAdmin
-export const getOrdersCompletedSuperAdmin = () => {
-  return async function (dispatch) {
-    try {
-      const serverData = await axios.get(
-        `http://lavadero_autos_api.test/orders?orderStatus=completed`
-      );
-      dispatch({ type: GET_ORDERS_COMPLETED_SUPER_ADMIN, payload: serverData.data });
-    } catch (error) {
-      // dispatch({ type: ERROR, payload: error.response.data.error });
-    }
-  };
-};
 
 // Acción para crear un nuevo vehículo
 export const postVehicle = (vehicle) => {
@@ -224,10 +212,10 @@ export const getPayrolls = () => {
   const today = new Date();
   const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
   const month =
-    today.getMonth() + 1 < 10
+  today.getMonth() + 1 < 10
       ? `0${today.getMonth() + 1}`
       : today.getMonth() + 1;
-  const year = today.getFullYear();
+      const year = today.getFullYear();
   return async function (dispatch) {
     try {
       const serverData = await axios.get(
@@ -248,6 +236,47 @@ export const getUsers = () => {
         `http://lavadero_autos_api.test/users`
       );
       dispatch({ type: GET_USERS, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------- ACTIONS DE SUPER ADMIN -------------------------//
+
+// Acción para obtener las órdenes completadas para superAdmin
+export const getOrdersCompletedSuperAdmin = () => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `http://lavadero_autos_api.test/orders?orderStatus=completed`
+      );
+      dispatch({ type: GET_ORDERS_COMPLETED_SUPER_ADMIN, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+// Acción para obtener las órdenes canceladas para superAdmin
+export const getOrdersCanceledSuperAdmin = () => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `http://lavadero_autos_api.test/orders?orderStatus=cancelled`
+      );
+      dispatch({ type: GET_ORDERS_CANCELLED_SUPER_ADMIN, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }

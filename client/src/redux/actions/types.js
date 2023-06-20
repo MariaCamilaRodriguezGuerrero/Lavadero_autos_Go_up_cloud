@@ -52,3 +52,6 @@ export const POST_USER = "POST_USER";
 
 // Acción para obtener las órdenes completadas para super Admin
 export const GET_ORDERS_COMPLETED_SUPER_ADMIN = 'GET_ORDERS_COMPLETED_SUPER_ADMIN';
+
+// Acción para obtener las órdenes canceladas para super Admin
+export const GET_ORDERS_CANCELLED_SUPER_ADMIN = "GET_ORDERS_CANCELLED_SUPER_ADMIN"

@@ -52,9 +52,9 @@ export default function NavSuperAdmin() {
               Ingresar Vehículo
             </Link>
             <Link
-              to={"/services"}
+              to={"/servicesSuperAdmin"}
               className={
-                location.pathname === "/services"
+                location.pathname === "/servicesSuperAdmin"
                   ? style.itemActive
                   : style.item
               }
@@ -91,7 +91,7 @@ export default function NavSuperAdmin() {
 
       {/* Desktop Menu */}
       <div className={style.desktopMenu}>
-        <Link
+        {/* <Link
           to={"/createVehicle"}
           className={
             (location.pathname === "/createVehicle") |
@@ -102,15 +102,7 @@ export default function NavSuperAdmin() {
           }
         >
           Ingresar Vehículo
-        </Link>
-        <Link
-          to={"/services"}
-          className={
-            location.pathname === "/services" ? style.itemActive : style.item
-          }
-        >
-          Servicios En Curso
-        </Link>
+        </Link> */}
         <Link
           to={"/dashboard"}
           className={
@@ -118,6 +110,14 @@ export default function NavSuperAdmin() {
           }
         >
           Resumen del Día
+        </Link>
+        <Link
+          to={"/servicesSuperAdmin"}
+          className={
+            location.pathname === "/servicesSuperAdmin" ? style.itemActive : style.item
+          }
+        >
+          Servicios En Curso
         </Link>
         <Link
           to={"/billingListSuperAdmin"}
@@ -128,12 +128,20 @@ export default function NavSuperAdmin() {
           Facturación
         </Link>  
         <Link
+        to={"/canceledServices"}
+        className={
+            location.pathname === "/canceledServices" ? style.itemActive : style.item
+          }
+        >
+          Cancelados
+        </Link>
+        <Link
         to={"/workersregistration"}
         className={
             location.pathname === "/workersregistration" ? style.itemActive : style.item
           }
         >
-          Registro trabajadores
+          Trabajadores
         </Link>
         <Link
         to={"/servicesRegistration"}
@@ -141,15 +149,7 @@ export default function NavSuperAdmin() {
             location.pathname === "/servicesRegistration" ? style.itemActive : style.item
           }
         >
-          Registro servicios
-        </Link>
-        <Link
-        to={"/canceledServices"}
-        className={
-            location.pathname === "/canceledServices" ? style.itemActive : style.item
-          }
-        >
-          Servicios Cancelados
+          Servicios
         </Link>
         <Link to={"/"} className={style.itemLogout}>
           Cerrar sesión
