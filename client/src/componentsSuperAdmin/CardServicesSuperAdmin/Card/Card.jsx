@@ -1,4 +1,4 @@
-import style from "./CardSuperAdmin.module.css";
+import style from "./Card.module.css";
 import { Link, useLocation } from "react-router-dom";
 
 const CardSuperAdmin = ({
@@ -56,7 +56,7 @@ const CardSuperAdmin = ({
         </span>
 
         <Link
-          to="/services/edit"
+          to=""
           state={{
             background: location,
             data: {

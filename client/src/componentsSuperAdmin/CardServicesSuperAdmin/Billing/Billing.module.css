@@ -1,0 +1,145 @@
+.backgroundDiv {
+  display: flex;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  min-width: 100%;
+  min-height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: auto;
+  background-color: white;
+  border-radius: 40px;
+  border: 2px black solid;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  align-self: center;
+}
+.titleDiv {
+  display: flex;
+  padding: 20px;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.backBtn {
+  position: absolute;
+  width: 40px;
+}
+.title {
+  margin: 0;
+  transform: translateY(10px);
+  transform: translateX(200px);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 50px;
+  height: fit-content;
+  overflow-y: auto;
+}
+.columnBtn {
+  display: flex;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+
+.form {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.form input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  background: #ffffff00;
+  width: 50px;
+  height: 30px;
+  border: none;
+  border: 2px solid #000000;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+
+.form div {
+  transform: translateY(10px);
+  font-size: 20px;
+}
+.form label {
+  color: #000;
+  font-size: 20px;
+  margin-top: 20px;
+}
+.form span {
+  font-size: 20px;
+  margin-top: 20px;
+}
+.form select {
+  font-size: 15px;
+  margin-top: 20px;
+  padding: 10px;
+  border: #000 2px solid;
+}
+
+.submit {
+  margin: 25px;
+  padding: 15px 25px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: #3cd8f0;
+  border: none;
+  border-radius: 15px;
+  border: 2px rgba(0, 0, 0, 0) solid;
+}
+.submit:hover {
+  border: 2px black solid;
+}
+.submit:active {
+  background-color: #30b4c9;
+}
+.total {
+  font-size: 30px !important;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .mainDiv {
+    width: 500px;
+  }
+  .form {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+  }
+  .title {
+    margin: 0;
+    transform: translateY(20px);
+    transform: translateX(140px);
+  }
+}

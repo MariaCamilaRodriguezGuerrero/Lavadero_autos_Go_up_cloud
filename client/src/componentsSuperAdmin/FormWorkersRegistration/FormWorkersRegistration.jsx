@@ -2,7 +2,9 @@ import style from "./FormWorkersRegistration.module.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { postWorker } from "../../redux/actions/actions";
+import { postWorker,
+   getWorkers,
+} from "../../redux/actions/actions";
 
 
 const FormWorkers = () => {
@@ -40,7 +42,7 @@ const FormWorkers = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(createWorker(form));
+    dispatch(postWorker(form));
   };
 
   const changehandler = (event) => {

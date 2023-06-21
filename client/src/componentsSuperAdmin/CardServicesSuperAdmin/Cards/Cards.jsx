@@ -2,8 +2,8 @@ import styles from "./Cards.module.css";
 // import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changePageNumber } from "../../../redux/actions/actions";
-import CardSuperAdmin from "../Card/CardSuperAdmin";
 import { useEffect, useState } from "react";
+import CardSuperAdmin from "../Card/Card";
 
 export default function CardsSuperAdmin() {
   const dispatch = useDispatch();

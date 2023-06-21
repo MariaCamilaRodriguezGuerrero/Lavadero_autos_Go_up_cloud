@@ -55,3 +55,6 @@ export const GET_ORDERS_COMPLETED_SUPER_ADMIN = 'GET_ORDERS_COMPLETED_SUPER_ADMI
 
 // Acción para obtener las órdenes canceladas para super Admin
 export const GET_ORDERS_CANCELLED_SUPER_ADMIN = "GET_ORDERS_CANCELLED_SUPER_ADMIN"
+
+// Acción para crear los trabajadores super Admin
+export const POST_WORKER = "POST_WORKER"

@@ -1,0 +1,311 @@
+.modalBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modalContent {
+  position: absolute;
+  width: fit-content;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px #30b5c9a3;
+  margin: 0 auto; /* Agregamos esta línea para centrar horizontalmente */
+  height: fit-content;
+  /* overflow-y: scroll; */
+}
+
+.backBtn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 40px;
+}
+
+.titleDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.columnBtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.backBtn {
+  width: 40px;
+}
+
+.dataContainer {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.dataContainer1 {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.dataContainer2 {
+  display: flex;
+  width: 50%;
+}
+
+.dataItem {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.dataLabel {
+  font-weight: bold;
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.dataValue {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.submitBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #ffffff;
+  background-color: #3cd8f0;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.submitBtn:hover {
+  background-color: #30b4c9;
+}
+
+.submitBtn:active {
+  background-color: #2398a5;
+}
+
+.servicesWorkerDiv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: visible;
+  margin: 0 auto; /* Centrar horizontalmente */
+}
+
+.servicesDiv {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 500px;
+  border-radius: 20px;
+  border: 2px solid black;
+  margin: 5px;
+}
+
+.services {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: orange;
+  border-radius: 20px 0px 0px 20px;
+  padding: 5px;
+}
+
+.workersDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  border-left: 2px solid black;
+  height: 100%;
+}
+.worker {
+  font-size: 15px;
+  padding: 5px;
+}
+
+.buttondelete {
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 20px 20px 0px;
+  font-size: 20px;
+  background-color: gray;
+  padding: 10px;
+}
+
+.buttondelete:hover {
+  background-color: red;
+  cursor: pointer;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+  overflow-y: scroll;
+}
+.inputDiv {
+  display: flex;
+  justify-content: center;
+}
+.inputDivDynamic {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30px;
+}
+.select {
+  width: 350px;
+  font-size: 20px;
+  text-align: center;
+  margin: 20px;
+}
+.submit {
+  margin: 25px;
+  padding: 15px 25px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: #3cd8f0;
+  border: none;
+  border-radius: 15px;
+  border: 2px rgba(0, 0, 0, 0) solid;
+}
+.submit:hover {
+  border: 2px black solid;
+}
+
+.submit:active {
+  background-color: #3cd8f0;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+.addBtn {
+  margin: 10px;
+  border-radius: 15px;
+  font-size: 30px;
+  padding: 5px 10px;
+  border: 2px solid transparent;
+  background-color: #3cd8f0;
+  cursor: pointer;
+}
+
+.addBtn:active {
+  background-color: transparent;
+  border-color: black;
+}
+.eraseFieldBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+  font-size: 20px;
+  border: 2px solid transparent;
+  background-color: rgba(255, 110, 110, 0.829);
+  cursor: pointer;
+  align-self: center;
+}
+.eraseFieldBtn:hover {
+  background-color: rgba(255, 3, 3, 0.829);
+}
+.cardsDiv {
+  display: flex;
+}
+@media only screen and (max-width: 800px) {
+  .title {
+    margin-top: 40px;
+    font-size: 35px;
+  }
+
+  .modalBackground {
+    height: 500vh;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .modalContent {
+    width: 90%;
+    padding: 10px;
+    margin-top: 20px;
+    overflow-y: scroll; /* Habilita el scroll vertical */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .servicesWorkerDiv {
+    height: fit-content;
+  }
+
+  .dataContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dataContainer1 {
+    display: flex;
+    width: 100%;
+  }
+  .dataContainer2 {
+    display: flex;
+    width: 100%;
+  }
+
+  .dataItem {
+    font-size: 14px;
+  }
+
+  .inputDiv {
+    flex-direction: column;
+  }
+  .inputDivDynamic {
+    flex-direction: column;
+    padding-left: 0px;
+  }
+  .eraseFieldBtn {
+    margin: 10px;
+  }
+
+  .form {
+    height: fit-content;
+  }
+}

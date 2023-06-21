@@ -15,7 +15,8 @@ import {
   POST_PAYROLLS,
   GET_USERS,
   GET_ORDERS_COMPLETED_SUPER_ADMIN,
-  GET_ORDERS_CANCELLED_SUPER_ADMIN
+  GET_ORDERS_CANCELLED_SUPER_ADMIN,
+  POST_WORKER
 } from "../actions/types";
 
 // Estado inicial de la aplicación
@@ -87,6 +88,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
       ...state,
       ordersCancelledSuperAdmin: payload,
       };
+    case POST_WORKER:
+      return{
+        ...state,
+        workersData:payload,
+      };  
     default:
       return { ...state };
   }

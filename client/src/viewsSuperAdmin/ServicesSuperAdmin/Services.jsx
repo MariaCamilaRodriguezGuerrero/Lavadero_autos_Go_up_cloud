@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
-import style from "./ServicesSuperAdmin.module.css";
-import { ToastContainer } from "react-toastify";
+import style from "./Services.module.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
 import CardsSuperAdmin from "../../componentsSuperAdmin/CardServicesSuperAdmin/Cards/Cards";
@@ -37,19 +36,12 @@ const ServicesSuperAdmin = () => {
             <span className={style.spanData3}>Tipo Servicio</span>
             <span className={style.spanData3}>Trabajador</span>
             <span className={style.spanData}>Valor</span>
-            <span className={style.spanDataE}>Mas</span>
+            <span className={style.spanDataE}>Editar</span>
           </p>
         </div>
         <CardsSuperAdmin />
         <Pagination />
         <Outlet />
-        <ToastContainer
-          toastStyle={{
-            backgroundColor: "rgb(38, 143, 255)",
-            fontSize: "20px",
-            color: "#fff",
-          }}
-        />
       </div>
     </div>
   );

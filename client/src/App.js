@@ -17,7 +17,7 @@ import BillingListSuperAdmin from "./viewsSuperAdmin/BillingListSuperAdmin/Billi
 import WorkersRegistration from "./viewsSuperAdmin/workersregistration/Workersregistration";
 import ServicesRegistration from "./viewsSuperAdmin/ServicesRegistration/ServicesRegistration";
 import CanceledServices from "./viewsSuperAdmin/CanceledServices/CanceledServices";
-import ServicesSuperAdmin from "./viewsSuperAdmin/ServicesSuperAdmin/ServicesSuperAdmin";
+import ServicesSuperAdmin from "./viewsSuperAdmin/ServicesSuperAdmin/Services";
 
 
 function App() {
@@ -53,7 +53,8 @@ function App() {
         <Route path="/workersregistration" element={<WorkersRegistration />} />
         <Route path="/servicesRegistration" element={<ServicesRegistration />} />
         <Route path="/canceledServices" element={<CanceledServices />} />
-        <Route path="/servicesSuperAdmin" element={<ServicesSuperAdmin />}/>  
+        <Route path="/servicesSuperAdmin" element={<ServicesSuperAdmin />}>
+        </Route> 
       </Routes>
     </div>
   );

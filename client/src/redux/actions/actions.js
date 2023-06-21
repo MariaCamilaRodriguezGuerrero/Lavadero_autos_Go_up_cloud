@@ -15,7 +15,8 @@ import {
   POST_PAYROLLS,
   GET_USERS,
   GET_ORDERS_COMPLETED_SUPER_ADMIN,
-  GET_ORDERS_CANCELLED_SUPER_ADMIN
+  GET_ORDERS_CANCELLED_SUPER_ADMIN,
+  POST_WORKER
 } from "./types";
 
 
@@ -277,6 +278,20 @@ export const getOrdersCanceledSuperAdmin = () => {
         `http://lavadero_autos_api.test/orders?orderStatus=cancelled`
       );
       dispatch({ type: GET_ORDERS_CANCELLED_SUPER_ADMIN, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+// Acción para crear los trabajadores
+export const postWorker = (worker) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.post(
+        `http://lavadero_autos_api.test/workers`, worker
+      );
+      dispatch({ type: POST_WORKER, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }
