@@ -41,7 +41,7 @@ const FormWorkers = () => {
 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     dispatch(postWorker(form));
   };
 
@@ -77,13 +77,13 @@ const FormWorkers = () => {
           alt=""
         />
       </Link>
-      <h1 className={style.title}>Datos del Vehículo</h1>
+      <h1 className={style.title}>Registro de trabajadores</h1>
       <p className={style.subtitle}>Los campos con * son obligatorios</p>
       <form onSubmit={handleSubmit}>       
         
         <div className={style.form}>
           <div className={style.column}>
-            <label className={style.label}>rut/passport*</label>
+            <label className={style.label}>RUT ó Pasaporte*</label>
             <input
               name="rut_passport"
               type="text"
