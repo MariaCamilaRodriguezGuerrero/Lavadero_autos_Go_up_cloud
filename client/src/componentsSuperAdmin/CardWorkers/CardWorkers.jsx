@@ -7,8 +7,8 @@ const CardWorkers = () => {
   const { workersData } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getWorkers());
+  useEffect(() => {    
+      dispatch(getWorkers());   
   }, [dispatch]);
 
   return (

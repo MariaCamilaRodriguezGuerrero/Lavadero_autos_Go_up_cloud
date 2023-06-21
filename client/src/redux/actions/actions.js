@@ -273,6 +273,7 @@ export const postWorker = (worker) => {
         `/workers`, worker
       );
       dispatch({ type: POST_WORKER, payload: serverData.data });
+      alert("Trabajador creado con exito")
     } catch (error) {
       alert("Este trabajador ya esta registrado");
     }

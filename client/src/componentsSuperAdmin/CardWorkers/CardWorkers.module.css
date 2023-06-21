@@ -6,6 +6,10 @@
   border-radius: 20px;
 }
 
+.title {
+  margin-top: 100px;
+}
+
 .text {
   display: flex;
   height: inherit;

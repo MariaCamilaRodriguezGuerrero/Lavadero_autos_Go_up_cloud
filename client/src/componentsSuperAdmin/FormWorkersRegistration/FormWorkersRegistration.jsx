@@ -5,7 +5,7 @@ import { postWorker, getWorkers } from "../../redux/actions/actions";
 
 import style from "./FormWorkersRegistration.module.css";
 
-const FormWorkers = () => {
+const FormWorkers = ({ onCancel }) => {
   const { workersData } = useSelector((state) => state);
   const [form, setForm] = useState({
     rut_passport: "",
@@ -82,6 +82,8 @@ const FormWorkers = () => {
 
     if (!hasErrors) {
       dispatch(postWorker(form));
+      dispatch(getWorkers());
+      // alert("Trabajador creado")
     }
   };
 
@@ -94,14 +96,7 @@ const FormWorkers = () => {
   };
 
   return (
-    <div>
-      <Link to={"/createVehicle"}>
-        <img
-          className={style.backBtn}
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
-          alt=""
-        />
-      </Link>
+    <div>      
       <h1 className={style.title}>Registro de trabajadores</h1>
       <p className={style.subtitle}>Los campos con * son obligatorios</p>
       <form onSubmit={handleSubmit}>
@@ -185,6 +180,8 @@ const FormWorkers = () => {
         <button type="submit" className={style.submit}>
           Enviar
         </button>
+        <button type="button" className={style.submit} onClick={onCancel}>Regresar</button>
+        
       </form>
     </div>
   );
