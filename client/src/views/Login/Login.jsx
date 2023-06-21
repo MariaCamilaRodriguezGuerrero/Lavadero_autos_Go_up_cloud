@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import style from "./Login.module.css";
-import img from "./img/Chevrolet-Camaro-PNG-Free-Download.png";
+import img from "./img/car-vehicle-color3.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../../redux/actions/actions";
+import { getUsers } from "../../redux/actions/actions"; 
 import Cookies from "universal-cookie";
 
 const Login = () => {
