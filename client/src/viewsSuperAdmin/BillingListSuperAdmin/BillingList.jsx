@@ -1,16 +1,17 @@
 import { Outlet } from "react-router-dom";
 import Pagination from "../../components/Pagination/Pagination";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../componentsSuperAdmin/SearchBar/SearchBar";
 import style from "./BillingList.module.css";
 // import { ToastContainer } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import CardsBilling from "../../componentsSuperAdmin/CardBillingSuperAdmin/Cards/CardsBilling";
+import CardsBilling from "../../componentsSuperAdmin/CardBillingSuperAdmin/Cards/CardsBilling"
 import { getOrdersCompletedSuperAdmin } from "../../redux/actions/actions";
 import { useEffect } from "react";
 
 const BillingListSuperAdmin = () => {
   const dispatch = useDispatch();
   const { ordersCompletedSuperAdmin } = useSelector((state) => state);
+  console.log(ordersCompletedSuperAdmin);
 
   useEffect(() => {
     dispatch(getOrdersCompletedSuperAdmin());

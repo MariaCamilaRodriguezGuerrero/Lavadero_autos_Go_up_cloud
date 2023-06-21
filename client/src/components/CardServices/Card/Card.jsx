@@ -16,7 +16,7 @@ const Card = ({
   return (
     <div className={style.card}>
       <Link
-        to="/services/billing"
+        to="/ad/billing"
         state={{ background: location, services }}
         className={style.pendiente}
       >
@@ -58,7 +58,7 @@ const Card = ({
         </span>
 
         <Link
-          to="/services/edit"
+          to="/ad/edit"
           state={{
             background: location,
             data: {

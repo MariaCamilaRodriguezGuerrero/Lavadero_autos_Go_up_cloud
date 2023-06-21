@@ -1,3 +1,5 @@
+
+
 import {
   SET_PAGE_NUMBER,
   GET_VEHICLE,
@@ -14,11 +16,11 @@ import {
   GET_PAYROLLS,
   POST_PAYROLLS,
   GET_USERS,
+  SET_USER_TYPE,
   GET_ORDERS_COMPLETED_SUPER_ADMIN,
   GET_ORDERS_CANCELLED_SUPER_ADMIN,
   POST_WORKER
 } from "./types";
-
 
 import axios from "axios";
 
@@ -33,9 +35,7 @@ export const changePageNumber = (number) => {
 export const getVehicle = (patent) => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `http://lavadero_autos_api.test/cars/${patent}`
-      );
+      const serverData = await axios.get(`/cars/${patent}`);
       dispatch({ type: GET_VEHICLE, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -58,9 +58,7 @@ export const cleanVehicleData = () => {
 export const getServices = () => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `http://lavadero_autos_api.test/services`
-      );
+      const serverData = await axios.get(`/services`);
       dispatch({ type: GET_SERVICES, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -72,9 +70,7 @@ export const getServices = () => {
 export const getWorkers = () => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `http://lavadero_autos_api.test/workers`
-      );
+      const serverData = await axios.get(`/workers`);
       dispatch({ type: GET_WORKERS, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -86,10 +82,7 @@ export const getWorkers = () => {
 export const postOrder = (services) => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.post(
-        `http://lavadero_autos_api.test/orders`,
-        services
-      );
+      const serverData = await axios.post(`/orders`, services);
       dispatch({ type: POST_ORDER, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -101,9 +94,7 @@ export const postOrder = (services) => {
 export const getOrders = () => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `http://lavadero_autos_api.test/orders?orderStatus=pending`
-      );
+      const serverData = await axios.get(`/orders?orderStatus=pending`);
       dispatch({ type: GET_ORDERS, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -123,7 +114,7 @@ export const getOrdersCompleted = () => {
   return async function (dispatch) {
     try {
       const serverData = await axios.get(
-        `http://lavadero_autos_api.test/orders?orderStatus=completed&orderDay=${day}&orderMonth=${month}&orderYear=${year}`
+        `/orders?orderStatus=completed&orderDay=${day}&orderMonth=${month}&orderYear=${year}`
       );
       dispatch({ type: GET_ORDERS_COMPLETED, payload: serverData.data });
     } catch (error) {
@@ -132,15 +123,11 @@ export const getOrdersCompleted = () => {
   };
 };
 
-
 // Acción para crear un nuevo vehículo
 export const postVehicle = (vehicle) => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.post(
-        `http://lavadero_autos_api.test/cars`,
-        vehicle
-      );
+      const serverData = await axios.post(`/cars`, vehicle);
       dispatch({ type: POST_VEHICLE, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -153,7 +140,7 @@ export const putVehicle = (vehicle) => {
   return async function (dispatch) {
     try {
       const serverData = await axios.put(
-        `http://lavadero_autos_api.test/cars/${vehicle.licensePlate}`,
+        `/cars/${vehicle.licensePlate}`,
         vehicle
       );
       dispatch({ type: PUT_VEHICLE, payload: serverData.data });
@@ -167,10 +154,7 @@ export const putVehicle = (vehicle) => {
 export const putOrder = (id, status) => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.put(
-        `http://lavadero_autos_api.test/orders/${id}`,
-        status
-      );
+      const serverData = await axios.put(`/orders/${id}`, status);
       dispatch({ type: PUT_ORDER, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -197,10 +181,9 @@ export const postPayroll = () => {
   const year = today.getFullYear();
   return async function (dispatch) {
     try {
-      const serverData = await axios.post(
-        `http://lavadero_autos_api.test/payrolls/`,
-        { date: `${year}${month}${day}` }
-      );
+      const serverData = await axios.post(`/payrolls/`, {
+        date: `${year}${month}${day}`,
+      });
       dispatch({ type: POST_PAYROLLS, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -213,15 +196,13 @@ export const getPayrolls = () => {
   const today = new Date();
   const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
   const month =
-  today.getMonth() + 1 < 10
+    today.getMonth() + 1 < 10
       ? `0${today.getMonth() + 1}`
       : today.getMonth() + 1;
-      const year = today.getFullYear();
+  const year = today.getFullYear();
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `http://lavadero_autos_api.test/payrolls/${year}${month}${day}`
-      );
+      const serverData = await axios.get(`/payrolls/${year}${month}${day}`);
       dispatch({ type: GET_PAYROLLS, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
@@ -233,24 +214,22 @@ export const getPayrolls = () => {
 export const getUsers = () => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `http://lavadero_autos_api.test/users`
-      );
+      const serverData = await axios.get(`/users`);
       dispatch({ type: GET_USERS, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }
   };
 };
-
-
-
-
-
-
-
-
-
+export const setUserType = (userType) => {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: SET_USER_TYPE, payload: userType });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
 
 
 
@@ -261,7 +240,7 @@ export const getOrdersCompletedSuperAdmin = () => {
   return async function (dispatch) {
     try {
       const serverData = await axios.get(
-        `http://lavadero_autos_api.test/orders?orderStatus=completed`
+        `/orders?orderStatus=completed`
       );
       dispatch({ type: GET_ORDERS_COMPLETED_SUPER_ADMIN, payload: serverData.data });
     } catch (error) {
@@ -270,12 +249,14 @@ export const getOrdersCompletedSuperAdmin = () => {
   };
 };
 
+
+
 // Acción para obtener las órdenes canceladas para superAdmin
 export const getOrdersCanceledSuperAdmin = () => {
   return async function (dispatch) {
     try {
       const serverData = await axios.get(
-        `http://lavadero_autos_api.test/orders?orderStatus=cancelled`
+        `/orders?orderStatus=cancelled`
       );
       dispatch({ type: GET_ORDERS_CANCELLED_SUPER_ADMIN, payload: serverData.data });
     } catch (error) {
@@ -289,7 +270,7 @@ export const postWorker = (worker) => {
   return async function (dispatch) {
     try {
       const serverData = await axios.post(
-        `http://lavadero_autos_api.test/workers`, worker
+        `/workers`, worker
       );
       dispatch({ type: POST_WORKER, payload: serverData.data });
     } catch (error) {

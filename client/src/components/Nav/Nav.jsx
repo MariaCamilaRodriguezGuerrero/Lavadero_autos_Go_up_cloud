@@ -18,24 +18,18 @@ export default function Nav() {
     <div className={style.nav}>
       {/* Mobile Menu */}
       <Link to={"/"} className={style.itemLogout} onClick={closeMenu}>
-              Cerrar sesión
-            </Link>
+        Cerrar sesión
+      </Link>
       <div className={style.mobileMenu}>
         <div className={style.menuIcon} onClick={handleMenuToggle}>
           <div
-            className={`${style.menuIconLine} ${
-              menuOpen ? style.open : ""
-            }`}
+            className={`${style.menuIconLine} ${menuOpen ? style.open : ""}`}
           ></div>
           <div
-            className={`${style.menuIconLine} ${
-              menuOpen ? style.open : ""
-            }`}
+            className={`${style.menuIconLine} ${menuOpen ? style.open : ""}`}
           ></div>
           <div
-            className={`${style.menuIconLine} ${
-              menuOpen ? style.open : ""
-            }`}
+            className={`${style.menuIconLine} ${menuOpen ? style.open : ""}`}
           ></div>
         </div>
         {menuOpen && (
@@ -84,7 +78,6 @@ export default function Nav() {
             >
               Facturación
             </Link>
-            
           </div>
         )}
       </div>
@@ -92,11 +85,11 @@ export default function Nav() {
       {/* Desktop Menu */}
       <div className={style.desktopMenu}>
         <Link
-          to={"/createVehicle"}
+          to={"/ad/createVehicle"}
           className={
-            (location.pathname === "/createVehicle") |
-            (location.pathname === "/formVehicle") |
-            (location.pathname === "/formService")
+            (location.pathname === "/ad/createVehicle") |
+            (location.pathname === "/ad/formVehicle") |
+            (location.pathname === "/ad/formService")
               ? style.itemActive
               : style.item
           }
@@ -104,25 +97,29 @@ export default function Nav() {
           Ingresar Vehículo
         </Link>
         <Link
-          to={"/services"}
+          to={"/ad"}
           className={
-            location.pathname === "/services" ? style.itemActive : style.item
+            location.pathname === "/ad" ? style.itemActive : style.item
           }
         >
           Servicios En Curso
         </Link>
         <Link
-          to={"/dashboard"}
+          to={"/ad/dashboard"}
           className={
-            location.pathname === "/dashboard" ? style.itemActive : style.item
+            location.pathname === "/ad/dashboard"
+              ? style.itemActive
+              : style.item
           }
         >
           Resumen del Día
         </Link>
         <Link
-          to={"/billingList"}
+          to={"/ad/billingList"}
           className={
-            location.pathname === "/billingList" ? style.itemActive : style.item
+            location.pathname === "/ad/billingList"
+              ? style.itemActive
+              : style.item
           }
         >
           Facturación

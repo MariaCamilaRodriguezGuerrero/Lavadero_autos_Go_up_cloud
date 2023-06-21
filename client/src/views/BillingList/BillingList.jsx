@@ -18,13 +18,6 @@ const BillingList = () => {
 
   return (
     <div className={style.mainDiv}>
-      <Link to={"/dashboard"}>
-        <img
-          className={style.backBtn}
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
-          alt=""
-        />
-      </Link>
       <h1 className={style.title}>Facturación</h1>
       <div className={style.cards}>
         <SearchBar array={ordersCompleted} />

@@ -16,7 +16,7 @@ const FormVehicle = () => {
   );
   const [form, setForm] = useState({
     client: "",
-    whatsapp: "",
+    whatsapp: null,
     vehicleType: "",
     model: "",
     brand: "",
@@ -34,7 +34,7 @@ const FormVehicle = () => {
   const patent = location.state === null ? "" : location.state.patent;
 
   useEffect(() => {
-    location.state === null && navigate("/createVehicle");
+    location.state === null && navigate("/ad/createVehicle");
   }, [location.state, navigate]);
 
   useEffect(() => {
@@ -117,7 +117,7 @@ const FormVehicle = () => {
         );
       }
 
-      navigate(`/formService`, {
+      navigate(`/ad/formService`, {
         state: {
           patent,
           vehicleType: form.vehicleType,
@@ -163,7 +163,7 @@ const FormVehicle = () => {
   });
   return (
     <div>
-      <Link to={"/createVehicle"}>
+      <Link to={"/ad/createVehicle"}>
         <img
           className={style.backBtn}
           src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
@@ -227,9 +227,7 @@ const FormVehicle = () => {
               className={style.input}
               onChange={changehandler}
             />
-            {errors.brand && (
-              <p className={style.error}>{errors.brand}</p>
-            )}
+            {errors.brand && <p className={style.error}>{errors.brand}</p>}
             <label className={style.label}>Color*</label>
             <input
               name="color"
@@ -238,9 +236,7 @@ const FormVehicle = () => {
               className={style.input}
               onChange={changehandler}
             />
-            {errors.color && (
-              <p className={style.error}>{errors.color}</p>
-            )}
+            {errors.color && <p className={style.error}>{errors.color}</p>}
           </div>
         </div>
         <button type="submit" className={style.submit}>

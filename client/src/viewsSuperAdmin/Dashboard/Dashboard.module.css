@@ -1,0 +1,61 @@
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+.title {
+  margin-top: 100px;
+}
+/* .titleLists {
+  font-size: 20px;
+}
+.listsDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border-radius: 20px;
+  background-color: #30b4c9;
+} */
+.chart {
+  border: #30b4c9 2px solid;
+  border-radius: 20px;
+  padding: 20px;
+  width: 700px;
+  height: fit-content;
+  margin: 50px;
+}
+/* .linkDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  width: 400px;
+}
+.linkDiv a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  width: 30%;
+  padding: 5px;
+}
+.linkDiv a:hover {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+} */
+
+@media (max-width: 767px){
+  .chart {
+    border: #30b4c9 2px solid;
+    border-radius: 20px;
+    padding: 20px;
+    width: 660px;
+    height: fit-content;
+    margin: 50px;
+  }
+  
+}

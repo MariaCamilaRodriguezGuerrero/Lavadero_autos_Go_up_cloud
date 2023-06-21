@@ -8,22 +8,17 @@ const SearchBar = ({ array }) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/ad/billingList")
-      dispatch(searchFilter(array, "ordersCompletedFiltered"));
-    if (location.pathname === "/ad")
-      dispatch(searchFilter(array, "ordersFiltered"));
+    if (location.pathname === "/su/billingListSuperAdmin")
+      dispatch(searchFilter(array, "ordersCompletedFilteredSuperAdmin"));
   }, [dispatch, array]);
-    
 
   const onSearch = (event) => {
     const value = event.target.value;
     const filteredArray = array.filter((e) =>
       e.licensePlate.toLowerCase().includes(value.toLowerCase())
     );
-    if (location.pathname === "/ad/billingList")
-      dispatch(searchFilter(filteredArray, "ordersCompletedFiltered"));
-    if (location.pathname === "/ad")
-      dispatch(searchFilter(filteredArray, "ordersFiltered"));
+    if (location.pathname === "/su/billingListSuperAdmin")
+      dispatch(searchFilter(filteredArray, "ordersCompletedFilteredSuperAdmin"));
   };
 
   return (

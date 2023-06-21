@@ -97,7 +97,7 @@ const Edit = () => {
     }
     setTimeout(() => {
       dispatch(getOrders());
-      navigate("/services");
+      navigate("/ad");
     }, "1000");
   };
 
@@ -186,7 +186,7 @@ const Edit = () => {
   return (
     <div className={style.modalBackground}>
       <div className={style.modalContent}>
-        <Link to={"/services"}>
+        <Link to={"/ad"}>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
             alt=""

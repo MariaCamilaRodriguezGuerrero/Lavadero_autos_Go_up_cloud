@@ -1,0 +1,13 @@
+.input {
+  margin: 0px 40px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 40px;
+  border: 2px black solid;
+  border-radius: 15px;
+  font-size: 20px;
+  text-transform: uppercase;
+}

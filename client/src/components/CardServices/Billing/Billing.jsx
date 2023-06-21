@@ -31,7 +31,7 @@ const Billing = () => {
 
       //dispatch(getOrders());
       setTimeout(() => {
-        navigate("/services");
+        navigate("/ad");
       }, 200);
     }
   };
@@ -60,7 +60,7 @@ const Billing = () => {
       <div className={style.mainDiv}>
         <div className={style.titleDiv}>
           <div className={style.columnBtn}>
-            <Link to={"/services"}>
+            <Link to={"/ad"}>
               <img
                 className={style.backBtn}
                 src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"

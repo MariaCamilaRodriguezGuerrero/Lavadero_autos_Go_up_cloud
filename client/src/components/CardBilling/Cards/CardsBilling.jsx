@@ -18,7 +18,7 @@ export default function CardsBilling() {
   //   const [pageNumberToShow, setPageNumberToShow] = useState(0);
   const displayCards =
     typeof cardsShow !== "string" &&
-    cardsShow.length &&
+    !!cardsShow.length &&
     cardsShow
       .slice(pagesVisited, pagesVisited + ordersPerPage)
       .reverse()
@@ -32,7 +32,7 @@ export default function CardsBilling() {
             brand,
             model,
             services,
-            invoiced
+            invoiced,
           },
           index
         ) => {

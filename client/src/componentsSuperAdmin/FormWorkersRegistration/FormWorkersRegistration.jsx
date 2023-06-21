@@ -35,7 +35,7 @@ const FormWorkers = () => {
 
 
   useEffect(() => {
-    location.state === null && navigate("/workersregistration");
+    location.state === null && navigate("/su/workersregistration");
   }, [location.state, navigate]);
 
 

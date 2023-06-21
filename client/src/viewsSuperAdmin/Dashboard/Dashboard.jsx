@@ -1,9 +1,10 @@
 import style from "./Dashboard.module.css";
-import Chart from "../../components/Chart/Chart";
+import Chart from "../../componentsSuperAdmin/Chart/Chart";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postPayroll, getPayrolls } from "../../redux/actions/actions";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 const Dashboard = () => {
   const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ const Dashboard = () => {
             data: payrolls.map((data) => data.goal),
             barThickness: 60,
             backgroundColor: "transparent",
-            borderColor: "red",
+            borderColor: "black",
             borderWidth: {
               top: 2,
               right: 0,
@@ -58,20 +59,18 @@ const Dashboard = () => {
       <div className={style.mainContainer}>
         <h1 className={style.title}>Resumen</h1>
         <div className={style.chart}>
-          {!!Object.keys(payrollsShow).length && (
+          {Object.keys(payrollsShow).length && (
             <Chart chartData={payrollsShow} />
           )}
         </div>
       </div>
-
-      {/* <div className={style.listsDiv}>
-        <h2 className={style.titleLists}>Listas</h2>
-        <div className={style.linkDiv}>
-          <Link to="/workers">Trabajadores</Link>
-          <Link to="/billinglist">Facturación</Link>
-          <Link to="/withdrawals">Retiros</Link>
-        </div>
-      </div> */}
+      <ToastContainer
+        toastStyle={{
+          backgroundColor: "rgb(38, 143, 255)",
+          fontSize: "20px",
+          color: "#fff",
+        }}
+      />
     </div>
   );
 };

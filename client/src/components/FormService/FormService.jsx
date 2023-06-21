@@ -28,7 +28,7 @@ const FormService = () => {
   const [fieldsOnView, setFieldsOnView] = useState(0);
 
   useEffect(() => {
-    location.state === null && navigate("/createVehicle");
+    location.state === null && navigate("/ad/createVehicle");
   }, [location.state, navigate]);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const FormService = () => {
         })
       );
       setTimeout(() => {
-        navigate("/services");
+        navigate("/ad");
       }, "800");
     }
   };
@@ -164,7 +164,7 @@ const FormService = () => {
 
   return (
     <div>
-      <Link to={"/formVehicle"} state={{ patent }}>
+      <Link to={"/ad/formVehicle"} state={{ patent }}>
         <img
           className={style.backBtn}
           src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"

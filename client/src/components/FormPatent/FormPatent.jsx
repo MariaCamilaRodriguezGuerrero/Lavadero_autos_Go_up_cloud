@@ -19,7 +19,7 @@ const FormPatente = () => {
     e.preventDefault();
     setError(validation(patent));
     if (!validation(patent)) {
-      navigate(`/formVehicle`, {
+      navigate(`/ad/formVehicle`, {
         state: {
           patent: patent.toUpperCase(),
         },

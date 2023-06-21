@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../../redux/actions/actions";
+import Cookies from "universal-cookie";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,34 +16,37 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  //const [cookies, setCookie, removeCookie] = useCookies(["userAccess"]);
+  const cookies = new Cookies();
+  const today = new Date();
+  const nextWeek = new Date(today);
+  nextWeek.setDate(nextWeek.getDate() + 7);
 
   useEffect(() => {
     dispatch(getUsers());
+    cookies.remove("userAccess", { path: "/" });
   }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const isAdminUser = usersData.find(
+    const user = usersData.find(
       (user) =>
         user.user_name === username &&
         user.user_password === password &&
-        user.user_status === "active" &&
-        user.user_type === "admin"
+        user.user_status === "active"
     );
 
-    const isSuperAdminUser = usersData.find(
-      (user) =>
-        user.user_name === username &&
-        user.user_password === password &&
-        user.user_status === "active" &&
-        user.user_type === "superadmin"
-    );
+    if (user) {
+      cookies.set(
+        "userAccess",
+        { type: user.user_type, access: true },
+        { path: "/", expires: nextWeek }
+      );
+      if (user.user_type === "admin") navigate("/ad");
+      if (user.user_type === "superadmin") navigate("/su");
 
-    if (isAdminUser) {
-      // Inicio de sesión exitoso para el usuario "Admin"
-      navigate("/services");
-      toast(`Bienvenido ${username} 😊`, {
+      toast(`Bienvenido ${user.user_name} 😊`, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
@@ -52,19 +56,6 @@ const Login = () => {
         progress: undefined,
         theme: "light",
       });
-    } else if (isSuperAdminUser) {
-      // Inicio de sesión exitoso para el usuario "Gaston"
-      navigate("/billingListSuperAdmin");
-      // toast(`Bienvenido ${username} 😎 `, {
-      //   position: "top-right",
-      //   autoClose: 3000,
-      //   hideProgressBar: true,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      // });
     } else {
       setError("Nombre de usuario o contraseña incorrectos");
     }

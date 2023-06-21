@@ -47,6 +47,7 @@ export const GET_USERS = "GET_USERS";
 // Acción para crear un nuevo usuario
 export const POST_USER = "POST_USER";
 
+export const SET_USER_TYPE = "SET_USER_TYPE";
 
 //----------------------------Rutas de Super Admin -----------------------------------//
 

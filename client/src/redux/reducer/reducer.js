@@ -91,7 +91,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case POST_WORKER:
       return{
         ...state,
-        workersData:payload,
+        workersData: payload,
       };  
     default:
       return { ...state };
