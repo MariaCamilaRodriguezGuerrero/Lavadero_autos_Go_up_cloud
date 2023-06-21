@@ -4,13 +4,6 @@
     /* padding: 40px; */
     width: 100%;
   }
-  .backBtn {
-    position: absolute;
-    display: flex;
-    top: 100px;
-    left: 40px;
-    width: 40px;
-  }
   .title {
     margin-top: 100px;
   }
@@ -25,7 +18,6 @@
   
   .card {
     display: flex;
-    /* width: 100%; */
     height: 60px;
     border: 2px black solid;
     border-radius: 20px;
@@ -42,36 +34,12 @@
     font-size: 15px;
   }
   
-  .spanData {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    border-right: 2px black solid;
-    padding: 0 35px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
   .spanData2 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 6.4%;
-    border-right: 2px black solid;
-    padding: 0 35px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .spanDataT {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 2%;
+    width: 12%;
     border-right: 2px black solid;
     padding: 0 35px;
     font-size: 20px;
@@ -83,7 +51,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 18%;
+    width: 20%;
     border-right: 2px black solid;
     padding: 0 35px;
     font-size: 20px;
@@ -96,7 +64,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    width: 10%;
+    width: 16%;
     border-right: 2px rgb(0, 0, 0) solid;
     padding: 0 35px;
     font-size: 20px;
@@ -121,7 +89,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 3%;
+    width: 10%;
     border-right: 2px rgb(0, 0, 0) solid;
     padding: 0 35px;
     font-size: 20px;
@@ -142,7 +110,7 @@
     display: flex;
     border-right: 2px black solid;
     height: 100%;
-    width: 10.5%;
+    width: 25%;
     border-radius: 20px 0px 0px 20px;
     align-items: center;
     justify-content: center;

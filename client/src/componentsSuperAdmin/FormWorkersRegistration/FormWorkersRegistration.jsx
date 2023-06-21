@@ -34,6 +34,7 @@ const FormWorkers = () => {
   }, [location.state, navigate]);
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
 
     // Validar campos obligatorios

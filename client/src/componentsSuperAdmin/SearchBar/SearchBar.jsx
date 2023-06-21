@@ -10,7 +10,9 @@ const SearchBar = ({ array }) => {
   useEffect(() => {
     if (location.pathname === "/su/billingListSuperAdmin")
       dispatch(searchFilter(array, "ordersCompletedFilteredSuperAdmin"));
-  }, [dispatch, array]);
+    if (location.pathname === "/su/canceledServices")
+      dispatch(searchFilter(array, "ordersCancelledFilteredSuperAdmin"));
+    }, [dispatch, array]);
 
   const onSearch = (event) => {
     const value = event.target.value;
@@ -19,7 +21,10 @@ const SearchBar = ({ array }) => {
     );
     if (location.pathname === "/su/billingListSuperAdmin")
       dispatch(searchFilter(filteredArray, "ordersCompletedFilteredSuperAdmin"));
+  if (location.pathname === "/su/canceledServices")
+      dispatch(searchFilter(filteredArray, "ordersCancelledFilteredSuperAdmin"));
   };
+
 
   return (
     <div className={style.container}>

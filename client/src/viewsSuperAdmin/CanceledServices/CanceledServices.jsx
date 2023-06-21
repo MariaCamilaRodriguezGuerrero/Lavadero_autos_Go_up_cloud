@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Pagination from "../../components/Pagination/Pagination";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../componentsSuperAdmin/SearchBar/SearchBar";
 import style from "./CanceledService.module.css";
-// import { ToastContainer } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import CardsCanceled from "../../componentsSuperAdmin/CardCanceledSuperAdmin/Cards/CardsCanceled";
 import { getOrdersCanceledSuperAdmin } from "../../redux/actions/actions";
@@ -26,25 +25,19 @@ const CanceledService = () => {
           <p className={style.text}>
             <span className={style.spanDataP}>Patente</span>
             <span className={style.spanData4}>Cliente</span>
-            <span className={style.spanData2}>Fecha Hora</span>
-            <span className={style.spanData3}>Tipo Servicio</span>
-            <span className={style.spanData3}>Trabajador</span>
-            <span className={style.spanData}>Valor</span>
+            <span className={style.spanData2}>Fecha</span>
+            <span className={style.spanData2}>Hora</span>
+            <span className={style.spanData3}>Tipo de Servicio</span>
             <span className={style.spanDataAceptacion}>Aceptacion</span>
           </p>
         </div>
         <CardsCanceled />
         <Pagination />
         <Outlet />
-        {/* <ToastContainer
-          toastStyle={{
-            backgroundColor: "rgb(38, 143, 255)",
-            fontSize: "20px",
-            color: "#fff",
-          }}
-        /> */}
       </div>
     </div>
   );
 };
+
 export default CanceledService;
+
