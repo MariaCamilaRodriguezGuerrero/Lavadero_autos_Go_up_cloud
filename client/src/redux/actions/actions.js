@@ -19,7 +19,8 @@ import {
   SET_USER_TYPE,
   GET_ORDERS_COMPLETED_SUPER_ADMIN,
   GET_ORDERS_CANCELLED_SUPER_ADMIN,
-  POST_WORKER
+  POST_WORKER,
+  DELETE_ORDER
 } from "./types";
 
 import axios from "axios";
@@ -277,5 +278,18 @@ export const postWorker = (worker) => {
     } catch (error) {
       alert("Este trabajador ya esta registrado");
     }
+  };
+};
+
+// Acción para Borrar los trabajadores
+
+export const deleteOrder = (orderService) => {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`/orders/${orderService}`);
+      dispatch({ type: DELETE_ORDER, payload: orderService });
+    } catch (error) {
+      // console.log(error.message);
+    }        
   };
 };

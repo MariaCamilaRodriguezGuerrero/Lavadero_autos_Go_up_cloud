@@ -59,3 +59,6 @@ export const GET_ORDERS_CANCELLED_SUPER_ADMIN = "GET_ORDERS_CANCELLED_SUPER_ADMI
 
 // Acción para crear los trabajadores super Admin
 export const POST_WORKER = "POST_WORKER"
+
+//Accion para borrar un servicio
+export const DELETE_ORDER = "DELETE_ORDER";

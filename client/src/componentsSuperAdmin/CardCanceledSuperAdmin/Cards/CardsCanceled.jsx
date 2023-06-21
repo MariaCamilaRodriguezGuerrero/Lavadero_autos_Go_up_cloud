@@ -30,7 +30,8 @@ const CardsCanceled = () => {
             client,
             orderDate,
             orderHour,
-            serviceName
+            serviceName,
+            orderService
           },
           index
         ) => {
@@ -42,6 +43,7 @@ const CardsCanceled = () => {
               orderDate={orderDate}
               orderHour={orderHour}
               serviceName={serviceName}
+              orderService={orderService}
             />
           );
         }

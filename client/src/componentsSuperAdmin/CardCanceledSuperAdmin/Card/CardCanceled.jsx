@@ -1,12 +1,21 @@
 import style from "./CardCanceled.module.css";
+import { useDispatch } from "react-redux";
+import { deleteOrder } from "../../../redux/actions/actions";
 
 const CardCanceled = ({
   licensePlate,
   client,
   orderDate,
   orderHour,
-  serviceName
+  serviceName,
+  orderService,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleDeleteOrder = () => {
+    dispatch(deleteOrder(orderService));
+  };
+
   return (
     <div className={style.card}>
       <div className={style.canceled}>
@@ -29,9 +38,7 @@ const CardCanceled = ({
         </div>
 
         <span className={style.spanDataAceptacion}>
-          <div>
-            Eliminar
-          </div>
+        <div onClick={handleDeleteOrder}>Eliminar</div>
         </span>
       </p>
     </div>
