@@ -1,8 +1,8 @@
-import style from "./ServicesRegistration.module.css";
-import FormServices from "../../componentsSuperAdmin/FormServicesRegistration/FormServicesRegistration";
+import style from "./EditServices.module.css";
+import FormEditServices from "../../componentsSuperAdmin/FormEditServices/FormEditServices";
 import { Link } from "react-router-dom";
 
-const ServicesRegistration = () => {
+const EditServices = () => {
   return (
     <div>
       <Link to={"/su/services"}>
@@ -12,9 +12,9 @@ const ServicesRegistration = () => {
           alt=""
         />
       </Link>
-      <FormServices />
+      <FormEditServices />
     </div>
   )
 
 };
-export default ServicesRegistration;
+export default EditServices;

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 const Billing = () => {
   const location = useLocation();
   const { services } = location.state;
+  console.log(services);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [medioPago, setMedioPago] = useState("");
@@ -106,6 +107,12 @@ const Billing = () => {
               services.map((e) => (
                 <span key={e.serviceName}>
                   {e.serviceName}: ${e.cost}
+                </span>
+              ))}
+              {services &&
+              services.map((e) => (
+                <span>
+                  Decuento del dia: ${e.discountDay}
                 </span>
               ))}
 

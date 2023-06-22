@@ -18,7 +18,10 @@ import {
   GET_ORDERS_CANCELLED_SUPER_ADMIN,
   POST_WORKER,
   PUT_WORKER,
-  DELETE_ORDER
+  DELETE_ORDER,
+  POST_SERVICE,
+  SELECT_SERVICE,
+  PUT_SERVICE
 } from "../actions/types";
 
 // Estado inicial de la aplicación
@@ -43,6 +46,7 @@ const initialState = {
   ordersCompletedFilteredSuperAdmin: [], // Lista de órdenes completadas filtradas
   ordersCancelledSuperAdmin: [], // Lista de órdenes completadas SuperAdmin
   ordersCancelledFilteredSuperAdmin: [], // Lista de órdenes completadas filtradas
+  serviceSelected: {}, // Servicio seleccionado para editar
 };
 
 // Reducer que maneja el estado de la aplicación
@@ -106,6 +110,20 @@ export default function rootReducer(state = initialState, { type, payload }) {
           ...state,
           orders: payload
         };
+      case POST_SERVICE:
+        return {
+          ...state,
+          servicesData: payload,
+        };
+      case SELECT_SERVICE:
+        return {
+          ...state,
+          serviceSelected: payload,
+        }
+      case PUT_SERVICE:
+        return {
+          ...state,
+        }
 
     default:
       return { ...state };

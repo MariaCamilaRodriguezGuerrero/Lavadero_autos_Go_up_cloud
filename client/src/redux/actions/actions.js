@@ -19,7 +19,10 @@ import {
   GET_ORDERS_CANCELLED_SUPER_ADMIN,
   POST_WORKER,
   PUT_WORKER,
-  DELETE_ORDER
+  DELETE_ORDER,
+  POST_SERVICE,
+  PUT_SERVICE,
+  SELECT_SERVICE
 } from "./types";
 
 import axios from "axios";
@@ -300,7 +303,41 @@ export const deleteOrder = (orderService) => {
       await axios.delete(`/orders/${orderService}`);
       dispatch({ type: DELETE_ORDER, payload: orderService });
     } catch (error) {
-      // console.log(error.message);
-    }        
+      // Manejar el error aquí
+      console.log(error.message);
+    }
   };
+};
+
+// Acción para crear los servicios
+export const postService = (service) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.post(
+        `/services`, service
+      );
+      dispatch({ type: POST_SERVICE, payload: serverData.data });
+    } catch (error) {
+      alert("Este servicio ya esta registrado");
+    }
+  };
+};
+
+// Acción para editar los servicios
+export const putService = (id, service) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.put(
+        `/services/${id}`, service
+      );
+      dispatch({ type: PUT_SERVICE, payload: serverData.data });
+    } catch (error) {
+      alert("Error");
+    }
+  };
+};
+
+// Acción para añadir el servicio seleccionado
+export const selectService = (service) => {
+  return { type: SELECT_SERVICE, payload: service };
 };

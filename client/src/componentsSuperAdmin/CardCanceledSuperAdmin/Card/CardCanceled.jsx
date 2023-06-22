@@ -13,10 +13,12 @@ const CardCanceled = ({
   const dispatch = useDispatch();
 
   const handleDeleteOrder = () => {
-    dispatch(deleteOrder(orderService));
-    dispatch(getOrdersCanceledSuperAdmin());
+    dispatch(deleteOrder(orderService)); 
+    setTimeout(() => {
+      dispatch(getOrdersCanceledSuperAdmin());
+    }, 100);
   };
-
+  
   return (
     <div className={style.card}>
       <div className={style.canceled}>
@@ -38,8 +40,8 @@ const CardCanceled = ({
           </div>
         </div>
 
-        <span className={style.spanDataAceptacion}>
-        <div onClick={handleDeleteOrder}>Eliminar</div>
+        <span>
+        <button className={style.spanDataAceptacion} onClick={handleDeleteOrder}>Eliminar</button>
         </span>
       </p>
     </div>

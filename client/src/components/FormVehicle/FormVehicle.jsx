@@ -9,6 +9,7 @@ import {
   putVehicle,
 } from "../../redux/actions/actions";
 import validation from "./validation";
+import vehicleTypes from "../../utils/vehicleTypes";
 
 const FormVehicle = () => {
   const { vehicleData, postVehicleMessage, putVehicleMessage } = useSelector(
@@ -64,20 +65,6 @@ const FormVehicle = () => {
       color: vehicleData.color, // Asignar el valor del color del vehículo
     });
   }, [vehicleData]);
-
-  const ejemploTipoVehiculo = [
-    { value: "SEDAN/CITY CAR", label: "SEDAN/CITY CAR" },
-    { value: "HATCHBACK", label: "HATCHBACK" },
-    {
-      value: "SUV/CAMIONETAS  (2 CORRIDAS)",
-      label: "SUV/CAMIONETAS  (2 CORRIDAS)",
-    },
-    {
-      value: "SUV/CAMIONETAS     (3 CORRIDAS)",
-      label: "SUV/CAMIONETAS     (3 CORRIDAS)",
-    },
-    { value: "FURGON Y CAMION 3/4", label: "FURGON Y CAMION 3/4" },
-  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -197,7 +184,7 @@ const FormVehicle = () => {
             <label className={style.label}>Tipo de vehiculo*</label>
             <Select
               name="vehicleType"
-              options={ejemploTipoVehiculo}
+              options={vehicleTypes}
               placeholder="Seleccione un tipo"
               className={style.select}
               styles={selectStyles}

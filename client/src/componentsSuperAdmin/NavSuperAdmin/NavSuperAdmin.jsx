@@ -43,9 +43,9 @@ export default function NavSuperAdmin() {
           Trabajadores
         </Link>
         <Link
-        to={"/su/servicesRegistration"}
+        to={"/su/services"}
         className={
-            location.pathname === "/su/servicesRegistration" ? style.itemActive : style.item
+            location.pathname === "/su/services" ? style.itemActive : style.item
           }
         >
           Servicios

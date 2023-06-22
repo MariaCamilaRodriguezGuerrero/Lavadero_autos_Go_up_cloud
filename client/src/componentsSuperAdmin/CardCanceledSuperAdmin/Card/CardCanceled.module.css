@@ -74,11 +74,15 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  width: 9%;
+  width: 163%;
   /* border-right: 2px rgb(0, 0, 0) solid; */
   padding: 0 35px;
+  border-radius:  0px 20px  20px 0px;
+  border: none;
   font-size: 15px;
+  background-color: #fff;
 }
+
 
 .spanDataAceptacion:hover{
   background-color: red;

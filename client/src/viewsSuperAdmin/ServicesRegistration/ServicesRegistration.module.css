@@ -1,0 +1,7 @@
+.backBtn {
+    position: absolute;
+    display: flex;
+    top: 100px;
+    left: 40px;
+    width: 40px;
+  }

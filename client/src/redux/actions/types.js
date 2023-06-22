@@ -65,3 +65,11 @@ export const DELETE_ORDER = "DELETE_ORDER";
 
 // Acción para EDITAR los trabajadores super Admin
 export const PUT_WORKER = "POST_WORKER"
+
+// Acción para crear los servicios super Admin
+export const POST_SERVICE = "POST_SERVICE";
+
+// Acción para editar los servicios super Admin
+export const PUT_SERVICE = "PUT_SERVICE";
+
+export const SELECT_SERVICE = "SELECT_SERVICE";

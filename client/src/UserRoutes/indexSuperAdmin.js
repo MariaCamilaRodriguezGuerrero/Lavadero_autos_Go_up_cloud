@@ -9,6 +9,8 @@ import WorkersRegistration from "../viewsSuperAdmin/workersregistration/Workersr
 import ServicesRegistration from "../viewsSuperAdmin/ServicesRegistration/ServicesRegistration";
 import CanceledServices from "../viewsSuperAdmin/CanceledServices/CanceledServices";
 import FormWorkers from "../componentsSuperAdmin/FormWorkersRegistration/FormWorkersRegistration";
+import Services from "../viewsSuperAdmin/Services/Services";
+import EditServices from "../viewsSuperAdmin/EditServices/EditServices";
 
 function SuperAdmin() {
   const navigate = useNavigate();
@@ -32,6 +34,9 @@ function SuperAdmin() {
         <Route path="/formRegistration" element={<FormWorkers />} />
         <Route path="/servicesRegistration" element={<ServicesRegistration />} />
         <Route path="/canceledServices" element={<CanceledServices />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/servicesRegistration" element={<ServicesRegistration />} />
+        <Route path="/services/editServices" element={<EditServices />}/>
       </Routes>
     </div>  
   );
