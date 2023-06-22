@@ -7,9 +7,11 @@ const CardWorkers = () => {
   const { workersData } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  useEffect(() => {    
-      dispatch(getWorkers());   
+
+  useEffect(() => {
+    dispatch(getWorkers());
   }, [dispatch]);
+
 
   return (
     <div>
@@ -38,6 +40,7 @@ const CardWorkers = () => {
             <strong>Porcentaje después de la meta:</strong>{" "}
             {worker.percentageAfterGoal}%
           </p>
+          
         </div>
       ))}
     </div>

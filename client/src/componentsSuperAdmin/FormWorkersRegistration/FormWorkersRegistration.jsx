@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { postWorker, getWorkers } from "../../redux/actions/actions";
+import { postWorker, getWorkers, putWorker } from "../../redux/actions/actions";
 
 import style from "./FormWorkersRegistration.module.css";
 
@@ -29,12 +29,19 @@ const FormWorkers = ({ onCancel }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const checkExistingIdentification = (value) => {
+    const existingWorker = workersData.find(worker => worker.rut_passport === value);
+    return existingWorker ? existingWorker : null;
+  };
+
   useEffect(() => {
     location.state === null && navigate("/su/workersregistration");
   }, [location.state, navigate]);
 
+
+
   const handleSubmit = (e) => {
-    
+
     e.preventDefault();
 
     // Validar campos obligatorios
@@ -83,9 +90,11 @@ const FormWorkers = ({ onCancel }) => {
 
     if (!hasErrors) {
       dispatch(postWorker(form));
+      dispatch(putWorker(form.rut_passport,form))
       dispatch(getWorkers());
-      // alert("Trabajador creado")
     }
+
+
   };
 
   const handleChange = (event) => {
@@ -94,10 +103,28 @@ const FormWorkers = ({ onCancel }) => {
       ...prevForm,
       [name]: value,
     }));
+
+    if (name === 'rut_passport' && value.trim() !== '') {
+      const existingWorker = checkExistingIdentification(value);
+      if (existingWorker) {
+        const { address, name, profitPercentage, goal, branch, percentageAfterGoal } = existingWorker;
+        setForm((prevForm) => ({
+          ...prevForm,
+          address,
+          name,
+          profitPercentage,
+          goal,
+          branch,
+          percentageAfterGoal,
+        }));
+      }
+    }
   };
 
+
+
   return (
-    <div>      
+    <div>
       <h1 className={style.title}>Registro de trabajadores</h1>
       <p className={style.subtitle}>Los campos con * son obligatorios</p>
       <form onSubmit={handleSubmit}>
@@ -112,7 +139,7 @@ const FormWorkers = ({ onCancel }) => {
               onChange={handleChange}
             />
             {errors.rut_passport && <p className={style.error}>{errors.rut_passport}</p>}
-            
+
             <label className={style.label}>Nombre*</label>
             <input
               name="name"
@@ -122,7 +149,7 @@ const FormWorkers = ({ onCancel }) => {
               onChange={handleChange}
             />
             {errors.name && <p className={style.error}>{errors.name}</p>}
-            
+
             <label className={style.label}>Dirección</label>
             <input
               name="address"
@@ -131,7 +158,7 @@ const FormWorkers = ({ onCancel }) => {
               className={style.input}
               onChange={handleChange}
             />
-            
+
             <label className={style.label}>Sede*</label>
             <input
               name="branch"
@@ -154,7 +181,7 @@ const FormWorkers = ({ onCancel }) => {
             {errors.profitPercentage && (
               <p className={style.error}>{errors.profitPercentage}</p>
             )}
-            
+
             <label className={style.label}>Meta*</label>
             <input
               name="goal"
@@ -164,7 +191,7 @@ const FormWorkers = ({ onCancel }) => {
               onChange={handleChange}
             />
             {errors.goal && <p className={style.error}>{errors.goal}</p>}
-            
+
             <label className={style.label}>Porcentaje despues de la meta*</label>
             <input
               name="percentageAfterGoal"
@@ -181,11 +208,16 @@ const FormWorkers = ({ onCancel }) => {
         <button type="submit" className={style.submit}>
           Enviar
         </button>
-        <button type="button" className={style.submit} onClick={onCancel}>Regresar</button>
-        
+        <button type="submit" className={style.submit}>
+          Editar
+        </button>
+        <button type="button" className={style.submit} onClick={onCancel}>
+          Regresar
+        </button>
+
       </form>
     </div>
   );
 };
 
-export default FormWorkers;
+export default FormWorkers
