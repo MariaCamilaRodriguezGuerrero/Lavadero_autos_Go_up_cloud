@@ -73,3 +73,5 @@ export const POST_SERVICE = "POST_SERVICE";
 export const PUT_SERVICE = "PUT_SERVICE";
 
 export const SELECT_SERVICE = "SELECT_SERVICE";
+
+export const GET_TOTAL_INVOICED = "GET_TOTAL_INVOICED";

@@ -95,6 +95,7 @@ const Edit = () => {
         );
       }
     }
+    document.getElementById("submit").disabled = true;
     setTimeout(() => {
       dispatch(getOrders());
       navigate("/ad");
@@ -458,7 +459,7 @@ const Edit = () => {
           <button type="button" onClick={addFields} className={style.addBtn}>
             +
           </button>
-          <button className={style.submit} type="submit">
+          <button className={style.submit} type="submit" id="submit">
             Enviar
           </button>
         </form>

@@ -19,7 +19,7 @@ const CardWorkers = () => {
     <div>
       <h1 className={styles.title}>Lista de Trabajadores</h1>
       <Link to="/su/formRegistration">
-        <button className={styles.submit}>Formulario</button>
+        <button className={styles.submit}>Agregar / Editar</button>
       </Link>
       <div className={styles.cardContainer}>
         {!!workersData.length && workersData.map((worker) => (

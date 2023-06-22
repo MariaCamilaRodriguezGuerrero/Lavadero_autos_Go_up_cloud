@@ -9,7 +9,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(postPayroll());
-    dispatch(getPayrolls());
+    setTimeout(() => {
+      dispatch(getPayrolls());
+    }, 100);
   }, [dispatch]);
 
   const { payrolls } = useSelector((state) => state);

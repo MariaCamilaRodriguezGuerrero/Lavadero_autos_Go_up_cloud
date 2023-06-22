@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export default function Cards() {
   const dispatch = useDispatch();
   const { ordersFiltered } = useSelector((state) => state);
+  // console.log(ordersFiltered);
   const [cardsShow, setCardsShow] = useState("");
   useEffect(() => {
     setCardsShow(ordersFiltered);

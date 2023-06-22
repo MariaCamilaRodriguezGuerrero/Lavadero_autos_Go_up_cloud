@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 const Billing = () => {
   const location = useLocation();
   const { services } = location.state;
-  console.log(services);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [medioPago, setMedioPago] = useState("");
@@ -29,8 +28,6 @@ const Billing = () => {
           })
         );
       });
-
-      //dispatch(getOrders());
       setTimeout(() => {
         navigate("/ad");
       }, 200);
@@ -43,7 +40,7 @@ const Billing = () => {
 
   const calculateTotal = () => {
     const subtotal = services
-      .map((e) => Number(e.cost))
+      .map((e) => Number(e.cost - e.discountDay))
       .reduce((accumulator, currentValue) => accumulator + currentValue);
     const descuentoAplicado = (subtotal * descuento) / 100;
     return subtotal - descuentoAplicado;
@@ -106,21 +103,18 @@ const Billing = () => {
             {services &&
               services.map((e) => (
                 <span key={e.serviceName}>
-                  {e.serviceName}: ${e.cost}
-                </span>
-              ))}
-              {services &&
-              services.map((e) => (
-                <span>
-                  Decuento del dia: ${e.discountDay}
+                  {e.serviceName}: ${e.cost} - Descuento del día: ${e.discountDay}
                 </span>
               ))}
 
             <span>Descuento: {descuento}%</span>
+            
           </div>
-          <span className={style.total}>
-            Total: ${services && calculateTotal()}
-          </span>
+            <span>
+              Total: ${services && calculateTotal()}
+            </span>
+            <span>Propina: ${tip}</span>
+            <span className={style.total}>Total + Propina: ${calculateTotal() + Number(tip)} </span>
 
           <button type="submit" className={style.submit}>
             Enviar

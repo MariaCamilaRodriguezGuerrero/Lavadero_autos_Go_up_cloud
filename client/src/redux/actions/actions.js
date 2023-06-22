@@ -22,10 +22,19 @@ import {
   DELETE_ORDER,
   POST_SERVICE,
   PUT_SERVICE,
-  SELECT_SERVICE
+  SELECT_SERVICE,
+  GET_TOTAL_INVOICED
 } from "./types";
 
 import axios from "axios";
+
+const getDate = (date = new Date()) => {
+  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const month =
+    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${year}${month}${day}`;
+};
 
 // Acción para cambiar el número de página
 export const changePageNumber = (number) => {
@@ -340,4 +349,38 @@ export const putService = (id, service) => {
 // Acción para añadir el servicio seleccionado
 export const selectService = (service) => {
   return { type: SELECT_SERVICE, payload: service };
+};
+
+
+export const getPayrollsChart = (startDate, endDate) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `/payrolls/chart?startDate=${getDate(startDate)}&endDate=${getDate(
+          endDate
+        )}`
+      );
+      dispatch({ type: GET_PAYROLLS, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+export const getTotalInvoiced = () => {
+  const today = new Date();
+  const month =
+    today.getMonth() + 1 < 10
+      ? `0${today.getMonth() + 1}`
+      : today.getMonth() + 1;
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `/orders/date?orderMonth=${month}&orderStatus=completed`
+      );
+      dispatch({ type: GET_TOTAL_INVOICED, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
 };

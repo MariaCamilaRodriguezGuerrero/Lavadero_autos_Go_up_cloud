@@ -21,7 +21,8 @@ import {
   DELETE_ORDER,
   POST_SERVICE,
   SELECT_SERVICE,
-  PUT_SERVICE
+  PUT_SERVICE,
+  GET_TOTAL_INVOICED
 } from "../actions/types";
 
 // Estado inicial de la aplicación
@@ -47,6 +48,8 @@ const initialState = {
   ordersCancelledSuperAdmin: [], // Lista de órdenes completadas SuperAdmin
   ordersCancelledFilteredSuperAdmin: [], // Lista de órdenes completadas filtradas
   serviceSelected: {}, // Servicio seleccionado para editar
+  totalInvoiced: 0,
+
 };
 
 // Reducer que maneja el estado de la aplicación
@@ -124,6 +127,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         return {
           ...state,
         }
+      case GET_TOTAL_INVOICED:
+        return {
+          ...state,
+          totalInvoiced: payload,
+        };
 
     default:
       return { ...state };

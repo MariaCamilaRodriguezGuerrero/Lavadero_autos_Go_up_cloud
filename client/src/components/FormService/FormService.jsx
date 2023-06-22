@@ -83,6 +83,7 @@ const FormService = () => {
           }),
         })
       );
+      document.getElementById("submit").disabled = true;
       setTimeout(() => {
         navigate("/ad");
       }, "800");
@@ -373,7 +374,7 @@ const FormService = () => {
         <button type="button" onClick={addFields} className={style.addBtn}>
           +
         </button>
-        <button className={style.submit} type="submit">
+        <button className={style.submit} type="submit" id="submit">
           Enviar
         </button>
       </form>

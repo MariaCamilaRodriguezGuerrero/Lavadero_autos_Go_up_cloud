@@ -19,7 +19,7 @@ const CardsCanceled = () => {
 
   const displayCards =
     typeof cardsShowSuperAdmin !== "string" &&
-    cardsShowSuperAdmin.length &&
+    !!cardsShowSuperAdmin.length &&
     cardsShowSuperAdmin
       .slice(pagesVisited, pagesVisited + ordersPerPage)
       .reverse()
