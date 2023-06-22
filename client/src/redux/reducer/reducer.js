@@ -17,6 +17,7 @@ import {
   GET_ORDERS_COMPLETED_SUPER_ADMIN,
   GET_ORDERS_CANCELLED_SUPER_ADMIN,
   POST_WORKER,
+  PUT_WORKER,
   DELETE_ORDER
 } from "../actions/types";
 
@@ -94,6 +95,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         workersData: payload,
       };  
+
+    case PUT_WORKER:
+      return { ...state, 
+        workersData: payload 
+      };
 
       case DELETE_ORDER:
         return {

@@ -62,3 +62,6 @@ export const POST_WORKER = "POST_WORKER"
 
 //Accion para borrar un servicio
 export const DELETE_ORDER = "DELETE_ORDER";
+
+// Acción para EDITAR los trabajadores super Admin
+export const PUT_WORKER = "POST_WORKER"

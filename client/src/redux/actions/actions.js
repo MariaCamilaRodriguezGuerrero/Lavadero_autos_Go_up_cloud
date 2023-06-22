@@ -18,6 +18,7 @@ import {
   GET_ORDERS_COMPLETED_SUPER_ADMIN,
   GET_ORDERS_CANCELLED_SUPER_ADMIN,
   POST_WORKER,
+  PUT_WORKER,
   DELETE_ORDER
 } from "./types";
 
@@ -275,6 +276,18 @@ export const postWorker = (worker) => {
       alert("Trabajador creado con exito")
     } catch (error) {
       alert("Este trabajador ya esta registrado");
+    }
+  };
+};
+
+// Acción para EDITAR los trabajadores
+export const putWorker = (id, changes) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.put(`/workers/${id}`, changes);
+      dispatch({ type: PUT_WORKER, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
     }
   };
 };
