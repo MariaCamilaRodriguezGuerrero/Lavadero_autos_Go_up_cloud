@@ -1,48 +1,50 @@
+// CardWorkers.js
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import style from "./CardWorkers.module.css";
+import styles from "./CardWorkers.module.css";
 import { getWorkers } from "../../redux/actions/actions";
+import { Link } from "react-router-dom";
 
 const CardWorkers = () => {
   const { workersData } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    dispatch(getWorkers());
+    setTimeout(() => {
+      dispatch(getWorkers()); 
+    }, 100);
   }, [dispatch]);
-
-
+  
   return (
     <div>
-      <h1 className={style.title}>Lista de Trabajadores</h1>
-      {workersData.map((worker) => (
-        <div key={worker.id} className={style.card}>
-          <p>
-            <strong>RUT o Pasaporte:</strong> {worker.rut_passport}
-          </p>
-          <p>
-            <strong>Nombre:</strong> {worker.name}
-          </p>
-          <p>
-            <strong>Dirección:</strong> {worker.address}
-          </p>
-          <p>
-            <strong>Sede:</strong> {worker.branch}
-          </p>
-          <p>
-            <strong>Porcentaje de ganancias:</strong> {worker.profitPercentage}%
-          </p>
-          <p>
-            <strong>Meta:</strong> {worker.goal}
-          </p>
-          <p>
-            <strong>Porcentaje después de la meta:</strong>{" "}
-            {worker.percentageAfterGoal}%
-          </p>
-          
-        </div>
-      ))}
+      <h1 className={styles.title}>Lista de Trabajadores</h1>
+      <Link to="/su/formRegistration">
+        <button className={styles.submit}>Formulario</button>
+      </Link>
+      <div className={styles.cardContainer}>
+        {!!workersData.length && workersData.map((worker) => (
+          <div key={worker.id} className={styles.card}>
+            <p>
+              <strong>RUT o Pasaporte:</strong> {worker.rut_passport}
+            </p>
+            <p>
+              <strong>Nombre:</strong> {worker.name}
+            </p>
+            <p>
+              <strong>Dirección:</strong> {worker.address || "No ingresado"}
+            </p>
+            <p>
+              <strong>Sede:</strong> {worker.branch}
+            </p>
+            <p>
+              <strong>Porcentaje de ganancias:</strong> {worker.profitPercentage}%
+            </p>
+            <p>
+              <strong>Meta:</strong> {worker.goal}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

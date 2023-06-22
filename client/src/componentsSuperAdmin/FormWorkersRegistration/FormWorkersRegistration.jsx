@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { postWorker, getWorkers, putWorker } from "../../redux/actions/actions";
 
 import style from "./FormWorkersRegistration.module.css";
 
-const FormWorkers = ({ onCancel }) => {
+const FormWorkers = () => {
   const { workersData } = useSelector((state) => state);
   const [form, setForm] = useState({
     rut_passport: "",
@@ -25,7 +25,7 @@ const FormWorkers = ({ onCancel }) => {
     branch: "",
     percentageAfterGoal: ""
   });
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -34,9 +34,9 @@ const FormWorkers = ({ onCancel }) => {
     return existingWorker ? existingWorker : null;
   };
 
-  useEffect(() => {
-    location.state === null && navigate("/su/workersregistration");
-  }, [location.state, navigate]);
+  // useEffect(() => {
+  //   location.state === null && navigate("/su/workersregistration");
+  // }, [location.state, navigate]);
 
 
 
@@ -90,8 +90,9 @@ const FormWorkers = ({ onCancel }) => {
 
     if (!hasErrors) {
       dispatch(postWorker(form));
-      dispatch(putWorker(form.rut_passport,form))
+      dispatch(putWorker(form.rut_passport, form))
       dispatch(getWorkers());
+      navigate("/su/workersregistration")
     }
 
 
@@ -125,6 +126,13 @@ const FormWorkers = ({ onCancel }) => {
 
   return (
     <div>
+       <Link to={"/su/workersregistration"}>
+        <img
+          className={style.backBtn}
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Back_Arrow.svg"
+          alt=""
+        />
+      </Link>
       <h1 className={style.title}>Registro de trabajadores</h1>
       <p className={style.subtitle}>Los campos con * son obligatorios</p>
       <form onSubmit={handleSubmit}>
@@ -205,16 +213,12 @@ const FormWorkers = ({ onCancel }) => {
             )}
           </div>
         </div>
-        <button type="submit" className={style.submit}>
+        <button type="submit" className={style.submit} >
           Enviar
         </button>
         <button type="submit" className={style.submit}>
           Editar
         </button>
-        <button type="button" className={style.submit} onClick={onCancel}>
-          Regresar
-        </button>
-
       </form>
     </div>
   );

@@ -7,9 +7,8 @@ import NavSuperAdmin from "../componentsSuperAdmin/NavSuperAdmin/NavSuperAdmin";
 import BillingListSuperAdmin from "../viewsSuperAdmin/BillingListSuperAdmin/BillingList";
 import WorkersRegistration from "../viewsSuperAdmin/workersregistration/Workersregistration";
 import ServicesRegistration from "../viewsSuperAdmin/ServicesRegistration/ServicesRegistration";
-import CanceledServices from "../viewsSuperAdmin/CanceledServices/CanceledServices"
-
-
+import CanceledServices from "../viewsSuperAdmin/CanceledServices/CanceledServices";
+import FormWorkers from "../componentsSuperAdmin/FormWorkersRegistration/FormWorkersRegistration";
 
 function SuperAdmin() {
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ function SuperAdmin() {
     let userAccess = cookies.get("userAccess");
     if (!userAccess || userAccess.type !== "superadmin" || !userAccess.access)
       navigate("/");
-  }, [cookies]);
+  }, [cookies, navigate]);
 
   return (
     <div className="index">
@@ -30,6 +29,7 @@ function SuperAdmin() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/billingListSuperAdmin" element={<BillingListSuperAdmin />} />
         <Route path="/workersregistration" element={<WorkersRegistration />} />
+        <Route path="/formRegistration" element={<FormWorkers />} />
         <Route path="/servicesRegistration" element={<ServicesRegistration />} />
         <Route path="/canceledServices" element={<CanceledServices />} />
       </Routes>
@@ -38,3 +38,4 @@ function SuperAdmin() {
 }
 
 export default SuperAdmin;
+

@@ -5,6 +5,13 @@
   left: 40px;
   width: 40px;
 }
+.backBtn {
+  position: absolute;
+  display: flex;
+  top: 100px;
+  left: 40px;
+  width: 40px;
+}
 .title {
   margin-top: 100px;
 }
@@ -13,8 +20,9 @@
 }
 .form {
   display: flex;
-  width: 100vw;
+  width: 50vw;
   gap: 50px;
+  margin-bottom: 50px;
 }
 .column {
   display: flex;

@@ -66,16 +66,7 @@ export default function CardsBilling() {
 
   return (
     <div className={styles.container}>
-      {/* {errorToShow ? (
-        <p className={styles.error}>Error: {errorToShow}</p>
-      ) : null} */}
       <div className={styles.cards}>
-        {/* {typeof ongoingServices === "string" && errorToShow === "" ? (
-          <p className={styles.message}>{ongoingServices}</p>
-        ) : null}
-        {!ongoingServices[0] && errorToShow === "" ? (
-          <p className={styles.message}>No matches found</p>
-        ) : null} */}
         {displayCards}
       </div>
     </div>
