@@ -1,6 +1,6 @@
 import style from "./CardCanceled.module.css";
 import { useDispatch } from "react-redux";
-import { deleteOrder } from "../../../redux/actions/actions";
+import { deleteOrder, getOrdersCanceledSuperAdmin } from "../../../redux/actions/actions";
 
 const CardCanceled = ({
   licensePlate,
@@ -14,6 +14,7 @@ const CardCanceled = ({
 
   const handleDeleteOrder = () => {
     dispatch(deleteOrder(orderService));
+    dispatch(getOrdersCanceledSuperAdmin());
   };
 
   return (

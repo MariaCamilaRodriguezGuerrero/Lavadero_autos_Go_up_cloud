@@ -1,5 +1,3 @@
-
-
 import {
   SET_PAGE_NUMBER,
   GET_VEHICLE,
