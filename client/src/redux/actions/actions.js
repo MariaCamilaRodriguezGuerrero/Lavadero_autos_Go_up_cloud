@@ -382,7 +382,7 @@ export const getPayment = (workerId) => {
   return async function (dispatch) {
     try {
       const serverData = await axios.get(
-        `http://lavadero_autos_api.test/payrolls/date?&workerId=${workerId}`
+        `/payrolls/date?&workerId=${workerId}`
       );
       dispatch({ type: GET_PAYMENT, payload: serverData.data });
     } catch (error) {
@@ -395,7 +395,7 @@ export const putPayment = (ids, status) => {
   return async function (dispatch) {
     try {
       const serverData = await axios.put(
-        `http://lavadero_autos_api.test/payrolls/${ids}`,
+        `/payrolls/${ids}`,
         status
       );
       dispatch({ type: PUT_PAYMENT, payload: serverData.data });
