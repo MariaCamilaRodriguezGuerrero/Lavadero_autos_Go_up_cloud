@@ -35,9 +35,9 @@ export default function Nav() {
         {menuOpen && (
           <div className={style.mobileMenuItems}>
             <Link
-              to={"/createVehicle"}
+              to={"/ad/createVehicle"}
               className={
-                location.pathname === "/createVehicle"
+                location.pathname === "/ad/createVehicle"
                   ? style.itemActive
                   : style.item
               }
@@ -46,9 +46,9 @@ export default function Nav() {
               Ingresar Vehículo
             </Link>
             <Link
-              to={"/services"}
+              to={"/ad"}
               className={
-                location.pathname === "/services"
+                location.pathname === "/ad"
                   ? style.itemActive
                   : style.item
               }
@@ -57,9 +57,9 @@ export default function Nav() {
               Servicios En Curso
             </Link>
             <Link
-              to={"/dashboard"}
+              to={"/ad/dashboard"}
               className={
-                location.pathname === "/dashboard"
+                location.pathname === "/ad/dashboard"
                   ? style.itemActive
                   : style.item
               }
@@ -68,9 +68,9 @@ export default function Nav() {
               Resumen del Día
             </Link>
             <Link
-              to={"/billingList"}
+              to={"/ad/billingList"}
               className={
-                location.pathname === "/billingList"
+                location.pathname === "/ad/billingList"
                   ? style.itemActive
                   : style.item
               }
