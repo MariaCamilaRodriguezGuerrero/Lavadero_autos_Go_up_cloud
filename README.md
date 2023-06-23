@@ -23,6 +23,9 @@ La aplicación "Lavadero de Autos Go Up Cloud" es un sistema de gestión en lín
 ## Login 
 La vista de inicio de sesión permite al Super Admin o Admin ingresar sus credenciales para acceder al panel de administración.
 
+## Pagination
+Una paginacion donde cada 10 items lo va pasando por paginas
+
 ## Super Admin
 
 El Super Admin es el usuario con el nivel de acceso más alto en la aplicación. Tiene control total sobre todas las funcionalidades y puede realizar tareas de administración a nivel global.
@@ -40,7 +43,6 @@ El Super Admin es el usuario con el nivel de acceso más alto en la aplicación.
 ### Componentes del Super Admin
 
 - **Navbar**: Componente de navegación que muestra las opciones de menú y permite al usuario cambiar entre diferentes secciones.
-- **LoginForm**: Componente que muestra el formulario de inicio de sesión y maneja la autenticación del Super Admin.
 - **CardBillingSuperAdmin**: El formulario que filtra por las ordenes facturadas historicamente.
 - **CardCanceledSuperAdmin**:  El formulario que filtra por las ordenes Canceladas historicamente se pueden eliminar definitivamente de la base de datos.
 - **CardWorkers**: Donde se hace el get de todos los trabajadores con un boton que lleva a pagar.
@@ -49,7 +51,7 @@ El Super Admin es el usuario con el nivel de acceso más alto en la aplicación.
 - **FormServicesRegistration**: Formulario para crear los servicios.
 - **FormEditServices**: Formulario donde se puede editar modificar las diferentes propiedades del servicio.
 - **FormWorkersRegistration**: Formulario controlado para registrar los trabajadores.
-- SearchBar**: Search donde se filtra los resultados dependiendo del estado del servicio (facturado o cancelado).
+- SearchBar**: Search donde se filtra los resultados dependiendo del estado del servicio servicio por patente (facturado o cancelado).
 - **Service**: Las tarjetas de los servicios creados con sus respectivas propiedades (valor, descuento del dia, nombre del servio etc)
   
 
@@ -69,14 +71,21 @@ El Admin es un usuario con un nivel de acceso ligeramente inferior al del Super 
 
 ### Vistas del Admin
 
-- **Login**: La vista de inicio de sesión permite al Admin ingresar sus credenciales para acceder al panel de administración.
-- **Panel de administración del Admin**: Esta vista muestra un resumen de las estadísticas clave y proporciona acceso rápido a las diferentes secciones de administración.
+- **Dashboard**: Donde aparece el grafico de los trabajadores.
+- **BillingListSuperAdmin**: Donde se va a renderizar las cards solo los del dia con los servicios facurados con su searchbar y paginado.
+- **Services**: Donde esta todas las tarjetas con los servicos en curso con su respectivo search por patente y paginado.
 
 ### Componentes del Admin
 
 - **Navbar**: Componente de navegación que muestra las opciones de menú y permite al usuario cambiar entre diferentes secciones.
-- **LoginForm**: Componente que muestra el formulario de inicio de sesión y maneja la autenticación del Admin.
-- **AdminPanel**: Componente que muestra un resumen de las estadísticas clave y proporciona acceso rápido a las diferentes secciones de administración.
+- **CardServices**: Renderiza los servicos en cursos donde se puede editar facuturar o cancelar un servicio o servicios.
+- **CardBillingSuperAdmin**: El registro que filtra por las ordenes facturadas solo del dia.
+- **Chart**: Grafico que solo te muestra lo que han facturado el perdonal por dia.
+- **FormPatent**: Donde se ingresa la patente para verificar si esta en la base de datos y si no esta la crea.
+- **FormVehicle**: Formulario donde se ingresan los datos del vehiculo.
+- **FormService**: Formulario controlado para asignarle un servicio a 1 o mas trabajadores.
+- **SearchBar**: Search donde se filtra los resultados dependiendo del estado del servicio por patente (pendiente ofacturado).
+
 
 ### Acciones y Reductores del Admin
 
