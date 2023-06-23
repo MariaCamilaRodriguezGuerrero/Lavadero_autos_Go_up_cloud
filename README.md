@@ -20,20 +20,38 @@ Este repositorio contiene el código fuente de la aplicación "Lavadero de Autos
 
 La aplicación "Lavadero de Autos Go Up Cloud" es un sistema de gestión en línea diseñado para facilitar la administración de un lavadero de autos. Permite a los administradores realizar tareas como agregar vehículos, definir servicios, asignar trabajadores y gestionar órdenes de servicio. La aplicación está dividida en dos roles principales: Super Admin y Admin.
 
+## Login 
+La vista de inicio de sesión permite al Super Admin o Admin ingresar sus credenciales para acceder al panel de administración.
+
 ## Super Admin
 
 El Super Admin es el usuario con el nivel de acceso más alto en la aplicación. Tiene control total sobre todas las funcionalidades y puede realizar tareas de administración a nivel global.
 
 ### Vistas del Super Admin
 
-- **Login**: La vista de inicio de sesión permite al Super Admin ingresar sus credenciales para acceder al panel de administración.
-- **Panel de administración del Super Admin**: Esta vista muestra un resumen de las estadísticas clave y proporciona acceso rápido a las diferentes secciones de administración.
+- **BillingListSuperAdmin**: Donde se va a renderizar las cards con los servicios facurados con su searchbar y paginado.
+- **CanceledServices**: Donde se va a renderizar las cards con los servicios cancelados con su searchbar y paginado.
+- **Dashboard**: Donde aparece el grafico y el resultado del mes competo de lo facturado.
+- **Services**: Donde se va a renderizar los servicos con el boton para editar el servicio o crear uno nuevo.
+- **EditServices**: Donde se renderiza edit de servicios para poder cambiar los campos.
+- **ServicesRegistration**: Donde se va a registrar los servios que queremos crear.
+- **workersregistration**:  Donde se va a registrar los trabajadores que queremos crear.
 
 ### Componentes del Super Admin
 
 - **Navbar**: Componente de navegación que muestra las opciones de menú y permite al usuario cambiar entre diferentes secciones.
 - **LoginForm**: Componente que muestra el formulario de inicio de sesión y maneja la autenticación del Super Admin.
-- **AdminPanel**: Componente que muestra un resumen de las estadísticas clave y proporciona acceso rápido a las diferentes secciones de administración.
+- **CardBillingSuperAdmin**: El formulario que filtra por las ordenes facturadas historicamente.
+- **CardCanceledSuperAdmin**:  El formulario que filtra por las ordenes Canceladas historicamente se pueden eliminar definitivamente de la base de datos.
+- **CardWorkers**: Donde se hace el get de todos los trabajadores con un boton que lleva a pagar.
+- **CardWorkersPay**: Donde se realiza el pago de trabajadores donde aparecen el pago hasta la fecha.
+- **Chart**: Grafico con el slector para poder filtrar una fecha o entre fechas.
+- **FormServicesRegistration**: Formulario para crear los servicios.
+- **FormEditServices**: Formulario donde se puede editar modificar las diferentes propiedades del servicio.
+- **FormWorkersRegistration**: Formulario controlado para registrar los trabajadores.
+- SearchBar**: Search donde se filtra los resultados dependiendo del estado del servicio (facturado o cancelado).
+- **Service**: Las tarjetas de los servicios creados con sus respectivas propiedades (valor, descuento del dia, nombre del servio etc)
+  
 
 ### Acciones y Reductores del Super Admin
 
