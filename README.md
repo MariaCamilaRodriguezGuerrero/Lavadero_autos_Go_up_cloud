@@ -51,7 +51,7 @@ El Super Admin es el usuario con el nivel de acceso más alto en la aplicación.
 - **FormServicesRegistration**: Formulario para crear los servicios.
 - **FormEditServices**: Formulario donde se puede editar modificar las diferentes propiedades del servicio.
 - **FormWorkersRegistration**: Formulario controlado para registrar los trabajadores.
-- SearchBar**: Search donde se filtra los resultados dependiendo del estado del servicio servicio por patente (facturado o cancelado).
+- **SearchBar**: Search donde se filtra los resultados dependiendo del estado del servicio servicio por patente (facturado o cancelado).
 - **Service**: Las tarjetas de los servicios creados con sus respectivas propiedades (valor, descuento del dia, nombre del servio etc)
   
 
