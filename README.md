@@ -87,12 +87,189 @@ El Admin es un usuario con un nivel de acceso ligeramente inferior al del Super 
 - **SearchBar**: Search donde se filtra los resultados dependiendo del estado del servicio por patente (pendiente ofacturado).
 
 
-### Acciones y Reductores del Admin
+### Acciones 
 
-- **adminActions.js**: Este archivo contiene las acciones relacionadas con las funcionalidades del Admin, como obtener datos, crear o editar vehículos, servicios y trabajadores.
-- **adminReducer.js**: El reductor del Admin maneja el estado relacionado con las acciones del Admin, como el estado de los vehículos, servicios, trabajadores, órdenes de servicio, etc.
+## Función `getDate(date)`
 
-### Servicios y Estilos del Admin
+Esta función recibe un parámetro opcional `date` que representa una fecha. Si no se proporciona ningún valor, se utiliza la fecha actual. La función devuelve una cadena de texto en formato `yyyymmdd`, que representa la fecha en formato año, mes y día.
 
-- **adminService.js**: El servicio del Admin contiene las funciones para realizar las solicitudes HTTP relacionadas con las funcionalidades del Admin, como obtener datos, crear o editar vehículos, servicios y trabajadores.
-- **adminStyles.css**: Este archivo contiene los estilos CSS específicos para las vistas y componentes del Admin.
+- **Parámetros:**
+  - `date` (opcional): Una fecha en formato `Date` (por defecto, la fecha actual).
+
+- **Valor de retorno:**
+  - Tipo: `string`
+  - Descripción: Cadena de texto en formato `yyyymmdd` que representa la fecha.
+
+---
+
+## Acción `changePageNumber(number)`
+
+Esta acción se utiliza para cambiar el número de página en una aplicación. Recibe un parámetro `number` que representa el nuevo número de página y devuelve un objeto de acción con el tipo `SET_PAGE_NUMBER` y el número de página como carga útil (`payload`).
+
+- **Parámetros:**
+  - `number`: Nuevo número de página.
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción que dispatcha un objeto con el tipo `SET_PAGE_NUMBER` y el número de página como carga útil (`payload`).
+
+---
+
+## Acción `getVehicle(patent)`
+
+Esta acción se utiliza para obtener información de un vehículo. Recibe un parámetro `patent` que representa la matrícula del vehículo y realiza una llamada asíncrona al servidor para obtener los datos correspondientes. Luego, dispatcha un objeto de acción con el tipo `GET_VEHICLE` y los datos del servidor como carga útil (`payload`).
+
+- **Parámetros:**
+  - `patent`: Matrícula del vehículo.
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_VEHICLE` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `cleanVehicleData()`
+
+Esta acción se utiliza para limpiar la información de un vehículo. No recibe ningún parámetro. Dispatcha un objeto de acción con el tipo `CLEAN_VEHICLE` y un objeto vacío como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción que dispatcha un objeto con el tipo `CLEAN_VEHICLE` y un objeto vacío como carga útil (`payload`).
+
+---
+
+## Acción `getServices()`
+
+Esta acción se utiliza para obtener información de los servicios. No recibe ningún parámetro. Realiza una llamada asíncrona al servidor para obtener los datos correspondientes y dispatcha un objeto de acción con el tipo `GET_SERVICES` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_SERVICES` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `getWorkers()`
+
+Esta acción se utiliza para obtener información de los trabajadores. No recibe ningún parámetro. Realiza una llamada asíncrona al servidor para obtener los datos correspondientes y dispatcha un objeto de acción con el tipo `GET_WORKERS` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_WORKERS` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `postOrder(services)`
+
+Esta acción se utiliza para crear una nueva orden. Recibe un parámetro `services` que representa los servicios de la orden. Realiza una llamada asíncrona al servidor para enviar los datos y dispatcha un objeto de acción con el tipo `POST_ORDER` y los datos del servidor como carga útil (`payload`).
+
+- **Parámetros:**
+  - `services`: Servicios de la orden.
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor para crear una nueva orden y dispatcha un objeto con el tipo `POST_ORDER` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `getOrders()`
+
+Esta acción se utiliza para obtener información de las órdenes. No recibe ningún parámetro. Realiza una llamada asíncrona al servidor para obtener los datos correspondientes y dispatcha un objeto de acción con el tipo `GET_ORDERS` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_ORDERS` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `getOrdersCompleted()`
+
+Esta acción se utiliza para obtener las órdenes completadas. No recibe ningún parámetro. Obtiene la fecha actual y realiza una llamada asíncrona al servidor para obtener las órdenes completadas correspondientes a esa fecha. Dispatcha un objeto de acción con el tipo `GET_ORDERS_COMPLETED` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que obtiene la fecha actual, realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_ORDERS_COMPLETED` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `postVehicle(vehicle)`
+
+Esta acción se utiliza para crear un nuevo vehículo. Recibe un parámetro `vehicle` que representa los datos del vehículo a crear. Realiza una llamada asíncrona al servidor para enviar los datos y dispatcha un objeto de acción con el tipo `POST_VEHICLE` y los datos del servidor como carga útil (`payload`).
+
+- **Parámetros:**
+  - `vehicle`: Datos del vehículo a crear.
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor para crear un nuevo vehículo y dispatcha un objeto con el tipo `POST_VEHICLE` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `putVehicle(vehicle)`
+
+Esta acción se utiliza para actualizar un vehículo existente. Recibe un parámetro `vehicle` que representa los datos del vehículo a actualizar. Realiza una llamada asíncrona al servidor para enviar los datos actualizados y dispatcha un objeto de acción con el tipo `PUT_VEHICLE` y los datos del servidor como carga útil (`payload`).
+
+- **Parámetros:**
+  - `vehicle`: Datos del vehículo a actualizar.
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor para actualizar un vehículo existente y dispatcha un objeto con el tipo `PUT_VEHICLE` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `putOrder(id, status)`
+
+Esta acción se utiliza para actualizar una orden existente. Recibe dos parámetros: `id` que representa el identificador de la orden a actualizar, y `status` que representa el nuevo estado de la orden. Realiza una llamada asíncrona al servidor para enviar los datos actualizados y dispatcha un objeto de acción con el tipo `PUT_ORDER` y los datos del servidor como carga útil (`payload`).
+
+- **Parámetros:**
+  - `id`: Identificador de la orden a actualizar.
+  - `status`: Nuevo estado de la orden.
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor para actualizar una orden existente y dispatcha un objeto con el tipo `PUT_ORDER` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `searchFilter(filteredArray, saveInto)`
+
+Esta acción se utiliza para aplicar un filtro de búsqueda. Recibe dos parámetros: `filteredArray` que representa el array filtrado y `saveInto` que representa el lugar donde se guardarán los resultados filtrados. Dispatcha un objeto de acción con el tipo `SEARCH_FILTER` y los datos del filtro como carga útil (`payload`).
+
+- **Parámetros:**
+  - `filteredArray`: Array filtrado.
+  - `saveInto`: Lugar donde se guardarán los resultados filtrados.
+
+- **Valor de retorno:**
+  - Tipo: `object`
+  - Descripción: Objeto de acción con el tipo `SEARCH_FILTER` y los datos del filtro como carga útil (`payload`).
+
+---
+
+## Acción `postPayroll()`
+
+Esta acción se utiliza para crear una nueva nómina. Obtiene la fecha actual y realiza una llamada asíncrona al servidor para enviar los datos y dispatcha un objeto de acción con el tipo `POST_PAYROLLS` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que obtiene la fecha actual, realiza una llamada al servidor para crear una nueva nómina y dispatcha un objeto con el tipo `POST_PAYROLLS` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `getPayrolls()`
+
+Esta acción se utiliza para obtener información de las nóminas. Obtiene la fecha actual y realiza una llamada asíncrona al servidor para obtener los datos correspondientes a esa fecha. Dispatcha un objeto de acción con el tipo `GET_PAYROLLS` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que obtiene la fecha actual, realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_PAYROLLS` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `getUsers()`
+
+Esta acción se utiliza para obtener información de los usuarios. No recibe ningún parámetro. Realiza una llamada asíncrona al servidor para obtener los datos correspondientes y dispatcha un objeto de acción con el tipo `GET_USERS` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_USERS` y los datos obtenidos como carga útil (`payload`).
+
