@@ -55,15 +55,36 @@ El Super Admin es el usuario con el nivel de acceso más alto en la aplicación.
 - **Service**: Las tarjetas de los servicios creados con sus respectivas propiedades (valor, descuento del dia, nombre del servio etc)
   
 
-### Acciones y Reductores del Super Admin
+### Acciones 
 
-- **superAdminActions.js**: Este archivo contiene las acciones relacionadas con las funcionalidades del Super Admin, como obtener datos, crear o editar vehículos, servicios y trabajadores.
-- **superAdminReducer.js**: El reductor del Super Admin maneja el estado relacionado con las acciones del Super Admin, como el estado de los vehículos, servicios, trabajadores, órdenes de servicio, etc.
+## Acción `getOrdersCompletedSuperAdmin()`
 
-### Servicios y Estilos del Super Admin
+Esta acción se utiliza para obtener las órdenes completadas para un superadministrador. Realiza una llamada asíncrona al servidor para obtener los datos correspondientes a las órdenes completadas y dispatcha un objeto de acción con el tipo `GET_ORDERS_COMPLETED_SUPER_ADMIN` y los datos del servidor como carga útil (`payload`).
 
-- **superAdminService.js**: El servicio del Super Admin contiene las funciones para realizar las solicitudes HTTP relacionadas con las funcionalidades del Super Admin, como obtener datos, crear o editar vehículos, servicios y trabajadores.
-- **superAdminStyles.css**: Este archivo contiene los estilos CSS específicos para las vistas y componentes del Super Admin.
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_ORDERS_COMPLETED_SUPER_ADMIN` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `getOrdersCanceledSuperAdmin()`
+
+Esta acción se utiliza para obtener las órdenes canceladas para un superadministrador. Realiza una llamada asíncrona al servidor para obtener los datos correspondientes a las órdenes canceladas y dispatcha un objeto de acción con el tipo `GET_ORDERS_CANCELLED_SUPER_ADMIN` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `GET_ORDERS_CANCELLED_SUPER_ADMIN` y los datos obtenidos como carga útil (`payload`).
+
+---
+
+## Acción `postWorker(worker)`
+
+Esta acción se utiliza para crear un nuevo trabajador. Recibe un parámetro `worker` que representa los datos del trabajador a crear. Realiza una llamada asíncrona al servidor para enviar los datos y dispatcha un objeto de acción con el tipo `POST_WORKER` y los datos del servidor como carga útil (`payload`).
+
+- **Valor de retorno:**
+  - Tipo: `function`
+  - Descripción: Función de acción asincrónica que realiza una llamada al servidor y dispatcha un objeto con el tipo `POST_WORKER` y los datos obtenidos como carga útil (`payload`).
+
 
 ## Admin
 
