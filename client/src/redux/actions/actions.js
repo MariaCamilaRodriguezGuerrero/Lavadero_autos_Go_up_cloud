@@ -23,7 +23,9 @@ import {
   POST_SERVICE,
   PUT_SERVICE,
   SELECT_SERVICE,
-  GET_TOTAL_INVOICED
+  GET_TOTAL_INVOICED,
+  GET_PAYMENT,
+  PUT_PAYMENT,
 } from "./types";
 
 import axios from "axios";
@@ -243,34 +245,32 @@ export const setUserType = (userType) => {
   };
 };
 
-
-
 // -------------------- ACTIONS DE SUPER ADMIN -------------------------//
 
 // Acción para obtener las órdenes completadas para superAdmin
 export const getOrdersCompletedSuperAdmin = () => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `/orders?orderStatus=completed`
-      );
-      dispatch({ type: GET_ORDERS_COMPLETED_SUPER_ADMIN, payload: serverData.data });
+      const serverData = await axios.get(`/orders?orderStatus=completed`);
+      dispatch({
+        type: GET_ORDERS_COMPLETED_SUPER_ADMIN,
+        payload: serverData.data,
+      });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }
   };
 };
 
-
-
 // Acción para obtener las órdenes canceladas para superAdmin
 export const getOrdersCanceledSuperAdmin = () => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.get(
-        `/orders?orderStatus=cancelled`
-      );
-      dispatch({ type: GET_ORDERS_CANCELLED_SUPER_ADMIN, payload: serverData.data });
+      const serverData = await axios.get(`/orders?orderStatus=cancelled`);
+      dispatch({
+        type: GET_ORDERS_CANCELLED_SUPER_ADMIN,
+        payload: serverData.data,
+      });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }
@@ -281,11 +281,9 @@ export const getOrdersCanceledSuperAdmin = () => {
 export const postWorker = (worker) => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.post(
-        `/workers`, worker
-      );
+      const serverData = await axios.post(`/workers`, worker);
       dispatch({ type: POST_WORKER, payload: serverData.data });
-      alert("Trabajador creado con exito")
+      alert("Trabajador creado con exito");
     } catch (error) {
       alert("Este trabajador ya esta registrado");
     }
@@ -322,9 +320,7 @@ export const deleteOrder = (orderService) => {
 export const postService = (service) => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.post(
-        `/services`, service
-      );
+      const serverData = await axios.post(`/services`, service);
       dispatch({ type: POST_SERVICE, payload: serverData.data });
     } catch (error) {
       alert("Este servicio ya esta registrado");
@@ -336,9 +332,7 @@ export const postService = (service) => {
 export const putService = (id, service) => {
   return async function (dispatch) {
     try {
-      const serverData = await axios.put(
-        `/services/${id}`, service
-      );
+      const serverData = await axios.put(`/services/${id}`, service);
       dispatch({ type: PUT_SERVICE, payload: serverData.data });
     } catch (error) {
       alert("Error");
@@ -350,7 +344,6 @@ export const putService = (id, service) => {
 export const selectService = (service) => {
   return { type: SELECT_SERVICE, payload: service };
 };
-
 
 export const getPayrollsChart = (startDate, endDate) => {
   return async function (dispatch) {
@@ -379,6 +372,33 @@ export const getTotalInvoiced = () => {
         `/orders/date?orderMonth=${month}&orderStatus=completed`
       );
       dispatch({ type: GET_TOTAL_INVOICED, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+export const getPayment = (workerId) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.get(
+        `http://lavadero_autos_api.test/payrolls/date?&workerId=${workerId}`
+      );
+      dispatch({ type: GET_PAYMENT, payload: serverData.data });
+    } catch (error) {
+      // dispatch({ type: ERROR, payload: error.response.data.error });
+    }
+  };
+};
+
+export const putPayment = (ids, status) => {
+  return async function (dispatch) {
+    try {
+      const serverData = await axios.put(
+        `http://lavadero_autos_api.test/payrolls/${ids}`,
+        status
+      );
+      dispatch({ type: PUT_PAYMENT, payload: serverData.data });
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }

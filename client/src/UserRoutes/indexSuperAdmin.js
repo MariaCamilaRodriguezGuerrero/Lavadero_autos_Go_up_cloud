@@ -11,6 +11,7 @@ import CanceledServices from "../viewsSuperAdmin/CanceledServices/CanceledServic
 import FormWorkers from "../componentsSuperAdmin/FormWorkersRegistration/FormWorkersRegistration";
 import Services from "../viewsSuperAdmin/Services/Services";
 import EditServices from "../viewsSuperAdmin/EditServices/EditServices";
+import CardWorkersPay from "../componentsSuperAdmin/CardWorkersPay/CardWorkersPay";
 
 function SuperAdmin() {
   const navigate = useNavigate();
@@ -29,18 +30,34 @@ function SuperAdmin() {
       <NavSuperAdmin />
       <Routes location={background || location}>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/billingListSuperAdmin" element={<BillingListSuperAdmin />} />
+        <Route
+          path="/billingListSuperAdmin"
+          element={<BillingListSuperAdmin />}
+        />
         <Route path="/workersregistration" element={<WorkersRegistration />} />
         <Route path="/formRegistration" element={<FormWorkers />} />
-        <Route path="/servicesRegistration" element={<ServicesRegistration />} />
+        <Route
+          path="/servicesRegistration"
+          element={<ServicesRegistration />}
+        />
         <Route path="/canceledServices" element={<CanceledServices />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/services/servicesRegistration" element={<ServicesRegistration />} />
-        <Route path="/services/editServices" element={<EditServices />}/>
+        <Route
+          path="/services/servicesRegistration"
+          element={<ServicesRegistration />}
+        />
+        <Route path="/services/editServices" element={<EditServices />} />
       </Routes>
-    </div>  
+      {background && (
+        <Routes>
+          <Route
+            path="/workersregistration/payment"
+            element={<CardWorkersPay />}
+          />
+        </Routes>
+      )}
+    </div>
   );
 }
 
 export default SuperAdmin;
-

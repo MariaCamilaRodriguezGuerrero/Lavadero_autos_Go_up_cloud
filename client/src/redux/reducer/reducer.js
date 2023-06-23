@@ -22,13 +22,15 @@ import {
   POST_SERVICE,
   SELECT_SERVICE,
   PUT_SERVICE,
-  GET_TOTAL_INVOICED
+  GET_TOTAL_INVOICED,
+  GET_PAYMENT,
+  PUT_PAYMENT,
 } from "../actions/types";
 
 // Estado inicial de la aplicación
 const initialState = {
   vehicleData: {}, // Datos del vehículo
-  servicesData: [], // Datos de los servicios 
+  servicesData: [], // Datos de los servicios
   workersData: [], // Datos de los trabajadores
   postOrderMessage: "", // Mensaje de respuesta al crear una orden
   postVehicleMessage: "", // Mensaje de respuesta al crear un vehículo
@@ -49,7 +51,8 @@ const initialState = {
   ordersCancelledFilteredSuperAdmin: [], // Lista de órdenes completadas filtradas
   serviceSelected: {}, // Servicio seleccionado para editar
   totalInvoiced: 0,
-
+  payment: 0,
+  paymentPutMessage: "",
 };
 
 // Reducer que maneja el estado de la aplicación
@@ -89,49 +92,57 @@ export default function rootReducer(state = initialState, { type, payload }) {
     // ----------------- PARA SUPER ADMIN ---------------------------- //
     case GET_ORDERS_COMPLETED_SUPER_ADMIN:
       return {
-      ...state,
-      ordersCompletedSuperAdmin: payload,
+        ...state,
+        ordersCompletedSuperAdmin: payload,
       };
     case GET_ORDERS_CANCELLED_SUPER_ADMIN:
       return {
-      ...state,
-      ordersCancelledSuperAdmin: payload,
+        ...state,
+        ordersCancelledSuperAdmin: payload,
       };
     case POST_WORKER:
-      return{
+      return {
         ...state,
         workersData: payload,
-      };  
-
-    case PUT_WORKER:
-      return { ...state, 
-        workersData: payload 
       };
 
-      case DELETE_ORDER:
-        return {
-          ...state,
-          orders: payload
-        };
-      case POST_SERVICE:
-        return {
-          ...state,
-          servicesData: payload,
-        };
-      case SELECT_SERVICE:
-        return {
-          ...state,
-          serviceSelected: payload,
-        }
-      case PUT_SERVICE:
-        return {
-          ...state,
-        }
-      case GET_TOTAL_INVOICED:
-        return {
-          ...state,
-          totalInvoiced: payload,
-        };
+    case PUT_WORKER:
+      return { ...state, workersData: payload };
+
+    case DELETE_ORDER:
+      return {
+        ...state,
+        orders: payload,
+      };
+    case POST_SERVICE:
+      return {
+        ...state,
+        servicesData: payload,
+      };
+    case SELECT_SERVICE:
+      return {
+        ...state,
+        serviceSelected: payload,
+      };
+    case PUT_SERVICE:
+      return {
+        ...state,
+      };
+    case GET_TOTAL_INVOICED:
+      return {
+        ...state,
+        totalInvoiced: payload,
+      };
+    case GET_PAYMENT:
+      return {
+        ...state,
+        payment: payload,
+      };
+    case PUT_PAYMENT:
+      return {
+        ...state,
+        paymentPutMessage: payload,
+      };
 
     default:
       return { ...state };

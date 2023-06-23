@@ -103,18 +103,19 @@ const Billing = () => {
             {services &&
               services.map((e) => (
                 <span key={e.serviceName}>
-                  {e.serviceName}: ${e.cost} - Descuento del día: ${e.discountDay}
+                  {e.serviceName}: ${e.cost}
+                  {e.discountDay !== "0" &&
+                    " - Descuento del día: $" + e.discountDay}
                 </span>
               ))}
 
             <span>Descuento: {descuento}%</span>
-            
           </div>
-            <span>
-              Total: ${services && calculateTotal()}
-            </span>
-            <span>Propina: ${tip}</span>
-            <span className={style.total}>Total + Propina: ${calculateTotal() + Number(tip)} </span>
+          <span>Total: ${services && calculateTotal()}</span>
+          <span>Propina: ${tip}</span>
+          <span className={style.total}>
+            Total + Propina: ${calculateTotal() + Number(tip)}{" "}
+          </span>
 
           <button type="submit" className={style.submit}>
             Enviar

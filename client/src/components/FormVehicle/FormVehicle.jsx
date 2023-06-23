@@ -43,14 +43,6 @@ const FormVehicle = () => {
   }, [dispatch, patent]);
 
   useEffect(() => {
-    console.log(postVehicleMessage);
-  }, [postVehicleMessage]);
-  useEffect(() => {
-    console.log(putVehicleMessage);
-  }, [putVehicleMessage]);
-
-  useEffect(() => {
-    console.log(vehicleData);
     setForm({
       client: vehicleData.client,
       vehicleType: vehicleData.vehicleType

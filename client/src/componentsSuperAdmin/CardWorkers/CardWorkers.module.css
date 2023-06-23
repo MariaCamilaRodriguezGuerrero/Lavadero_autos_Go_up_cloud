@@ -43,7 +43,7 @@
   top: 0;
   right: 0;
   transform: translate(-50%, 50%);
-  z-index: 9999;
+  z-index: 1;
 }
 
 .submit:hover {
@@ -51,5 +51,25 @@
 }
 
 .submit:active {
+  background-color: #30b4c9;
+}
+.pagar {
+  padding: 15px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  color: black;
+  background-color: #3cd8f0;
+  border: none;
+  border-radius: 15px;
+  border: 2px rgba(0, 0, 0, 0) solid;
+}
+
+.pagar:hover {
+  border: 2px black solid;
+}
+
+.pagar:active {
   background-color: #30b4c9;
 }
