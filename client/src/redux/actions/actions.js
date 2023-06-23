@@ -296,6 +296,7 @@ export const putWorker = (id, changes) => {
     try {
       const serverData = await axios.put(`/workers/${id}`, changes);
       dispatch({ type: PUT_WORKER, payload: serverData.data });
+      alert("Trabajador actualizado con exito");
     } catch (error) {
       // dispatch({ type: ERROR, payload: error.response.data.error });
     }
@@ -311,7 +312,7 @@ export const deleteOrder = (orderService) => {
       dispatch({ type: DELETE_ORDER, payload: orderService });
     } catch (error) {
       // Manejar el error aquí
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 };

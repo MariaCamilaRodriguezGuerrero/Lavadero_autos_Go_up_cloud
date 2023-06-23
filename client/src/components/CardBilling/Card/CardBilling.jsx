@@ -8,7 +8,7 @@ const CardBilling = ({
 }) => {
 
   return (
-    <div className={style.card}>
+    <div className={style.card}> 
       <div className={style.pendiente}>
         <img
           className={style.billingImg}
@@ -42,7 +42,7 @@ const CardBilling = ({
         <span className={style.spanDataV}>
           $
           {services
-            .map((e) => Number(e.cost))
+            .map((e) => Number(e.invoiced))
             .reduce((accumulator, currentValue) => accumulator + currentValue)}
         </span>
       </p>

@@ -90,13 +90,16 @@ const FormWorkers = () => {
 
     if (!hasErrors) {
       dispatch(postWorker(form));
-      dispatch(putWorker(form.rut_passport, form))
       dispatch(getWorkers());
       navigate("/su/workersregistration")
     }
-
-
   };
+
+  const handleEdit = () => {
+      dispatch(putWorker(form.rut_passport, form))
+      dispatch(getWorkers());
+      navigate("/su/workersregistration")
+    };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -216,7 +219,7 @@ const FormWorkers = () => {
         <button type="submit" className={style.submit} >
           Enviar
         </button>
-        <button type="submit" className={style.submit}>
+        <button type="button" className={style.submit} onClick={handleEdit}>
           Editar
         </button>
       </form>

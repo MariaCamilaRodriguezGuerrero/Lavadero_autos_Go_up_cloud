@@ -42,7 +42,7 @@ const CardBilling = ({
         <span className={style.spanDataV}>
           $
           {services
-            .map((e) => Number(e.cost))
+            .map((e) => Number(e.invoiced))
             .reduce((accumulator, currentValue) => accumulator + currentValue)}
         </span>
       </p>

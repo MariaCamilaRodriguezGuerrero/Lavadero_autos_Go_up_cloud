@@ -7,6 +7,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const CardWorkers = () => {
   const { workersData } = useSelector((state) => state);
+  console.log(workersData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,6 +51,10 @@ const CardWorkers = () => {
               <p>
                 <strong>Porcentaje de ganancias:</strong>{" "}
                 {worker.profitPercentage}%
+              </p>
+              <p>
+                <strong>Porcentaje despues de la meta:</strong>{" "}
+                {worker.percentageAfterGoal}%
               </p>
               <p>
                 <strong>Meta:</strong> {worker.goal}
